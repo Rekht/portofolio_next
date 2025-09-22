@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Learning Basic AI",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "image": "/assets/certificates/certif1.jpg",
+    "url": "https://dicoding.com/certificates/EYX4VM4NWZDL"
+  },
+  {
+    "id": 2,
+    "title": "Learning Basic Data Visualization",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "image": "/assets/certificates/certif2.jpg",
+    "url": "https://www.dicoding.com/certificates/6RPN153W5X2M"
+  },
+  {
+    "id": 3,
+    "title": "Learning Basic Structured Query Language (SQL)",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "image": "/assets/certificates/certif3.jpg",
+    "url": "https://dicoding.com/certificates/1OP8W86E1XQK"
+  },
+  {
+    "id": 4,
+    "title": "Getting Started with Python Programming",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "image": "/assets/certificates/certif4.jpg",
+    "url": "https://dicoding.com/certificates/1RXYLRMGQPVM"
+  },
+  {
+    "id": 5,
+    "title": "TOEFL Score",
+    "issuer": "Lembaga Kajian dan Pengajaran Bahasa",
+    "date": "April 2025",
+    "image": "/assets/toefl.jpg",
+    "url": "/assets/toefl.pdf",
+    "isEnglish": true
+  },
+  {
+    "id": 6,
+    "title": "Data Analysis with Python",
+    "issuer": "IBM",
+    "date": "2025",
+    "image": "/assets/certificates/data-analysis-with-python-coursera.jpg",
+    "url": "https://www.coursera.org/account/accomplishments/verify/6Z5C8TCA892X"
+  },
+  {
+    "id": 7,
+    "title": "Learning Basic Web Programming",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "image": "/assets/certificates/certif5.jpg",
+    "url": "https://dicoding.com/certificates/53XEYKO2KPRN"
+  },
+  {
+    "id": 8,
+    "title": "Learning Basic JavaScript Programming",
+    "issuer": "Dicoding",
+    "date": "2025 - 2028",
+    "image": "/assets/certificates/certif6.jpg",
+    "url": "https://www.dicoding.com/certificates/JMZVEY0KRPN9"
+  },
+  {
+    "id": 9,
+    "title": "Learning to Create Front-End Web for Beginners",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "image": "/assets/certificates/certif7.jpg",
+    "url": "https://dicoding.com/certificates/1OP8N933QXQK"
+  },
+  {
+    "id": 10,
+    "title": "Learn Cloud Basics and AI Genes on AWS",
+    "issuer": "Dicoding",
+    "date": "2025 - 2028",
+    "image": "/assets/certificates/certif8.jpg",
+    "url": "https://www.dicoding.com/certificates/72ZD54D5LZYW"
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "title": "Mathematics Student Association",
+    "position": "Staff of IT Division",
+    "period": "2021 - 2022",
+    "description": [
+      "Performed maintenance and repairs on hardware inventory, including one computer, one router, and two printers, on a four-day rotation system to ensure optimal performance.",
+      "Managed over 30 software installations and ensured the smooth operation of IT systems for all members.",
+      "Researched, designed, and distributed 11 media publications in the form of videos and images related to the latest technological developments or interesting tech facts, coordinating with the communication and publication team."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Engineering and Technology Club (INFINITE)",
+    "position": "Staf of Competition Division",
+    "period": "2023 - 2024",
+    "description": [
+      "Conducted research and monitoring of more than 15 IT-related competitions, gathering and distributing relevant information to members.",
+      "Managed an archive of over 25 competition-related documents, including proposals and other documentation."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Student Executive Board",
+    "position": "Staff of Research, Data, and Digital Products Division",
+    "period": "2023 - 2024",
+    "description": [
+      "Analyzed and visualized more than 10 survey datasets using Excel or Python to support strategic decision making.",
+      "Designed and produced over 10 informative infographics based on data analysis results, collaborated with the communication and publication team to ensure consistency and effectiveness in media content."
+    ]
+  }
+]

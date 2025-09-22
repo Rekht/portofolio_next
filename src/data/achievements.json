@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "3rd Place – LIKMI, Applied Technology Business Category",
+    "organization": "Yogyakarta State University",
+    "year": "2023",
+    "description": "Project: 'FO-Shion (Find Your Shade Cushion): A Spark AR Studio-Based Solution for Choosing the Right Cushion Shade for Skin Tone'.",
+    "certificate": "/assets/certificates/competition/file/Sertifikat_LIKMI.pdf",
+    "hasImage": true,
+    "certificateImage": "/assets/certificates/competition/image/Sertifikat_LIKMI.jpg",
+    "documentationImage": "/assets/certificates/competition/documentation/LIKMI_doc.png"
+  },
+  {
+    "id": 2,
+    "title": "Finalist – TrackAML Hackathon PPATK",
+    "organization": "PPATK",
+    "year": "2023",
+    "description": "Project: 'A Combined Fraud Detection and Ensemble Learning System for AML and Terrorism Indicators in Anomaly Data Analysis'.",
+    "certificate": "/assets/certificates/competition/file/Sertifikat_PPATK.pdf",
+    "hasImage": true,
+    "certificateImage": "/assets/certificates/competition/image/Sertifikat_PPATK.jpg",
+    "documentationImage": "/assets/certificates/competition/documentation/PPATK_doc.jpeg"
+  },
+  {
+    "id": 3,
+    "title": "Finalist – Abdidaya Ormawa, PPK Ormawa",
+    "organization": "Ministry of Education, Culture, Research, and Technology",
+    "year": "2023",
+    "description": "Project: Community service to build a climate-resilient village through agroforestry, biogas, biopore infiltration systems, and MSME empowerment using agroforestry products like eco-printing.",
+    "certificate": "/assets/certificates/competition/file/Sertifikat_PPKO.pdf",
+    "hasImage": true,
+    "certificateImage": "/assets/certificates/competition/image/Sertifikat_PPKO.jpg",
+    "documentationImage": "/assets/certificates/competition/documentation/PPKO_doc.jpg"
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "skills": {
+    "frontend": {
+      "title": "Frontend",
+      "color": "blue",
+      "technologies": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "JavaScript"
+      ]
+    },
+    "ai_ml": {
+      "title": "AI & Machine Learning",
+      "color": "red",
+      "technologies": [
+        "scikit-learn",
+        "TensorFlow",
+        "PyTorch",
+        "Keras",
+        "Hugging Face",
+        "pandas",
+        "NumPy"
+      ]
+    },
+    "bi_analytics": {
+      "title": "BI & Analytics",
+      "color": "yellow",
+      "technologies": ["Power BI", "Google Looker"]
+    },
+    "backend": {
+      "title": "Backend",
+      "color": "green",
+      "technologies": ["Node.js", "Flask API", "MySQL"]
+    },
+    "tools_devops": {
+      "title": "Tools & DevOps",
+      "color": "purple",
+      "technologies": ["Git", "Docker", "AWS"]
+    },
+    "3d_gamedev": {
+      "title": "3D & Game Dev",
+      "color": "indigo",
+      "technologies": ["Blender", "Roblox Studio"]
+    },
+    "geospatial": {
+      "title": "Geospatial",
+      "color": "emerald",
+      "technologies": ["Google Earth Engine", "QGIS"]
+    }
+  }
+}

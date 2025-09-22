@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "company": "Independence/Various Platforms",
+    "position": "Freelance",
+    "duration": "Jul 2025 - Present",
+    "location": "Remote",
+    "description": [
+      "Provide freelance services independently and through various platforms",
+      "Entered more than 900 data entries from PDF to Excel and performed typo checks",
+      "Developed maps in Roblox games using Roblox Studio and Lua programming language",
+      "Conducted validity testing (loading factor > 0.7) and reliability testing (Cronbach's Alpha > 0.7), and verified that AVEЕ on the diagonal exceeds inter-construct correlations in the corresponding row/column"
+    ],
+    "technologies": [
+      "Excel",
+      "PDF Processing",
+      "Roblox Studio",
+      "Lua",
+      "Statistical Analysis",
+      "Data Validation"
+    ]
+  },
+  {
+    "id": 2,
+    "company": "Department of Mathematics Education, Yogyakarta State University",
+    "position": "Research Assistant",
+    "duration": "May 2024 - Jul 2024",
+    "location": "Yogyakarta",
+    "description": [
+      "Entered research data into Word documents totaling over 3,000 pages",
+      "Ensured format consistency and corrected errors according to guidelines on over 1,000 pages",
+      "Maintained high accuracy standards in data entry and document formatting",
+      "Collaborated with research team to meet project deadlines and quality requirements"
+    ],
+    "technologies": [
+      "Microsoft Word",
+      "Data Entry",
+      "Document Formatting",
+      "Quality Control"
+    ]
+  },
+  {
+    "id": 3,
+    "company": "Grogol Village, Paliyan District, Gunung Kidul Regency",
+    "position": "Media Staff (Internship)",
+    "duration": "Jul 2023 - Aug 2023",
+    "location": "Gunung Kidul Regency, Yogyakarta",
+    "description": [
+      "Conversion activity within the Student Organization Capacity Building Program (PPK Ormawa)",
+      "Drafted 4 official reports of village activities and documented more than 3 events",
+      "Managed and adjusted the content of the village website on WordPress to match the new template and design",
+      "Collaborated with village administration to improve digital presence and documentation"
+    ],
+    "technologies": [
+      "WordPress",
+      "Content Management",
+      "Report Writing",
+      "Digital Documentation",
+      "Web Design"
+    ]
+  }
+]

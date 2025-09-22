@@ -1,0 +1,314 @@
+[
+  {
+    "id": 1,
+    "title": "Tea Leaf Disease Detection System",
+    "description": "A tea leaf disease detection system using a deep learning approach with transfer learning on the EfficientNetV2-S architecture.",
+    "detailedDescription": "This project is part of my undergraduate thesis. \n\nThis project implements an advanced machine learning system to detect and classify diseases in tea plants using a deep learning approach. The system employs transfer learning on the EfficientNetV2-S architecture, combined with a convolutional neural network (CNN), to identify various types of tea leaf diseases with a testing accuracy of 98.33% and a training accuracy of 98.59%.\n\nThe image preprocessing process aims to improve the quality of the tea leaf images for optimal feature extraction, adapt to various lighting conditions, and normalize the input data before training. I also applied data augmentation techniques to enhance the model's generalization to image variations. The CNN architecture used has undergone experimental evaluations with various configurations to achieve a balanced model in terms of accuracy and inference speed, making it effective for field conditions.\n\nI also used Grad-CAM to visualize the important areas in the image that the model focuses on during decision-making. In addition, inference time testing was conducted using a Ryzen 5 5600 CPU and an RTX 3070 GPU to compare the efficiency of this model with other CNN architectures.",
+    "image": "/assets/projects/tea-leaf-project.jpg",
+    "url": "https://github.com/Rekht/tea_leaf_disease",
+    "tags": [
+      "Python",
+      "CNN",
+      "Transfer Learning",
+      "Hyperparameter Tunning",
+      "EfficientNetV2",
+      "TensorFlow",
+      "Grad-CAM"
+    ],
+    "features": [
+      "Achieved a testing accuracy of 98.33% and training accuracy of 98.59%",
+      "Capable of identifying partial leaf images under various lighting conditions",
+      "Classifies 6 common types of tea plant diseases",
+      "Uses transfer learning with the EfficientNetV2-S architecture",
+      "Data augmentation applied to improve model generalization",
+      "Grad-CAM used for model interpretability",
+      "Inference time evaluation performed on Ryzen 5 5600 CPU and RTX 3070 GPU compared to other CNN models"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Portfolio Website",
+    "description": "Responsive portfolio website with modern design.",
+    "detailedDescription": "This portfolio website showcases my personal profile including educational background, certifications, projects, and contact information. Built using modern web development technologies, it features a responsive design that adapts to various screen sizes without compromising visual appeal or functionality.\n\nDevelopment focused on user experience and clean architecture, applying techniques like code splitting and lazy loading to improve performance. The architecture follows a component-based design for maintainability and scalability. State is managed efficiently using React hooks, while styling is handled with Tailwind CSS for consistency and development speed.",
+    "image": "/assets/projects/portofolio-project.jpg",
+    "url": "https://github.com/Rekht/portofolio",
+    "tags": ["React", "Tailwind CSS", "JavaScript"],
+    "features": [
+      "Responsive design for all screen sizes",
+      "Optimized with code splitting and lazy loading",
+      "Showcases education, projects, certifications, and contact info",
+      "Built using React and Tailwind CSS"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Land Use Land Cover Classification Website",
+    "description": "Using Google Earth Engine and 1D CNN for accurate and simplified land cover classification.",
+    "detailedDescription": "This project is my internship report.\n\nThis web-based platform performs one-dimensional land use and land cover (LULC) classification using satellite imagery from Sentinel-2 and a 1D convolutional neural network (CNN). It is designed as a lightweight application focused on classification tasks rather than interactive exploration.\n\nThe classification model was trained on thousands of labeled samples to recognize spectral patterns across four major land cover classes: Built-up, Water, Plantation forest, and Herbaceous. By leveraging Sentinel-2’s multi-spectral data, the model achieved a classification accuracy of 90%.\n\nThe website features a minimal interface for displaying classification outputs. It does not include region selection, algorithm switching, or time-series analysis components, making it suitable for evaluating classification performance with a simple deployment.",
+    "image": "/assets/projects/lulc-project.jpg",
+    "url": "https://github.com/Rekht/LULC-using-GEE-and-CNN",
+    "tags": [
+      "GEE",
+      "Python",
+      "JavaScript",
+      "React",
+      "CNN",
+      "TensorFlow",
+      "Remote Sensing",
+      "Sentinel-2"
+    ],
+    "features": [
+      "Uses Sentinel-2 satellite imagery",
+      "1D CNN-based land cover classification",
+      "Achieved 90% classification accuracy",
+      "Four classes: Built-up, Water, Plantation forest, Herbaceous",
+      "Simple web interface for output display"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Mobile Stocks App",
+    "description": "Real-time stocks tracking app with watchlists, recommendations, and visual analysis tools.",
+    "detailedDescription": "This project is the final assignment for the Mobile Development course in the sixth semester.\n\nThis comprehensive stock market tracking application provides a streamlined mobile platform for monitoring market movements and portfolio insights. Built with Flutter for cross-platform compatibility, the app ensures a seamless experience across both iOS and Android devices.\n\nThe app retrieves financial data via APIs to display real-time stock prices, historical charts across multiple timeframes, and essential financial indicators. Users can create custom watchlists to follow selected stocks and explore automatic stock recommendations highlighting strong-performing assets at a given moment.\n\nAdditional features include technical analysis tools with common indicators such as moving averages and relative strength index, portfolio performance visualization, and a curated financial news feed tailored to user interests.",
+    "image": "/assets/projects/stocks-project.jpg",
+    "url": "https://github.com/Rekht/Multiplatform-Stocks-with-Flutter",
+    "tags": ["Flutter", "Dart", "Firebase", "RESTful APIs"],
+    "features": [
+      "Built with Flutter for cross-platform support",
+      "Real-time stock price updates",
+      "Customizable watchlists and portfolios",
+      "Stock recommendations based on current trends",
+      "Technical analysis charts with indicators",
+      "Latest stock-related news updates"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Mobile Weather Application",
+    "description": "Simple weather application with forecast, location tracking, and beautiful UI.",
+    "detailedDescription": "This project is the midterm assignment for the Mobile Development course in the sixth semester.\n\nThis elegant weather application combines beautiful design with practical functionality to deliver accurate weather information in a visually engaging format. The app utilizes geolocation services to automatically detect the user's location and provide localized weather data, while also allowing manual location searches.\n\nThe interface presents current conditions along with hourly and 7-day forecasts, displaying temperature, precipitation probability, wind speed, humidity, and UV index. Weather data visualization includes animated icons that represent different weather conditions and intuitive charts for temperature and precipitation trends.\n\nDeveloped with Flutter, the application maintains consistent performance across platforms while adapting to device-specific design guidelines.",
+    "image": "/assets/projects/weather-project.jpg",
+    "url": "https://github.com/Rekht/Simple-Weather-App-using-Flutter",
+    "tags": ["Flutter", "RESTful APIs"],
+    "features": [
+      "Location-based weather forecasts",
+      "Hourly and 7-day predictions",
+      "Animated weather condition icons",
+      "Background themes matching weather conditions"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Mental Health Sentiment Analysis using LSTM",
+    "description": "Developed a sentiment analysis system specializing in depression detection from tweets with 98% accuracy",
+    "detailedDescription": "This project is an independent project.\n\nThis project implements advanced sentiment analysis techniques with specialized focus on mental health indicators. The system processes Twitter data through a customized NLP pipeline including emoji decoding, slang translation (100+ terms), and mental-health-specific text normalization.\n\nThe core LSTM architecture employs two recurrent layers with dropout regularization (0.5), achieving exceptional performance in identifying depression-related language patterns. Evaluation results demonstrate 98% classification accuracy with 0.97 precision for positive depression indicators.\n\nBeyond binary classification, the system generates interpretable analytics including sentiment evolution timelines and keyword correlation matrices, providing actionable insights for mental health monitoring applications.",
+    "image": "/assets/projects/sentiment-project.jpg",
+    "url": "https://github.com/Rekht/Sentiment-Analysis-on-Twitter-Data",
+    "tags": ["Python", "LSTM", "Sentiment Analysis", "NLP", "TensorFlow"],
+    "features": [
+      "Specialized sentiment analysis for mental health context",
+      "Dual-layer LSTM architecture with 98% detection accuracy",
+      "Mental-health-focused text preprocessing pipeline",
+      "Slang and emoji processing for social media text",
+      "Sentiment trend visualization and pattern analysis",
+      "Production-ready model serving via Flask API",
+      "Comprehensive model interpretability features"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "DJP Play Store Review Sentiment Analysis",
+    "description": "Advanced sentiment analysis system for Indonesian tax app reviews with 96.92% accuracy using optimized SVM",
+    "detailedDescription": "This project is an independent project.\n\nThis project analyzes user sentiment from the Indonesian Tax Office (DJP) mobile app reviews on Google Play Store. The system processes 5,000 Indonesian-language reviews through a comprehensive NLP pipeline including slang normalization, Sastrawi stemming, and lexicon-based sentiment scoring.\n\nThe analysis employs multiple machine learning models (SVM, Random Forest, CatBoost, etc.) with SVM achieving 96.92% accuracy after hyperparameter tuning. The system features automated data scraping, advanced text preprocessing for Indonesian language, and interactive visualizations including sentiment distribution charts and word clouds for both positive and negative reviews.\n\nTechnical implementation includes SMOTE for class balancing, TF-IDF vectorization with n-grams, and rigorous model evaluation metrics. The project delivers actionable insights for app improvement and user satisfaction tracking.",
+    "image": "/assets/projects/djp-sentiment.jpg",
+    "url": "https://github.com/Rekht/scrapping-djp-playstore",
+    "tags": [
+      "Python",
+      "Machine Learning",
+      "NLP",
+      "Text Classification",
+      "Sentiment Analysis",
+      "Scrapping"
+    ],
+    "features": [
+      "Automated review scraping from Google Play Store (5,000+ reviews)",
+      "Specialized Indonesian text preprocessing with Sastrawi",
+      "Lexicon-based sentiment scoring with custom slang dictionary",
+      "Multiple model comparison (SVM, Random Forest, CatBoost etc.)",
+      "Optimized SVM model achieving 96.92% accuracy",
+      "Interactive visualizations (word clouds, sentiment distribution)",
+      "Class balancing with SMOTE technique"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Library Management System with Multi-Role Authentication",
+    "description": "A comprehensive library management system with admin/member roles, book tracking, and automated penalty calculations using MySQL",
+    "detailedDescription": "This project is the final assignment for the Database course in the fifth semester.\n\nThis project implements a full-featured library management system with:\n\n1. **User Management**\n- Dual-role authentication (Admin/Member)\n- Secure credential storage in MySQL\n- Profile management for all users\n\n2. **Book Inventory System**\n- Complete CRUD operations for 500+ book entries\n- Real-time availability tracking across 5 genres\n- Advanced search functionality\n\n3. **Loan Management**\n- Automated due date calculations\n- Dynamic penalty system (Rp 2000/day overdue)\n- Complete transaction history\n\nThe system uses Python with Tkinter for the responsive GUI and MySQL for robust data storage, handling 50+ concurrent operations with optimized database queries.",
+    "image": "/assets/projects/library-system.jpg",
+    "url": "https://github.com/Rekht/Library-Management-System",
+    "tags": ["Python", "SQL", "GUI", "Tkinter"],
+    "features": [
+      "Role-based access control (Admin/Member permissions)",
+      "Automated penalty calculations with date tracking",
+      "Interactive GUI with customized widgets",
+      "MySQL database with 4 normalized tables (admin_logindata, member_logindata, list_books, loan_book)",
+      "Input validation and error handling for all operations",
+      "Book availability tracking across multiple copies",
+      "Genre classification system (Fantasy, Sci-Fi, Mystery, Romance, Pendidikan)"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Unsupervised Bank Transaction Fraud Detection System",
+    "description": "This project is an independent project.\n\nUnsupervised machine learning solution identifying fraudulent transactions with 2.35% anomaly rate using behavioral pattern analysis and geospatial verification",
+    "detailedDescription": "This project implements an unsupervised fraud detection system for banking transactions with the following key findings:\n\n**Critical Insights**:\n1. Impossible Travel Detection\n- Identified 25 transactions with physically impossible velocities (>800km/h)\n- Geographic anomalies represented 42.4% of high-confidence fraud cases\n\n2. Transaction Pattern Analysis\n- Anomalous transactions averaged $623.37 (115% higher than normal transactions)\n- 68% of high-value anomalies (>$1000) involved multiple devices\n\n3. Temporal Behavior Patterns\n- Highest anomaly concentration at 18:00 (3.45% anomaly rate)\n- Tuesday anomalies occurred 2.93% more frequently than weekly average\n\n**Technical Implementation**:\n- Processed 2,512 real-world transactions with 31 engineered features\n- Ensemble of 7 unsupervised models (Isolation Forest, OCSVM, LOF, Mahalanobis, HBOS, GMM, k-NN)\n- Domain validation showed 74.58% of detected anomalies matched actual fraud criteria\n- Key feature contributions:\n  • Account Transaction Velocity (10.03% impact)\n  • Location Velocity (7.76% impact)\n  • Amount-to-Average Ratio (6.02% impact)",
+    "image": "/assets/projects/anomaly.jpg",
+    "url": "https://github.com/Rekht/Unsupervised-Anomaly-Transaction",
+    "tags": [
+      "Unsupervised Learning",
+      "Anomaly Detection",
+      "Financial Fraud",
+      "Machine Learning",
+      "Python",
+      "Scikit-learn"
+    ],
+    "features": [
+      "Label-free detection (requires no pre-classified fraud data)",
+      "Velocity-based fraud identification (impossible travel scenarios)",
+      "Behavioral fingerprinting of accounts",
+      "Temporal pattern analysis",
+      "Multi-device usage detection",
+      "Interactive geospatial visualization",
+      "Dynamic statistical thresholding (96th percentile)",
+      "Consensus-based ensemble approach (7 algorithms)",
+      "Risk scoring system (0-100 scale)",
+      "Transaction channel monitoring (Branch/ATM/Online variants)"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Book API Service",
+    "description": "Sebuah API RESTful untuk mengelola koleksi buku, dibangun dengan Node.js dan Hapi.js, serta diuji menggunakan Postman.",
+    "detailedDescription": "This project is the final project of the Dicoding course 'Beginner Back-End Development with JavaScript'.\n\nProyek ini adalah layanan backend sederhana yang menyediakan API RESTful untuk pengelolaan data buku. Dibangun menggunakan Node.js dan framework Hapi.js, API ini mendukung operasi CRUD (Create, Read, Update, Delete) dengan validasi input yang ketat dan penanganan kesalahan yang tepat. Setiap buku memiliki ID unik yang dibuat menggunakan paket `nanoid`. Data disimpan dalam array di memori, cocok untuk kebutuhan prototipe atau pembelajaran awal.\n\nProyek ini belum dideploy ke AWS, namun telah diuji secara lokal menggunakan Postman untuk memastikan semua endpoint berjalan dengan benar. Server mendukung pengaturan mode produksi dan pengembangan secara otomatis, serta sudah mengaktifkan CORS untuk permintaan lintas domain. Semua pengembangan dan pengujian dilakukan dengan pengelolaan versi melalui Git.",
+    "image": "/assets/projects/bookself-api.jpg",
+    "url": "https://github.com/Rekht/bookself-dicoding",
+    "tags": [
+      "Node.js",
+      "Hapi.js",
+      "REST API",
+      "Backend",
+      "JavaScript",
+      "Postman",
+      "Git"
+    ],
+    "features": [
+      "Operasi CRUD untuk buku (tambah, ambil, perbarui, hapus)",
+      "Validasi input untuk nama dan logika halaman buku",
+      "Pemfilteran berdasarkan nama, status membaca, dan selesai dibaca",
+      "Pembuatan ID unik untuk buku dengan nanoid",
+      "Penyimpanan data dalam array (in-memory)",
+      "Konfigurasi environment untuk mode produksi dan pengembangan",
+      "Dukungan CORS untuk akses lintas domain",
+      "Pengujian endpoint menggunakan Postman",
+      "Versi kode dikelola dengan Git"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Notes Backend API",
+    "description": "A REST API for managing notes using Node.js and Hapi.js. This project was built during a Dicoding course, tested using Postman, and deployed to AWS.",
+    "detailedDescription": "This project was developed during the learning process of the Dicoding course 'Beginner Back-End Development with JavaScript'.\n\nThe Notes Backend API is a simple server-side application that allows users to perform CRUD (Create, Read, Update, Delete) operations on notes. It is built using Node.js and the Hapi.js framework, following modular design principles. The application uses in-memory data storage, meaning all data is stored temporarily in the server's memory. Each note is assigned a unique ID generated using the nanoid package, and input validation is handled within the handler functions.\n\nThe server is configured with environment-based settings to distinguish between development and production modes, including CORS support for cross-origin access. The project also includes development tools such as nodemon for live reloading and ESLint for code linting using the Dicoding Academy's config. All API endpoints were thoroughly tested using Postman to ensure functionality and correctness. The routes are cleanly organized, and the application has been deployed to AWS to make it publicly accessible. Version control is managed using Git.",
+    "image": "/assets/projects/notes-backend.jpg",
+    "url": "https://github.com/Rekht/notes-app-back-end",
+    "tags": [
+      "Node.js",
+      "Hapi.js",
+      "REST API",
+      "Backend",
+      "JavaScript",
+      "AWS",
+      "Git",
+      "Postman"
+    ],
+    "features": [
+      "CRUD operations for notes (create, read, update, delete)",
+      "Modular routing with Hapi.js",
+      "Input validation and in-memory data management",
+      "Server configuration with environment detection (localhost vs production)",
+      "CORS support for cross-origin API access",
+      "Development scripts using nodemon and linting with ESLint",
+      "Tested using Postman to verify API functionality",
+      "Deployed to AWS and version controlled with Git"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Ritel Transaction Dashboard",
+    "description": "An interactive dashboard to monitor retail transactions by payment method, product category, customer, and sales trends. This project is an independent project.",
+    "detailedDescription": "This project was developed as part of the learning process at MySkill.\n\nThis dashboard provides a comprehensive view of retail sales data, including quantity sold, revenue, profit, customer count, and discounts. It features visualizations based on payment methods, product categories, transaction values, and performance summaries for both products and customers. This is an independent project developed as part of the MySkill learning program.",
+    "image": "/assets/projects/ritel-transaction.jpg",
+    "url": "https://lookerstudio.google.com/reporting/fc87b23a-7571-4c07-8a37-f95f324153d5",
+    "tags": [
+      "Google Looker Studio",
+      "Dashboard",
+      "Transaction Analysis",
+      "Data Visualization",
+      "Retail"
+    ],
+    "features": [
+      "Performance summary: quantity, revenue, profit, and discount",
+      "Sales trend over time",
+      "Transaction and value distribution by payment method",
+      "Product category analysis by transaction count and value",
+      "Treemap of discount by category and product",
+      "Product and customer tables with key metrics"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Credit Card Dashboard",
+    "description": "An interactive dashboard to analyze credit card customer profiles based on demographics, revenue, and risk. This is an independent project developed as part of the learning process at MySkill.",
+    "detailedDescription": "This project was developed as part of the learning process at MySkill.\n\nThis dashboard provides a comprehensive analysis of credit card customers segmented by state, occupation, marital status, education level, and spending categories. It includes visualizations of revenue profiles, card utilization, annual fees, and risk profiles. This independent project was built to support data-driven insights during the MySkill learning process.",
+    "image": "/assets/projects/credit-card-dashboard.jpg",
+    "url": "https://lookerstudio.google.com/reporting/5c2c09fb-513a-4aed-8a09-aa562b012f77",
+    "tags": [
+      "Google Looker Studio",
+      "Dashboard",
+      "Data Analysis",
+      "Data Visualization",
+      "Credit Card"
+    ],
+    "features": [
+      "Customer demographic analysis by map and charts",
+      "Revenue and transaction volume by occupation",
+      "Delinquent accounts segmented by state and profile",
+      "Utilization ratio and annual fees by occupation",
+      "Segmentation by education level and expenses",
+      "Heatmaps for revenue and risk profile comparison"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Bicycle Rental Dashboard",
+    "description": "An interactive dashboard to analyze bike rental performance by time, rider type, season, and key business metrics. This project is an independent project.",
+    "detailedDescription": "This Power BI dashboard is an independent project that provides data visualizations for a bike rental business, including hourly and daily profit analysis, KPIs such as total revenue and profit, rider type distribution (registered vs casual), and seasonal performance. The dashboard supports data-driven decision-making.",
+    "image": "/assets/projects/powerbi-bicycle.jpg",
+    "url": "https://github.com/Rekht/notes-app-back-end",
+    "tags": [
+      "Power BI",
+      "Dashboard",
+      "Data Visualization",
+      "Business Analysis",
+      "Interactive Data"
+    ],
+    "features": [
+      "Profit visualization by hour and weekday",
+      "KPI over time: revenue, profit, and rider count",
+      "Interactive filters by month, quarter, and year",
+      "Rider type breakdown: casual vs registered",
+      "Revenue analysis by season",
+      "Insights into peak hours and days"
+    ]
+  }
+]
