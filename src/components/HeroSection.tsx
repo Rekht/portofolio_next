@@ -1,125 +1,48 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-// import ProfileCard from "@/components/profilecard/ProfileCard";
+import { ArrowDown } from "lucide-react";
 
-import dynamic from "next/dynamic";
-
-const ProfileCard = dynamic(
-  () => import("@/components/profilecard/ProfileCard"),
-  { ssr: false }
-);
-
-interface HeroSectionProps {
-  onShowCVModal: () => void;
-  onScrollDown: () => void;
-}
-
-const HeroSection: React.FC<HeroSectionProps> = ({
-  onShowCVModal,
-  onScrollDown,
-}) => {
-  // Fungsi untuk scroll ke ContactSection
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+export default function HeroSection() {
+  const scrollToProfile = () => {
+    const profileSection = document.getElementById("profile"); // target ProfileSection
+    if (profileSection) {
+      profileSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <section
-      id="profile"
-      className="py-8 flex flex-col md:flex-row items-center justify-between"
+      id="hero"
+      className="relative flex flex-col justify-center min-h-screen w-full text-white px-4 sm:px-6 md:px-20 lg:px-32"
     >
-      {/* Bagian kiri */}
-      <div className="md:w-1/2">
-        {/* Foto profil kecil & status */}
-        <div className="flex items-center mb-6">
-          <div className="w-10 h-10 rounded-full overflow-hidden mr-2">
-            <Image
-              src="/assets/logo.png"
-              alt="Profil"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Judul utama */}
-        <h1 className="text-7xl font-bold mb-4">
-          Portofolio
-          <br />
+      {/* Wrapper teks utama */}
+      <div className="relative ml-auto mr-2 sm:mr-5 lg:mr-90 max-w-fit md:-mt-45 lg:left-20">
+        <h1 className="font-bold text-[2rem] sm:text-[3rem] md:text-[6rem] lg:text-[8rem] leading-none uppercase tracking-tight">
+          <span className="block sm:ml-8 md:ml-16">Data</span>
+          Storyteller <br />
+          <span className="block sm:ml-8 md:ml-16">Engineer</span>
         </h1>
-        <h2 className="text-5xl font-bold mb-4">Restu Anggoro Kasih</h2>
-
-        {/* Tombol CTA */}
-        <div className="mt-8 flex space-x-4">
-          <button
-            onClick={onShowCVModal}
-            className="bg-blue-500 text-white px-6 py-3 rounded-full flex items-center hover:bg-blue-600 transition transform hover:scale-105"
-          >
-            Curriculum Vitae
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              ></path>
-            </svg>
-          </button>
-
-          {/* Tombol scroll down */}
-          <button
-            onClick={onScrollDown}
-            className="bg-gray-800 text-white px-6 py-3 rounded-full flex items-center hover:bg-gray-700 transition"
-          >
-            Scroll down
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-        </div>
       </div>
 
-      {/* Bagian kanan - ProfileCard */}
-      <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
-        <ProfileCard
-          avatarUrl="/assets/profile.png"
-          miniAvatarUrl="/assets/logo.png"
-          name={" "}
-          title=" "
-          handle="restu22ak"
-          contactText="Contact Me"
-          showUserInfo={true}
-          enableTilt={true}
-          enableMobileTilt={true}
-          mobileTiltSensitivity={5}
-          onContactClick={scrollToContact}
-          // grainUrl="/assets/texture.png"
-        />
+      {/* Paragraf */}
+      <p className="absolute bottom-28 sm:bottom-32 md:bottom-[13rem] lg:bottom-[18.8rem] right-4 sm:right-10 md:right-40 lg:right-40 max-w-xs sm:max-w-sm md:max-w-md text-[12px] sm:text-sm md:text-base text-gray-300 leading-relaxed text-left indent-6 sm:indent-8 uppercase">
+        <span className="pl-1 sm:pl-3">CRAFTING IMPACTFUL NARRATIVES FROM</span>{" "}
+        <br />
+        DATA, ENGINEERING, & DEPLOYING AI SYSTEMS <br />
+        TO DRIVE MEANINGFUL ADVANCEMENT ACROSS
+        <br />
+        ALL DOMAINS.
+      </p>
+
+      {/* Scroll indicator */}
+      <div
+        onClick={scrollToProfile} // klik panah → scroll ke #profile
+        className="absolute bottom-10 sm:bottom-14 md:bottom-40 left-1/2 -translate-x-1/2 cursor-pointer"
+      >
+        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 border border-white rounded-full flex items-center justify-center animate-bounce hover:scale-110 transition-transform">
+          <ArrowDown className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+        </div>
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}

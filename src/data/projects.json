@@ -4,7 +4,8 @@
     "title": "Tea Leaf Disease Detection System",
     "description": "A tea leaf disease detection system using a deep learning approach with transfer learning on the EfficientNetV2-S architecture.",
     "detailedDescription": "This project is part of my undergraduate thesis. \n\nThis project implements an advanced machine learning system to detect and classify diseases in tea plants using a deep learning approach. The system employs transfer learning on the EfficientNetV2-S architecture, combined with a convolutional neural network (CNN), to identify various types of tea leaf diseases with a testing accuracy of 98.33% and a training accuracy of 98.59%.\n\nThe image preprocessing process aims to improve the quality of the tea leaf images for optimal feature extraction, adapt to various lighting conditions, and normalize the input data before training. I also applied data augmentation techniques to enhance the model's generalization to image variations. The CNN architecture used has undergone experimental evaluations with various configurations to achieve a balanced model in terms of accuracy and inference speed, making it effective for field conditions.\n\nI also used Grad-CAM to visualize the important areas in the image that the model focuses on during decision-making. In addition, inference time testing was conducted using a Ryzen 5 5600 CPU and an RTX 3070 GPU to compare the efficiency of this model with other CNN architectures.",
-    "image": "/assets/projects/tea-leaf-project.jpg",
+    "image": "/assets/projects/tea-leaf-project-thumb.png",
+    "image_thumb": "/assets/projects/tea-leaf-project.png",
     "url": "https://github.com/Rekht/tea_leaf_disease",
     "tags": [
       "Python",
@@ -27,25 +28,11 @@
   },
   {
     "id": 2,
-    "title": "Portfolio Website",
-    "description": "Responsive portfolio website with modern design.",
-    "detailedDescription": "This portfolio website showcases my personal profile including educational background, certifications, projects, and contact information. Built using modern web development technologies, it features a responsive design that adapts to various screen sizes without compromising visual appeal or functionality.\n\nDevelopment focused on user experience and clean architecture, applying techniques like code splitting and lazy loading to improve performance. The architecture follows a component-based design for maintainability and scalability. State is managed efficiently using React hooks, while styling is handled with Tailwind CSS for consistency and development speed.",
-    "image": "/assets/projects/portofolio-project.jpg",
-    "url": "https://github.com/Rekht/portofolio",
-    "tags": ["React", "Tailwind CSS", "JavaScript"],
-    "features": [
-      "Responsive design for all screen sizes",
-      "Optimized with code splitting and lazy loading",
-      "Showcases education, projects, certifications, and contact info",
-      "Built using React and Tailwind CSS"
-    ]
-  },
-  {
-    "id": 3,
     "title": "Land Use Land Cover Classification Website",
     "description": "Using Google Earth Engine and 1D CNN for accurate and simplified land cover classification.",
     "detailedDescription": "This project is my internship report.\n\nThis web-based platform performs one-dimensional land use and land cover (LULC) classification using satellite imagery from Sentinel-2 and a 1D convolutional neural network (CNN). It is designed as a lightweight application focused on classification tasks rather than interactive exploration.\n\nThe classification model was trained on thousands of labeled samples to recognize spectral patterns across four major land cover classes: Built-up, Water, Plantation forest, and Herbaceous. By leveraging Sentinel-2’s multi-spectral data, the model achieved a classification accuracy of 90%.\n\nThe website features a minimal interface for displaying classification outputs. It does not include region selection, algorithm switching, or time-series analysis components, making it suitable for evaluating classification performance with a simple deployment.",
-    "image": "/assets/projects/lulc-project.jpg",
+    "image": "/assets/projects/lulc-project.png",
+    "image_thumb": "/assets/projects/lulc-project-thumb.png",
     "url": "https://github.com/Rekht/LULC-using-GEE-and-CNN",
     "tags": [
       "GEE",
@@ -63,6 +50,50 @@
       "Achieved 90% classification accuracy",
       "Four classes: Built-up, Water, Plantation forest, Herbaceous",
       "Simple web interface for output display"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Unsupervised Bank Transaction Fraud Detection System",
+    "description": "This project is an independent project.\n\nUnsupervised machine learning solution identifying fraudulent transactions with 2.35% anomaly rate using behavioral pattern analysis and geospatial verification",
+    "detailedDescription": "This project implements an unsupervised fraud detection system for banking transactions with the following key findings:\n\n**Critical Insights**:\n1. Impossible Travel Detection\n- Identified 25 transactions with physically impossible velocities (>800km/h)\n- Geographic anomalies represented 42.4% of high-confidence fraud cases\n\n2. Transaction Pattern Analysis\n- Anomalous transactions averaged $623.37 (115% higher than normal transactions)\n- 68% of high-value anomalies (>$1000) involved multiple devices\n\n3. Temporal Behavior Patterns\n- Highest anomaly concentration at 18:00 (3.45% anomaly rate)\n- Tuesday anomalies occurred 2.93% more frequently than weekly average\n\n**Technical Implementation**:\n- Processed 2,512 real-world transactions with 31 engineered features\n- Ensemble of 7 unsupervised models (Isolation Forest, OCSVM, LOF, Mahalanobis, HBOS, GMM, k-NN)\n- Domain validation showed 74.58% of detected anomalies matched actual fraud criteria\n- Key feature contributions:\n  • Account Transaction Velocity (10.03% impact)\n  • Location Velocity (7.76% impact)\n  • Amount-to-Average Ratio (6.02% impact)",
+    "image": "/assets/projects/anomaly-thumb.png",
+    "image_thumb": "/assets/projects/anomaly.png",
+    "url": "https://github.com/Rekht/Unsupervised-Anomaly-Transaction",
+    "tags": [
+      "Unsupervised Learning",
+      "Anomaly Detection",
+      "Financial Fraud",
+      "Machine Learning",
+      "Python",
+      "Scikit-learn"
+    ],
+    "features": [
+      "Label-free detection (requires no pre-classified fraud data)",
+      "Velocity-based fraud identification (impossible travel scenarios)",
+      "Behavioral fingerprinting of accounts",
+      "Temporal pattern analysis",
+      "Multi-device usage detection",
+      "Interactive geospatial visualization",
+      "Dynamic statistical thresholding (96th percentile)",
+      "Consensus-based ensemble approach (7 algorithms)",
+      "Risk scoring system (0-100 scale)",
+      "Transaction channel monitoring (Branch/ATM/Online variants)"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Portfolio Website",
+    "description": "Responsive portfolio website with modern design.",
+    "detailedDescription": "This portfolio website showcases my personal profile including educational background, certifications, projects, and contact information. Built using modern web development technologies, it features a responsive design that adapts to various screen sizes without compromising visual appeal or functionality.\n\nDevelopment focused on user experience and clean architecture, applying techniques like code splitting and lazy loading to improve performance. The architecture follows a component-based design for maintainability and scalability. State is managed efficiently using React hooks, while styling is handled with Tailwind CSS for consistency and development speed.",
+    "image": "/assets/projects/portofolio-project.jpg",
+    "url": "https://github.com/Rekht/portofolio",
+    "tags": ["React", "Tailwind CSS", "JavaScript"],
+    "features": [
+      "Responsive design for all screen sizes",
+      "Optimized with code splitting and lazy loading",
+      "Showcases education, projects, certifications, and contact info",
+      "Built using React and Tailwind CSS"
     ]
   },
   {
@@ -156,34 +187,6 @@
       "Input validation and error handling for all operations",
       "Book availability tracking across multiple copies",
       "Genre classification system (Fantasy, Sci-Fi, Mystery, Romance, Pendidikan)"
-    ]
-  },
-  {
-    "id": 9,
-    "title": "Unsupervised Bank Transaction Fraud Detection System",
-    "description": "This project is an independent project.\n\nUnsupervised machine learning solution identifying fraudulent transactions with 2.35% anomaly rate using behavioral pattern analysis and geospatial verification",
-    "detailedDescription": "This project implements an unsupervised fraud detection system for banking transactions with the following key findings:\n\n**Critical Insights**:\n1. Impossible Travel Detection\n- Identified 25 transactions with physically impossible velocities (>800km/h)\n- Geographic anomalies represented 42.4% of high-confidence fraud cases\n\n2. Transaction Pattern Analysis\n- Anomalous transactions averaged $623.37 (115% higher than normal transactions)\n- 68% of high-value anomalies (>$1000) involved multiple devices\n\n3. Temporal Behavior Patterns\n- Highest anomaly concentration at 18:00 (3.45% anomaly rate)\n- Tuesday anomalies occurred 2.93% more frequently than weekly average\n\n**Technical Implementation**:\n- Processed 2,512 real-world transactions with 31 engineered features\n- Ensemble of 7 unsupervised models (Isolation Forest, OCSVM, LOF, Mahalanobis, HBOS, GMM, k-NN)\n- Domain validation showed 74.58% of detected anomalies matched actual fraud criteria\n- Key feature contributions:\n  • Account Transaction Velocity (10.03% impact)\n  • Location Velocity (7.76% impact)\n  • Amount-to-Average Ratio (6.02% impact)",
-    "image": "/assets/projects/anomaly.jpg",
-    "url": "https://github.com/Rekht/Unsupervised-Anomaly-Transaction",
-    "tags": [
-      "Unsupervised Learning",
-      "Anomaly Detection",
-      "Financial Fraud",
-      "Machine Learning",
-      "Python",
-      "Scikit-learn"
-    ],
-    "features": [
-      "Label-free detection (requires no pre-classified fraud data)",
-      "Velocity-based fraud identification (impossible travel scenarios)",
-      "Behavioral fingerprinting of accounts",
-      "Temporal pattern analysis",
-      "Multi-device usage detection",
-      "Interactive geospatial visualization",
-      "Dynamic statistical thresholding (96th percentile)",
-      "Consensus-based ensemble approach (7 algorithms)",
-      "Risk scoring system (0-100 scale)",
-      "Transaction channel monitoring (Branch/ATM/Online variants)"
     ]
   },
   {

@@ -1,34 +1,34 @@
-// components/Navigation.tsx - Responsive Navigation with Animated Burger Menu
+// components/Navigation.tsx
 import React, { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavigationProps {
   scrolled: boolean;
-  activeSection: string;
+  activePage: string; // halaman aktif
   handleNavClick: (sectionId: string) => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
   scrolled,
-  activeSection,
+  activePage,
   handleNavClick,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check if screen is mobile
+  // Cek ukuran layar
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // Close menu when clicking outside or scrolling
+  // Tutup menu jika klik luar atau scroll
   useEffect(() => {
     const handleClickOutside = () => setIsMenuOpen(false);
     const handleScroll = () => setIsMenuOpen(false);
@@ -44,41 +44,21 @@ const Navigation: React.FC<NavigationProps> = ({
     };
   }, [isMenuOpen]);
 
-  // Memoize nav links untuk mencegah re-render yang tidak perlu
+  // Daftar halaman
   const navLinks = useMemo(() => {
-    const sections = [
-      "profile", // Changed back to "profile"
-      "experience",
-      "education",
-      "organization",
-      "certification",
-      "achievement",
-    ];
+    const pages = ["about", "experience", "education"];
 
-    return sections.map((section, index) => (
+    return pages.map((page, index) => (
       <motion.a
-        key={section}
-        href={`#${section}`}
+        key={page}
+        href={`/${page}`}
         onClick={(e) => {
           e.preventDefault();
-
-          // Khusus untuk experience, redirect ke halaman terpisah
-          if (section === "experience") {
-            window.location.href = "/experience";
-            return;
-          }
-
-          // Untuk section lain, gunakan smooth scroll seperti biasa
-          handleNavClick(section);
-          document
-            .getElementById(section)
-            ?.scrollIntoView({ behavior: "smooth" });
-
-          // Close mobile menu after click
+          window.location.href = `/${page}`;
           setIsMenuOpen(false);
         }}
         className={`nav-link px-4 py-2 rounded-full transition-all duration-300 ${
-          activeSection === section
+          activePage === page
             ? "active-nav bg-blue-600 text-white"
             : isMobile
             ? "text-gray-300 hover:text-white hover:bg-gray-700/50"
@@ -90,12 +70,12 @@ const Navigation: React.FC<NavigationProps> = ({
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {section.charAt(0).toUpperCase() + section.slice(1)}
+        {page.charAt(0).toUpperCase() + page.slice(1)}
       </motion.a>
     ));
-  }, [activeSection, handleNavClick, isMobile]);
+  }, [activePage, isMobile]);
 
-  // Animation variants with proper typing
+  // Animasi burger
   const burgerVariants = {
     closed: { rotate: 0 },
     open: { rotate: 180 },
@@ -117,38 +97,38 @@ const Navigation: React.FC<NavigationProps> = ({
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="w-full px-section relative z-10">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - Left Side */}
-          <motion.div
-            className="flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Image
-              src="/assets/logo.png"
-              alt="Logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-          </motion.div>
+          {/* Logo ke Homepage */}
+          <Link href="/" passHref>
+            <motion.div
+              className="flex-shrink-0 cursor-pointer flex items-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Image
+                src="/assets/logo.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+            </motion.div>
+          </Link>
 
-          {/* Desktop Navigation - Center with unified background */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center bg-black/80 backdrop-blur-sm rounded-full px-2 py-1">
             {navLinks}
           </div>
 
-          {/* Available for Work Button - Right Side */}
+          {/* Available for Work + Burger */}
           <div className="flex items-center space-x-4">
+            {/* Available for Work */}
             <motion.a
-              href="#contact"
+              href="/contact"
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick("contact");
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" });
+                window.location.href = "/contact";
               }}
               className="hidden sm:block text-green-400 hover:text-green-300 font-semibold transition-colors duration-300 px-4 py-2 rounded-full border border-green-400/30 hover:border-green-300/50 bg-black/80 backdrop-blur-sm hover:bg-black/90"
               whileHover={{
@@ -160,7 +140,7 @@ const Navigation: React.FC<NavigationProps> = ({
               Available for Work
             </motion.a>
 
-            {/* Mobile Burger Menu Button */}
+            {/* Burger Menu */}
             <motion.button
               className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none"
               onClick={(e) => {
@@ -192,11 +172,10 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && isMobile && (
             <>
-              {/* Backdrop */}
               <motion.div
                 className="fixed inset-0 bg-black/50 backdrop-blur-sm"
                 initial={{ opacity: 0 }}
@@ -205,8 +184,6 @@ const Navigation: React.FC<NavigationProps> = ({
                 transition={{ duration: 0.2 }}
                 onClick={() => setIsMenuOpen(false)}
               />
-
-              {/* Mobile Menu */}
               <motion.div
                 className="absolute top-full left-0 right-0 bg-gray-900/98 backdrop-blur-md border-b border-gray-700/50 shadow-2xl"
                 initial={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -224,15 +201,11 @@ const Navigation: React.FC<NavigationProps> = ({
                   <div className="flex flex-col space-y-2">
                     {navLinks}
 
-                    {/* Mobile Available for Work Button */}
                     <motion.a
-                      href="#contact"
+                      href="/contact"
                       onClick={(e) => {
                         e.preventDefault();
-                        handleNavClick("contact");
-                        document
-                          .getElementById("contact")
-                          ?.scrollIntoView({ behavior: "smooth" });
+                        window.location.href = "/contact";
                         setIsMenuOpen(false);
                       }}
                       className="text-green-400 hover:text-green-300 font-semibold transition-colors duration-300 px-4 py-3 rounded-full border border-green-400/30 hover:border-green-300/50 text-center mt-4"

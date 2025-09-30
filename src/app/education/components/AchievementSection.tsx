@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import achievementsData from "../data/achievements.json";
+import achievementsData from "@/data/achievements.json";
 
 // Define types for our achievement data
 interface Achievement {

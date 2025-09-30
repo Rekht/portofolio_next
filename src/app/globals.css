@@ -123,20 +123,22 @@
 
 /* Custom scrollbar untuk browser WebKit */
 ::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: oklch(23% 0.04 265.69);
+  width: 0px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(62% 0.19 256.23);
-  border-radius: 4px;
+  background: transparent;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: oklch(70% 0.22 256.23);
+/* Untuk Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Untuk Internet Explorer dan Edge lama */
+body {
+  -ms-overflow-style: none;
 }
 
 /* Animasi khusus */
@@ -153,4 +155,17 @@
 
 .animate-fadeInUp {
   animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Padding */
+@layer utilities {
+  /* untuk konten utama */
+  .px-section {
+    @apply px-8 md:px-16;
+  }
+
+  /* untuk footer */
+  .px-footer {
+    @apply px-2 md:px-4;
+  }
 }

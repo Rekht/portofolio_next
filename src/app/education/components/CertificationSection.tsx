@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import certificationsData from "../data/certifications.json";
+import certificationsData from "../../../data/certifications.json";
 
 // Define types for our certification data
 interface Certification {
