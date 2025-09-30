@@ -25,7 +25,7 @@ export default function HeroSection() {
       </div>
 
       {/* Paragraf */}
-      <p className="absolute bottom-28 sm:bottom-32 md:bottom-[13rem] lg:bottom-[18.8rem] right-4 sm:right-10 md:right-40 lg:right-40 max-w-xs sm:max-w-sm md:max-w-md text-[12px] sm:text-sm md:text-base text-gray-300 leading-relaxed text-left indent-6 sm:indent-8 uppercase">
+      <p className="absolute bottom-28 sm:bottom-32 md:bottom-[13rem] lg:bottom-[15.35rem] right-4 sm:right-10 md:right-40 lg:right-30 max-w-xs sm:max-w-sm md:max-w-md text-[12px] sm:text-sm md:text-base text-gray-300 leading-relaxed text-left indent-6 sm:indent-8 uppercase">
         <span className="pl-1 sm:pl-3">CRAFTING IMPACTFUL NARRATIVES FROM</span>{" "}
         <br />
         DATA, ENGINEERING, & DEPLOYING AI SYSTEMS <br />
