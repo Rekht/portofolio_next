@@ -43,13 +43,21 @@
   {
     "id": 6,
     "title": "Data Analysis with Python",
-    "issuer": "IBM",
+    "issuer": "Orbit",
     "date": "2025",
     "image": "/assets/certificates/data-analysis-with-python-coursera.jpg",
     "url": "https://www.coursera.org/account/accomplishments/verify/6Z5C8TCA892X"
   },
   {
     "id": 7,
+    "title": "AWS re/Start program",
+    "issuer": "IBM",
+    "date": "2025",
+    "image": "/assets/certificates/IDJAK126_Restu_Anggoro_Kasih.jpg",
+    "url": "https://drive.google.com/file/d/1fjvxQRm1Fx78C2fRMkQ0BH3DIEnZqXWE/view"
+  },
+  {
+    "id": 8,
     "title": "Learning Basic Web Programming",
     "issuer": "Dicoding",
     "date": "2024 - 2027",
@@ -57,7 +65,7 @@
     "url": "https://dicoding.com/certificates/53XEYKO2KPRN"
   },
   {
-    "id": 8,
+    "id": 9,
     "title": "Learning Basic JavaScript Programming",
     "issuer": "Dicoding",
     "date": "2025 - 2028",
@@ -65,7 +73,7 @@
     "url": "https://www.dicoding.com/certificates/JMZVEY0KRPN9"
   },
   {
-    "id": 9,
+    "id": 10,
     "title": "Learning to Create Front-End Web for Beginners",
     "issuer": "Dicoding",
     "date": "2024 - 2027",
@@ -73,11 +81,19 @@
     "url": "https://dicoding.com/certificates/1OP8N933QXQK"
   },
   {
-    "id": 10,
+    "id": 11,
     "title": "Learn Cloud Basics and AI Genes on AWS",
     "issuer": "Dicoding",
     "date": "2025 - 2028",
     "image": "/assets/certificates/certif8.jpg",
     "url": "https://www.dicoding.com/certificates/72ZD54D5LZYW"
+  },
+  {
+    "id": 12,
+    "title": "Junior Mobile Programmer",
+    "issuer": "Inixindo",
+    "date": "2022",
+    "image": "/assets/certificates/junior-mobile-inixindo.jpg",
+    "url": "https://drive.google.com/file/d/1AtZg09PGcRny7n8o5uroq4A2GgOgC6WV/view?usp=sharing"
   }
 ]
