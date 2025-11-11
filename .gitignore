@@ -1,46 +1,72 @@
-# dependencies
+# =========================================
+# 📦 Dependencies
+# =========================================
 /node_modules
 /.pnp
 .pnp.*
 
-# Yarn (kalau pakai)
+# =========================================
+# 🧶 Yarn (kalau pakai)
+# =========================================
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
 
-# testing
+# =========================================
+# 🧪 Testing
+# =========================================
 /coverage
 
-# Next.js
-/.next/
-out/
-
-# production
+# =========================================
+# ⚙️ Next.js
+# =========================================
+/.next
+/out
+/dist
 /build
 
-# misc
+# =========================================
+# 🧰 Misc
+# =========================================
 .DS_Store
+Thumbs.db
 *.pem
+*.log
+*.pid
+*.seed
+*.pid.lock
 
-# debug
+# =========================================
+# 🧩 Debug / Logs
+# =========================================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# env files (jangan dipush)
+# =========================================
+# 🔒 Environment Files (JANGAN DIPUSH)
+# =========================================
+.env
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.production
 .env.production.local
 
-# vercel
+# =========================================
+# 🚀 Vercel
+# =========================================
 .vercel
 
-# typescript
+# =========================================
+# 🧾 TypeScript
+# =========================================
 *.tsbuildinfo
 
-# ⚠️ Jangan di-ignore
-# next-env.d.ts harus tetap di repo
+# ⚠️ File penting untuk Next.js (JANGAN DI-IGNORE)
+!next-env.d.ts

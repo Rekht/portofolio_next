@@ -1,4 +1,3 @@
-// app/about/page.tsx - About Page yang Bersih dan Konsisten
 "use client";
 
 import React, {
@@ -31,6 +30,8 @@ import Navigation from "../../components/Navigation";
 import CvModal from "./components/CvModal";
 import HeroSection from "./components/HeroSection";
 import DarkVeil from "../../components/background/DarkVeil";
+import Guestbook from "../../components/ui/Guestbook";
+import GithubContributions from "./components/GithubContributions";
 
 // Data
 import aboutData from "../../data/about.json";
@@ -61,6 +62,7 @@ export default function AboutPage() {
   const { scrolled } = useScrollDetection(10);
   const { activeSection, handleNavClick } = useActiveSection([
     "about",
+    "guestbook", // ✅ Tambah section id baru
     "contact",
   ]);
 
@@ -71,9 +73,11 @@ export default function AboutPage() {
 
   const handleSmoothNavClick = useCallback(
     (sectionId: string) => {
-      // Navigation asli sudah handle redirect ke halaman lain
-      // Hanya handle section di halaman yang sama
-      if (sectionId === "about" || sectionId === "contact") {
+      if (
+        sectionId === "about" ||
+        sectionId === "guestbook" ||
+        sectionId === "contact"
+      ) {
         handleNavClick(sectionId);
         smoothScrollToSection(sectionId);
       }
@@ -89,15 +93,11 @@ export default function AboutPage() {
     setShowCVModal(false);
   }, []);
 
-  // GSAP Animations - menggunakan utils
+  // GSAP Animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const animations = createCommonAnimations(gsap, ScrollTrigger);
-
-      // Fade in sections
       animations.fadeInSections();
-
-      // Animate header background
       animations.animateHeader(headerRef);
     }, mainContainerRef);
 
@@ -105,7 +105,7 @@ export default function AboutPage() {
     return () => ctx.revert();
   }, []);
 
-  // Tampilkan loading jika belum dimuat
+  // Loading
   if (!isLoaded) {
     return <PageLoader message="Memuat halaman tentang..." />;
   }
@@ -134,10 +134,8 @@ export default function AboutPage() {
 
       {/* Main Content */}
       <main className="relative z-10">
-        {/* Spacer untuk navigasi fixed */}
         <div className="h-20"></div>
 
-        {/* Content Container */}
         <div className="w-full px-section">
           {/* Hero Section */}
           <HeroSection
@@ -150,6 +148,19 @@ export default function AboutPage() {
             <Suspense fallback={<SectionLoader />}>
               <AboutSection about={memoizedAbout} />
             </Suspense>
+          </section>
+
+          {/* ✅ Guestbook Section */}
+          <section className="py-8" id="guestbook">
+            <h2 className="text-3xl font-bold text-center mb-8">Guestbook</h2>
+            <Guestbook />
+          </section>
+
+          <section className="py-8" id="guestbook">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Github Contributions
+            </h2>
+            <GithubContributions />
           </section>
 
           {/* Contact Section */}
