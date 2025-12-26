@@ -1,6 +1,31 @@
 [
   {
     "id": 1,
+    "company": "PT Rakamin Kolektif Madani",
+    "position": "Data Analyst",
+    "duration": "Nov 2025 - Present",
+    "location": "Remote",
+    "description": [
+      "Implemented LLM-based job description matching to map job descriptions against Mercer Job Architecture data for standardized role classification and benchmarking",
+      "Developed custom Google Apps Script automations for clients to streamline data processing and significantly improve workflow efficiency in Google Sheets",
+      "Built an AI-driven HR analytics dashboard using Streamlit and Supabase, integrating talent-matching logic and AI-generated job profiles",
+      "Created dashboards using Redash for data querying and connected to Google Sheets via API",
+      "Developed interactive data visualization dashboards with Looker Studio"
+    ],
+    "technologies": [
+      "Python",
+      "LLM",
+      "Streamlit",
+      "Supabase",
+      "Google Apps Script",
+      "Redash",
+      "Looker Studio",
+      "SQL",
+      "Machine Learning"
+    ]
+  },
+  {
+    "id": 2,
     "company": "Independence/Various Platforms",
     "position": "Freelance",
     "duration": "Jul 2025 - Present",
@@ -20,7 +45,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": 3,
     "company": "Department of Mathematics Education, Yogyakarta State University",
     "position": "Research Assistant",
     "duration": "May 2024 - Jul 2024",
@@ -39,7 +64,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "company": "Grogol Village, Paliyan District, Gunung Kidul Regency",
     "position": "Media Staff (Internship)",
     "duration": "Jul 2023 - Aug 2023",
