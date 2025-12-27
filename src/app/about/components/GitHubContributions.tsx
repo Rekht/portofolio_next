@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import GlassCard from "@/components/ui/GlassCard";
 
 interface ContributionDay {
   date: string;
@@ -151,121 +152,103 @@ export default function GitHubContributions() {
         </p>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative overflow-hidden rounded-3xl"
-      >
-        {/* Background with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-fuchsia-500/10 via-transparent to-purple-500/10" />
+      <GlassCard accentColor="fuchsia">
+        {isLoading ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="w-8 h-8 border-4 border-fuchsia-500/30 border-t-fuchsia-500 rounded-full animate-spin" />
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <p className="text-slate-400">{error}</p>
+            <button
+              onClick={fetchContributions}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors"
+            >
+              Coba Lagi
+            </button>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            {/* Total contributions */}
+            <p className="text-slate-400 text-sm mb-4">
+              {totalContributions.toLocaleString()} contributions in the last
+              year
+            </p>
 
-        {/* Glassmorphism overlay */}
-        <div className="absolute inset-0 backdrop-blur-3xl" />
-
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-fuchsia-500/20 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
-
-        <div className="relative z-10 p-8">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <div className="w-8 h-8 border-4 border-fuchsia-500/30 border-t-fuchsia-500 rounded-full animate-spin" />
-            </div>
-          ) : error ? (
-            <div className="text-center py-12">
-              <p className="text-slate-400">{error}</p>
-              <button
-                onClick={fetchContributions}
-                className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors"
-              >
-                Coba Lagi
-              </button>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              {/* Total contributions */}
-              <p className="text-slate-400 text-sm mb-4">
-                {totalContributions.toLocaleString()} contributions in the last
-                year
-              </p>
-
-              {/* Month Labels */}
-              <div className="flex justify-center mb-2">
-                {getMonthLabels().map(({ month, weekIndex }, idx) => {
-                  const prevWeekIndex =
-                    idx > 0 ? getMonthLabels()[idx - 1].weekIndex : 0;
-                  const gap = weekIndex - prevWeekIndex;
-                  return (
-                    <div
-                      key={`${month}-${weekIndex}`}
-                      className="text-slate-400 text-xs"
-                      style={{
-                        marginLeft: idx === 0 ? 0 : `${gap * 15 - 30}px`,
-                        minWidth: "30px",
-                      }}
-                    >
-                      {month}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Contribution Grid - centered */}
-              <div className="flex justify-center">
-                {/* Day Labels */}
-                <div className="flex flex-col justify-around mr-2 py-1">
-                  {days.map((day) => (
-                    <span
-                      key={day}
-                      className="text-slate-400 text-xs h-[14px] leading-[14px]"
-                    >
-                      {day}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Grid */}
-                <div className="flex gap-[3px]">
-                  {contributions.map((week, weekIndex) => (
-                    <div key={weekIndex} className="flex flex-col gap-[3px]">
-                      {week.days.map((day) => (
-                        <motion.div
-                          key={day.date}
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{
-                            delay: weekIndex * 0.01,
-                          }}
-                          className={`w-[12px] h-[12px] rounded-sm ${getLevelColor(
-                            day.level
-                          )} hover:ring-2 hover:ring-white/30 transition-all cursor-pointer`}
-                          title={`${day.date}: ${day.count} contributions`}
-                        />
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Legend */}
-              <div className="flex items-center justify-end gap-2 mt-4">
-                <span className="text-slate-400 text-xs">Less</span>
-                {[0, 1, 2, 3, 4].map((level) => (
+            {/* Month Labels */}
+            <div className="flex justify-center mb-2">
+              {getMonthLabels().map(({ month, weekIndex }, idx) => {
+                const prevWeekIndex =
+                  idx > 0 ? getMonthLabels()[idx - 1].weekIndex : 0;
+                const gap = weekIndex - prevWeekIndex;
+                return (
                   <div
-                    key={level}
-                    className={`w-[12px] h-[12px] rounded-sm ${getLevelColor(
-                      level
-                    )}`}
-                  />
+                    key={`${month}-${weekIndex}`}
+                    className="text-slate-400 text-xs"
+                    style={{
+                      marginLeft: idx === 0 ? 0 : `${gap * 15 - 30}px`,
+                      minWidth: "30px",
+                    }}
+                  >
+                    {month}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Contribution Grid - centered */}
+            <div className="flex justify-center">
+              {/* Day Labels */}
+              <div className="flex flex-col justify-around mr-2 py-1">
+                {days.map((day) => (
+                  <span
+                    key={day}
+                    className="text-slate-400 text-xs h-[14px] leading-[14px]"
+                  >
+                    {day}
+                  </span>
                 ))}
-                <span className="text-slate-400 text-xs">More</span>
+              </div>
+
+              {/* Grid */}
+              <div className="flex gap-[3px]">
+                {contributions.map((week, weekIndex) => (
+                  <div key={weekIndex} className="flex flex-col gap-[3px]">
+                    {week.days.map((day) => (
+                      <motion.div
+                        key={day.date}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          delay: weekIndex * 0.01,
+                        }}
+                        className={`w-[12px] h-[12px] rounded-sm ${getLevelColor(
+                          day.level
+                        )} hover:ring-2 hover:ring-white/30 transition-all cursor-pointer`}
+                        title={`${day.date}: ${day.count} contributions`}
+                      />
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
-          )}
-        </div>
-      </motion.div>
+
+            {/* Legend */}
+            <div className="flex items-center justify-end gap-2 mt-4">
+              <span className="text-slate-400 text-xs">Less</span>
+              {[0, 1, 2, 3, 4].map((level) => (
+                <div
+                  key={level}
+                  className={`w-[12px] h-[12px] rounded-sm ${getLevelColor(
+                    level
+                  )}`}
+                />
+              ))}
+              <span className="text-slate-400 text-xs">More</span>
+            </div>
+          </div>
+        )}
+      </GlassCard>
     </div>
   );
 }

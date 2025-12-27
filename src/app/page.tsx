@@ -26,7 +26,7 @@ import Navigation from "@/components/Navigation";
 import CvModal from "@/app/about/components/CvModal";
 import ProfileSection from "@/components/ProfileSection";
 import DarkVeil from "@/components/background/DarkVeil";
-import HeroSection from "@/components/HeroSection"; // ✅ ditambahkan di atas ProfileSection
+import HeroSection from "@/components/HeroSection";
 
 // Data
 import aboutData from "@/data/about.json";
@@ -37,12 +37,14 @@ interface About {
 }
 
 // Lazy components
-const AboutSection = lazy(() => import("@/app/about/components/AboutSection"));
-const CertificationSection = lazy(
-  () => import("@/app/education/components/CertificationSection")
-);
-const ProjectSection = lazy(() => import("@/components/ProjectSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
+const ExperiencePreview = lazy(
+  () => import("@/components/home/ExperiencePreview")
+);
+const EducationPreview = lazy(
+  () => import("@/components/home/EducationPreview")
+);
+const SkillsPreview = lazy(() => import("@/components/home/SkillsPreview"));
 
 export default function HomePage() {
   const mainContainerRef = useRef<HTMLDivElement>(null);
@@ -129,10 +131,24 @@ export default function HomePage() {
             onScrollDown={handleScrollDown}
           />
 
-          {/* Project Section */}
-          <section className="py-16" id="projects">
+          {/* Experience Preview Section */}
+          <section className="py-16" id="experience-preview">
             <Suspense fallback={<SectionLoader />}>
-              <ProjectSection />
+              <ExperiencePreview />
+            </Suspense>
+          </section>
+
+          {/* Education Preview Section */}
+          <section className="py-16" id="education-preview">
+            <Suspense fallback={<SectionLoader />}>
+              <EducationPreview />
+            </Suspense>
+          </section>
+
+          {/* Skills Preview Section */}
+          <section className="py-16" id="skills-preview">
+            <Suspense fallback={<SectionLoader />}>
+              <SkillsPreview />
             </Suspense>
           </section>
 

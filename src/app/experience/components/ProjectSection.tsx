@@ -1,5 +1,6 @@
 // components/ProjectSection.tsx - Komponen section proyek utama
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectCard from "./ProjectCard";
 import ProjectDetailModal from "./ProjectDetailModal";
@@ -26,9 +27,6 @@ const ProjectSection: React.FC = () => {
   // State untuk mengelola proyek dan animasi
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [projectsToDisplay, setProjectsToDisplay] = useState<Project[]>([]);
-  const [visibleProjects, setVisibleProjects] = useState<
-    Record<number, boolean>
-  >({});
   const [showMoreProjects, setShowMoreProjects] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -51,98 +49,45 @@ const ProjectSection: React.FC = () => {
     );
   }, [activeFilter]);
 
-  // Handle perubahan filter dengan caching
+  // Handle perubahan filter dengan smooth transition
   const handleFilterClick = useCallback(
     (filter: string) => {
-      if (filter === activeFilter) return;
-
+      if (filter === activeFilter || isAnimating) return;
       setIsAnimating(true);
-
-      // Mulai animasi fade out
-      const updatedVisibility: Record<number, boolean> = {};
-      Object.keys(visibleProjects).forEach((id) => {
-        updatedVisibility[parseInt(id)] = false;
-      });
-      setVisibleProjects(updatedVisibility);
-
-      // Tunggu animasi fade out selesai
-      setTimeout(() => {
-        setActiveFilter(filter);
-        // Filter akan diupdate di useEffect berikutnya
-      }, 300);
+      setActiveFilter(filter);
     },
-    [activeFilter, visibleProjects]
+    [activeFilter, isAnimating]
   );
 
-  // Update proyek yang ditampilkan saat filter berubah - sekarang dengan caching
+  // Update proyek yang ditampilkan saat filter berubah
   useEffect(() => {
+    let filtered: Project[];
+
     // Cek jika sudah ada filter ini di cache
     if (projectsCache[activeFilter] && projectsCache[activeFilter].loaded) {
-      const cachedProjects = projectsCache[activeFilter].projects;
-      const projectsToShow = showMoreProjects
-        ? cachedProjects
-        : cachedProjects.slice(0, 6);
-
-      setProjectsToDisplay(projectsToShow);
-
-      // Siapkan animasi fade in untuk proyek yang di-cache
-      const newVisibility: Record<number, boolean> = {};
-      projectsToShow.forEach((project) => {
-        newVisibility[project.id] = false;
-      });
-
-      setVisibleProjects(newVisibility);
-
-      // Mulai animasi fade-in
-      setTimeout(() => {
-        const updatedVisibility: Record<number, boolean> = {};
-        projectsToShow.forEach((project) => {
-          updatedVisibility[project.id] = true;
-        });
-        setVisibleProjects(updatedVisibility);
-        setIsAnimating(false);
-
-        // Refresh ScrollTrigger setelah proyek dimuat
-        if (ScrollTrigger) {
-          ScrollTrigger.refresh();
-        }
-      }, 50);
+      filtered = projectsCache[activeFilter].projects;
     } else {
       // Jika belum di-cache, fetch dan cache proyeknya
-      const filtered = getFilteredProjects();
-      const projectsToShow = showMoreProjects ? filtered : filtered.slice(0, 6);
+      filtered = getFilteredProjects();
 
       // Update cache dengan hasil filter baru
       setProjectsCache((prevCache) => ({
         ...prevCache,
         [activeFilter]: { projects: filtered, loaded: true },
       }));
-
-      setProjectsToDisplay(projectsToShow);
-
-      // Siapkan animasi fade in untuk proyek baru
-      const newVisibility: Record<number, boolean> = {};
-      projectsToShow.forEach((project) => {
-        newVisibility[project.id] = false;
-      });
-
-      setVisibleProjects(newVisibility);
-
-      // Delay untuk memastikan DOM sudah diupdate sebelum mulai fade in
-      setTimeout(() => {
-        const updatedVisibility: Record<number, boolean> = {};
-        projectsToShow.forEach((project) => {
-          updatedVisibility[project.id] = true;
-        });
-        setVisibleProjects(updatedVisibility);
-        setIsAnimating(false);
-
-        // Refresh ScrollTrigger setelah proyek dimuat
-        if (ScrollTrigger) {
-          ScrollTrigger.refresh();
-        }
-      }, 50);
     }
+
+    const projectsToShow = showMoreProjects ? filtered : filtered.slice(0, 6);
+    setProjectsToDisplay(projectsToShow);
+
+    // Reset animating state after a short delay
+    setTimeout(() => {
+      setIsAnimating(false);
+      // Refresh ScrollTrigger setelah proyek dimuat
+      if (ScrollTrigger) {
+        ScrollTrigger.refresh();
+      }
+    }, 100);
   }, [activeFilter, showMoreProjects, getFilteredProjects, projectsCache]);
 
   // Opsi filter yang tersedia
@@ -160,6 +105,52 @@ const ProjectSection: React.FC = () => {
     []
   );
 
+  // Animation variants for container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  // Animation variants for each card
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+      scale: 0.95,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      scale: 0.95,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
   return (
     <section className="py-8" id="project">
       <h2 className="text-3xl font-bold mb-8">Project</h2>
@@ -172,41 +163,57 @@ const ProjectSection: React.FC = () => {
         isAnimating={isAnimating}
       />
 
-      {/* Grid Proyek dengan animasi dan penanganan state kosong */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px] mt-4">
-        {isAnimating ? (
-          // Tampilkan loading spinner selama animasi
-          <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
-        ) : projectsToDisplay.length > 0 ? (
-          // Tampilkan proyek jika tersedia
-          projectsToDisplay.map((project) =>
-            project?.title && project?.image && project?.description ? (
-              <div key={project.id} className="project-card-container">
-                <ProjectCard
-                  project={project}
-                  isVisible={visibleProjects[project.id] ?? false}
-                  onClick={(project) => setSelectedProject(project)}
-                />
-              </div>
-            ) : null
-          )
-        ) : (
-          // Tampilkan pesan jika tidak ada proyek yang cocok dengan filter
-          <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 text-gray-400">
-            Tidak ada proyek yang cocok dengan filter "{activeFilter}"
-          </div>
-        )}
+      {/* Grid Proyek dengan animasi smooth */}
+      <div className="min-h-[400px] mt-4">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {projectsToDisplay.length > 0 ? (
+              projectsToDisplay.map((project, index) =>
+                project?.title && project?.image && project?.description ? (
+                  <motion.div
+                    key={project.id}
+                    className="project-card-container"
+                    variants={cardVariants}
+                    layout
+                    layoutId={`project-${project.id}`}
+                  >
+                    <ProjectCard
+                      project={project}
+                      isVisible={true}
+                      onClick={(project) => setSelectedProject(project)}
+                    />
+                  </motion.div>
+                ) : null
+              )
+            ) : (
+              <motion.div
+                className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 text-gray-400"
+                variants={cardVariants}
+              >
+                Tidak ada proyek yang cocok dengan filter &quot;{activeFilter}
+                &quot;
+              </motion.div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Tambahkan tombol Show More/Less jika proyek melebihi 6 */}
       {!isAnimating && getFilteredProjects().length > 6 && (
         <div className="flex justify-center mt-8">
-          <button
+          <motion.button
             onClick={() => setShowMoreProjects(!showMoreProjects)}
             className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-gray-300 rounded-full hover:bg-gray-700 transition-colors"
             disabled={isAnimating}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             {showMoreProjects ? (
               <>
@@ -243,7 +250,7 @@ const ProjectSection: React.FC = () => {
                 </svg>
               </>
             )}
-          </button>
+          </motion.button>
         </div>
       )}
 

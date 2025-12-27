@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import certificationsData from "../../../data/certifications.json";
+import GlassCard from "@/components/ui/GlassCard";
 
 // Define types for our certification data
 interface Certification {
@@ -137,17 +138,14 @@ const CertificationSection: React.FC = () => {
   };
 
   return (
-    <div
-      ref={certSectionRef}
-      className="py-12 bg-gradient-to-b from-gray-900 to-black rounded-2xl"
-    >
-      <div className="container mx-auto px-4">
+    <div ref={certSectionRef} className="py-12">
+      <GlassCard accentColor="blue" noAnimation>
         <h2 className="text-4xl font-bold mb-4 text-white text-center">
           Certifications
         </h2>
         <div className="w-24 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
 
-        <div className="relative">
+        <div className="relative -mx-8">
           <button
             className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
             onClick={scrollLeft}
@@ -338,7 +336,7 @@ const CertificationSection: React.FC = () => {
             ))}
           </div>
         </div>
-      </div>
+      </GlassCard>
 
       {/* Certificate Popup Modal - Only shown for TOEFL certificate */}
       {showCertificate && (

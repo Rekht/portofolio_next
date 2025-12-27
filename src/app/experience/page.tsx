@@ -53,7 +53,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ExperiencePage() {
   const mainContainerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Custom hooks
@@ -130,9 +129,6 @@ export default function ExperiencePage() {
           },
         }
       );
-
-      // Header background animation
-      animations.animateHeader(headerRef);
     }, mainContainerRef);
 
     setIsLoaded(true);
@@ -155,16 +151,11 @@ export default function ExperiencePage() {
       </div>
 
       {/* Navigation */}
-      <div
-        ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-      >
-        <Navigation
-          scrolled={scrolled}
-          activePage="experience"
-          handleNavClick={handleSmoothNavClick}
-        />
-      </div>
+      <Navigation
+        scrolled={scrolled}
+        activePage="experience"
+        handleNavClick={handleSmoothNavClick}
+      />
 
       {/* Main Content */}
       <main className="relative z-10">

@@ -134,6 +134,7 @@
 /* Untuk Firefox */
 html {
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 /* Untuk Internet Explorer dan Edge lama */

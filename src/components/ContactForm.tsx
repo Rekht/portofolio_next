@@ -1,5 +1,6 @@
 // components/ContactForm.tsx - Komponen form kontak
 import React, { useState, FormEvent } from "react";
+import GlassCard from "@/components/ui/GlassCard";
 
 interface Notification {
   show: boolean;
@@ -52,14 +53,11 @@ const ContactForm: React.FC = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-6 bg-gray-900 p-8 rounded-xl"
-      >
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="box" />
+      <GlassCard accentColor="blue" noAnimation>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="box" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-gray-300 mb-2">
               Name
@@ -69,9 +67,10 @@ const ContactForm: React.FC = () => {
               id="name"
               name="name"
               required
-              className="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
+
           <div>
             <label htmlFor="email" className="block text-gray-300 mb-2">
               Email
@@ -81,31 +80,31 @@ const ContactForm: React.FC = () => {
               id="email"
               name="email"
               required
-              className="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-        </div>
 
-        <div>
-          <label htmlFor="message" className="block text-gray-300 mb-2">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            required
-            className="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          ></textarea>
-        </div>
+          <div>
+            <label htmlFor="message" className="block text-gray-300 mb-2">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={4}
+              required
+              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            ></textarea>
+          </div>
 
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition"
-        >
-          Send Message
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition"
+          >
+            Send Message
+          </button>
+        </form>
+      </GlassCard>
 
       {/* Notifikasi Toast */}
       {notification.show && (
@@ -149,7 +148,6 @@ const ContactForm: React.FC = () => {
         </div>
       )}
 
-      {/* Tambahkan ini ke global CSS atau config Tailwind */}
       <style jsx>{`
         @keyframes fadeInUp {
           from {

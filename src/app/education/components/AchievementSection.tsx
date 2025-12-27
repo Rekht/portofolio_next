@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import achievementsData from "@/data/achievements.json";
+import GlassCard from "@/components/ui/GlassCard";
 
 // Define types for our achievement data
 interface Achievement {
@@ -75,107 +76,99 @@ const AchievementSection: React.FC = () => {
     <div>
       <h2 className="text-3xl font-bold mb-8">Achievements</h2>
       {memoizedAchievements.map((achievement) => (
-        <div
+        <GlassCard
           key={achievement.id}
-          className="group bg-gray-900 rounded-lg p-6 mb-6 border-l-4 border-yellow-500 hover:bg-gray-800 transition-all duration-300 relative overflow-hidden"
+          accentColor="orange"
+          noAnimation
+          noPadding
+          className="group mb-6 border-l-4 border-yellow-500 hover:border-yellow-400 transition-all duration-300"
         >
-          {/* Background Image dengan Auto Crop & Zoom */}
-          {achievement.documentationImage && (
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-0 right-0 w-1/3 h-full overflow-hidden">
-                <img
-                  src={achievement.documentationImage}
-                  alt={`Documentation for ${achievement.title}`}
-                  className="w-full h-full transition-all duration-300 group-hover:brightness-110 group-hover:scale-105"
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    minWidth: "100%",
-                    minHeight: "100%",
-                    width: "100%",
-                    height: "100%",
-                    transform: "scale(1.1)", // Auto zoom untuk memastikan tidak ada gap
-                  }}
-                  onError={(e) => {
-                    console.log(
-                      `Failed to load image: ${achievement.documentationImage}`
-                    );
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                  onLoad={() => {
-                    console.log(
-                      `Successfully loaded image: ${achievement.documentationImage}`
-                    );
-                  }}
-                />
-                {/* Smooth fade overlay - gradual transition dari kiri ke kanan */}
+          <div className="relative overflow-hidden p-6">
+            {/* Background Image dengan mask-image untuk fade yang smooth */}
+            {achievement.documentationImage && (
+              <div className="absolute inset-0 pointer-events-none">
                 <div
-                  className="absolute inset-0"
+                  className="absolute top-0 right-0 w-2/5 h-full overflow-hidden"
                   style={{
-                    background:
-                      "linear-gradient(to right, #111827 0%, rgba(17, 24, 39, 0.95) 15%, rgba(17, 24, 39, 0.8) 30%, rgba(17, 24, 39, 0.6) 45%, rgba(17, 24, 39, 0.3) 65%, rgba(17, 24, 39, 0.1) 80%, transparent 100%)",
+                    maskImage:
+                      "linear-gradient(to right, transparent 0%, black 20%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to right, transparent 0%, black 20%)",
                   }}
-                ></div>
-              </div>
-            </div>
-          )}
-
-          {/* Content dengan z-index lebih tinggi */}
-          <div className="relative z-10 flex items-start">
-            {/* Ikon Medali */}
-            <div className="flex-shrink-0 mr-4">
-              <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
+                  <img
+                    src={achievement.documentationImage}
+                    alt={`Documentation for ${achievement.title}`}
+                    className="w-full h-full transition-all duration-300 group-hover:brightness-110 group-hover:scale-105 opacity-60"
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "center",
+                    }}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
                   />
-                </svg>
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Content Container dengan max-width untuk menghindari overlap */}
-            <div className="flex-1 max-w-[70%] pr-4">
-              <h3 className="text-xl font-semibold text-white mb-2">
-                {achievement.title}
-              </h3>
-              <p className="text-gray-400 mb-2">
-                {achievement.organization} • {achievement.year}
-              </p>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                {achievement.description}
-              </p>
-
-              {/* Certificate Button */}
-              {achievement.certificate && (
-                <button
-                  onClick={() => handleCertificateClick(achievement)}
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
-                >
+            {/* Content dengan z-index lebih tinggi */}
+            <div className="relative z-10 flex items-start">
+              {/* Ikon Medali */}
+              <div className="flex-shrink-0 mr-4">
+                <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
                   <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                    className="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
                     />
                   </svg>
-                  View Certificate
-                </button>
-              )}
+                </div>
+              </div>
+
+              {/* Content Container dengan max-width untuk menghindari overlap */}
+              <div className="flex-1 max-w-[70%] pr-4">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {achievement.title}
+                </h3>
+                <p className="text-gray-400 mb-2">
+                  {achievement.organization} • {achievement.year}
+                </p>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  {achievement.description}
+                </p>
+
+                {/* Certificate Button */}
+                {achievement.certificate && (
+                  <button
+                    onClick={() => handleCertificateClick(achievement)}
+                    className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
+                  >
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    View Certificate
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </GlassCard>
       ))}
 
       {/* Certificate Modal */}

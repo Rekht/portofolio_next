@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import VisitorLogger from "./about/components/VisitorLogger";
+import { TransitionProvider } from "@/components/PageTransition";
+import SmoothScroll from "@/components/SmoothScroll";
 
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
@@ -97,12 +99,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* Gunakan className dari Montserrat */}
-      <body
-        className={`${montserrat.className} bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen`}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-700/10 via-transparent to-transparent"></div>
+      <body className={`${montserrat.className} bg-black min-h-screen`}>
         <VisitorLogger />
-        <div className="relative z-10">{children}</div>
+        <SmoothScroll>
+          <TransitionProvider>{children}</TransitionProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

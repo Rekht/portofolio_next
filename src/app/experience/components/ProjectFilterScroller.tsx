@@ -24,14 +24,14 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
   });
 
   const iconMap: Record<string, string> = {
-    All: "/assets/icons/all-icon.svg",
-    Python: "/assets/icons/python-icon.svg",
-    SQL: "/assets/icons/sql-icon.svg",
-    "Power BI": "/assets/icons/power-bi-icon.svg",
-    "Google Looker Studio": "/assets/icons/looker-studio-icon.svg",
-    JavaScript: "/assets/icons/js-icon.svg",
-    Flutter: "/assets/icons/flutter-icon.svg",
-    AWS: "/assets/icons/aws-icon.svg",
+    All: "/assets/icons/all-mono.svg",
+    Python: "/assets/icons/python-mono.svg",
+    SQL: "/assets/icons/sql-mono.svg",
+    "Power BI": "/assets/icons/powerbi-mono.svg",
+    "Google Looker Studio": "/assets/icons/looker-mono.svg",
+    JavaScript: "/assets/icons/js-mono.svg",
+    Flutter: "/assets/icons/flutter-mono.svg",
+    AWS: "/assets/icons/aws-mono.svg",
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -73,12 +73,18 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
                 disabled={isAnimating}
                 onMouseEnter={handleMouseEnter(filter)}
                 onMouseLeave={handleMouseLeave}
-                className={`relative w-14 h-14 rounded-full transition-all duration-300 flex-shrink-0 ${
+                className={`relative w-14 h-14 rounded-full transition-all duration-300 flex-shrink-0 border ${
                   activeFilter === filter
-                    ? "bg-gray-400 text-black scale-110 shadow-md"
-                    : "bg-white hover:bg-gray-400 hover:scale-105"
+                    ? "scale-110 shadow-lg shadow-purple-500/40 border-purple-400/50"
+                    : "hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 border-white/20 hover:border-purple-400/40"
                 }`}
-                style={{ overflow: "visible" }}
+                style={{
+                  overflow: "visible",
+                  background:
+                    activeFilter === filter
+                      ? "linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%)"
+                      : "linear-gradient(135deg, #1e3a5f 0%, #312e81 50%, #4c1d95 100%)",
+                }}
               >
                 <Image
                   src={iconMap[filter]}
@@ -87,6 +93,9 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
                   height={24}
                   className="w-6 h-6 m-auto pointer-events-none"
                   draggable={false}
+                  style={{
+                    filter: "brightness(0) invert(1)",
+                  }}
                 />
               </button>
             ))}

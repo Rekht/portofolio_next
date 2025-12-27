@@ -1,5 +1,6 @@
 // components/ExperienceCard.tsx - Komponen kartu pengalaman kerja
 import React from "react";
+import GlassCard from "@/components/ui/GlassCard";
 
 interface Experience {
   id: number;
@@ -18,7 +19,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
   const { company, position, duration, location, description } = experience;
 
   return (
-    <div className="experience-card bg-gray-900 rounded-xl p-8 mb-8 transition-all duration-300 hover:bg-gray-800">
+    <GlassCard accentColor="blue" noAnimation className="mb-8">
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-6">
         <div className="flex-1">
           <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
@@ -52,7 +53,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
       </div>
 
       {description && (
-        <div className="text-gray-300 mb-6 leading-relaxed">
+        <div className="text-gray-300 leading-relaxed">
           {Array.isArray(description) ? (
             <ul className="space-y-3">
               {description.map((item, index) => (
@@ -67,7 +68,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
           )}
         </div>
       )}
-    </div>
+    </GlassCard>
   );
 };
 

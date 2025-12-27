@@ -1,6 +1,7 @@
 // components/EducationCard.tsx - Komponen kartu pendidikan
 import React from "react";
 import Image from "next/image";
+import GlassCard from "@/components/ui/GlassCard";
 
 interface Education {
   id: number;
@@ -17,8 +18,7 @@ interface EducationCardProps {
 
 const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
   return (
-    <div className="bg-gray-900 rounded-xl p-6 w-full mb-6">
-      {/* Gambar kecil di pojok kiri atas */}
+    <GlassCard accentColor="purple" noAnimation className="w-full mb-6">
       <div className="flex items-start gap-4">
         <Image
           src="/assets/uny.png"
@@ -28,7 +28,6 @@ const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
           className="w-24 h-24 object-contain"
         />
 
-        {/* Teks */}
         <div>
           <h3 className="text-xl font-bold mb-1 text-white">
             {education.degree}
@@ -42,7 +41,7 @@ const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
           </p>
         </div>
       </div>
-    </div>
+    </GlassCard>
   );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 
 interface TimelineEntry {
   title: string;
@@ -12,20 +12,33 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
 
-  useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+  useLayoutEffect(() => {
+    const updateHeight = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        setHeight(rect.height);
+      }
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+
+    // Re-calculate after images load
+    const timer = setTimeout(updateHeight, 500);
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+      clearTimeout(timer);
+    };
+  }, [data]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 15%", "end 50%"],
+    offset: ["start 20%", "end 80%"],
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
 
   // warna bulatan berubah dari abu-abu → biru
   const circleColor = useTransform(
