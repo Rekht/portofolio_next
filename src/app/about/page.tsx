@@ -120,7 +120,7 @@ export default function AboutPage() {
 
   return (
     <div
-      className="font-sans min-h-screen bg-black text-white relative"
+      className="font-sans min-h-screen bg-background text-foreground relative"
       ref={mainContainerRef}
     >
       {/* Background */}

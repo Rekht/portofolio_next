@@ -37,6 +37,18 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Additional colors */
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-input-bg: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --color-placeholder: var(--placeholder);
+  --color-tag-bg: var(--tag-bg);
+  --color-tag-text: var(--tag-text);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -63,11 +75,38 @@
   --border: oklch(30% 0.05 265.69); /* Border biru gelap */
   --input: oklch(30% 0.05 265.69);
   --ring: oklch(62% 0.19 256.23);
+
+  /* Additional colors for accent/link/highlight */
+  --link: oklch(
+    65% 0.19 256.23
+  ); /* Biru terang untuk link - replaces text-blue-400 */
+  --link-hover: oklch(
+    72% 0.17 256.23
+  ); /* Biru lebih terang untuk hover - replaces text-blue-300 */
+  --success: oklch(65% 0.17 145); /* Hijau untuk success states */
+  --warning: oklch(75% 0.17 85); /* Kuning/Orange untuk warning */
+
+  /* Input/Form styling */
+  --input-bg: oklch(
+    23% 0.04 265.69
+  ); /* Background input - replaces bg-slate-800 */
+  --input-border: oklch(
+    33% 0.04 265.69
+  ); /* Border input - replaces border-slate-700 */
+  --placeholder: oklch(50% 0.02 265.69); /* Placeholder text */
+
+  /* Tag/Badge colors */
+  --tag-bg: oklch(27% 0.033 265.69); /* Background tag - replaces bg-white/5 */
+  --tag-text: oklch(75% 0.01 256.23); /* Text tag */
+
+  /* Charts */
   --chart-1: oklch(64% 0.222 41.116);
   --chart-2: oklch(60% 0.118 184.704);
   --chart-3: oklch(39% 0.07 227.392);
   --chart-4: oklch(82% 0.189 84.429);
   --chart-5: oklch(76% 0.188 70.08);
+
+  /* Sidebar */
   --sidebar: oklch(23% 0.04 265.69);
   --sidebar-foreground: oklch(98% 0.002 247.9);
   --sidebar-primary: oklch(62% 0.19 256.23);
@@ -78,7 +117,7 @@
   --sidebar-ring: oklch(62% 0.19 256.23);
 }
 
-.dark {
+html.dark {
   --background: oklch(12% 0.03 265.69); /* Lebih gelap untuk dark mode */
   --foreground: oklch(98% 0.002 247.9);
   --card: oklch(18% 0.035 265.69);
@@ -110,6 +149,81 @@
   --sidebar-accent-foreground: oklch(98% 0.002 247.9);
   --sidebar-border: oklch(25% 0.045 265.69);
   --sidebar-ring: oklch(55% 0.016 256.23);
+}
+
+/* Light Theme - Inversi Warna Lengkap */
+html.light {
+  /* Background: gelap → terang */
+  --background: oklch(97% 0.01 265.69); /* Putih kebiruan */
+
+  /* Foreground: putih → biru tua */
+  --foreground: oklch(25% 0.12 256.23); /* Biru tua untuk teks */
+
+  /* Card: gelap → terang */
+  --card: oklch(98% 0.008 265.69); /* Hampir putih dengan hint biru */
+  --card-foreground: oklch(25% 0.12 256.23); /* Biru tua */
+
+  /* Popover */
+  --popover: oklch(98% 0.008 265.69);
+  --popover-foreground: oklch(25% 0.12 256.23);
+
+  /* Primary tetap biru tapi lebih saturated */
+  --primary: oklch(50% 0.22 256.23); /* Biru vibrant */
+  --primary-foreground: oklch(98% 0.01 265.69); /* Putih */
+
+  /* Secondary: inversi */
+  --secondary: oklch(92% 0.03 265.69); /* Abu-abu terang kebiruan */
+  --secondary-foreground: oklch(25% 0.12 256.23);
+
+  /* Muted */
+  --muted: oklch(92% 0.03 265.69);
+  --muted-foreground: oklch(40% 0.08 256.23); /* Biru medium */
+
+  /* Accent */
+  --accent: oklch(92% 0.03 265.69);
+  --accent-foreground: oklch(25% 0.12 256.23);
+
+  /* Destructive */
+  --destructive: oklch(55% 0.22 27.325);
+
+  /* Border: gelap → terang */
+  --border: oklch(85% 0.03 265.69);
+  --input: oklch(85% 0.03 265.69);
+  --ring: oklch(50% 0.22 256.23);
+
+  /* Additional colors - LIGHT MODE */
+  --link: oklch(
+    45% 0.2 256.23
+  ); /* Biru lebih gelap untuk kontras di light mode */
+  --link-hover: oklch(38% 0.22 256.23); /* Biru lebih gelap untuk hover */
+  --success: oklch(45% 0.17 145); /* Hijau lebih gelap */
+  --warning: oklch(55% 0.17 85); /* Orange lebih gelap */
+
+  /* Input/Form styling - LIGHT MODE */
+  --input-bg: oklch(98% 0.008 265.69); /* Putih dengan hint biru */
+  --input-border: oklch(85% 0.03 265.69); /* Border terang */
+  --placeholder: oklch(60% 0.03 265.69); /* Placeholder abu-abu medium */
+
+  /* Tag/Badge colors - LIGHT MODE */
+  --tag-bg: oklch(92% 0.03 265.69); /* Background tag terang */
+  --tag-text: oklch(35% 0.1 256.23); /* Text tag biru gelap */
+
+  /* Charts */
+  --chart-1: oklch(55% 0.22 41.116);
+  --chart-2: oklch(50% 0.15 184.704);
+  --chart-3: oklch(35% 0.08 227.392);
+  --chart-4: oklch(70% 0.18 84.429);
+  --chart-5: oklch(65% 0.18 70.08);
+
+  /* Sidebar: inversi */
+  --sidebar: oklch(95% 0.015 265.69);
+  --sidebar-foreground: oklch(25% 0.12 256.23);
+  --sidebar-primary: oklch(50% 0.22 256.23);
+  --sidebar-primary-foreground: oklch(98% 0.01 265.69);
+  --sidebar-accent: oklch(90% 0.025 265.69);
+  --sidebar-accent-foreground: oklch(25% 0.12 256.23);
+  --sidebar-border: oklch(85% 0.03 265.69);
+  --sidebar-ring: oklch(50% 0.22 256.23);
 }
 
 @layer base {

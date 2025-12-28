@@ -56,7 +56,11 @@ export function FocusCards({ cards }: { cards: CardType[] }) {
               duration: 0.8,
               ease: [0.25, 0.1, 0.25, 1],
             }}
-            className="text-4xl md:text-6xl font-bold text-white text-center drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]"
+            className="text-4xl md:text-6xl font-bold text-white text-center"
+            style={{
+              textShadow:
+                "0 2px 4px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)",
+            }}
           >
             {cards[hovered].title}
           </motion.h1>

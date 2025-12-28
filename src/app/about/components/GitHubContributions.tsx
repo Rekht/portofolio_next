@@ -130,7 +130,7 @@ export default function GitHubContributions() {
 
   const getLevelColor = (level: number) => {
     const colors = [
-      "bg-slate-800/60", // 0 - no contributions
+      "bg-secondary", // 0 - no contributions
       "bg-purple-900/80", // 1 - low
       "bg-purple-700/80", // 2 - medium-low
       "bg-purple-500/90", // 3 - medium-high
@@ -143,10 +143,10 @@ export default function GitHubContributions() {
     <div className="w-full">
       {/* Title outside container */}
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-white mb-2">
+        <h2 className="text-2xl font-bold text-foreground mb-2">
           Github Contributions
         </h2>
-        <p className="text-slate-400 text-sm">
+        <p className="text-muted-foreground text-sm">
           Here&apos;s a snapshot of my coding activity over the past year on
           GitHub.
         </p>
@@ -159,7 +159,7 @@ export default function GitHubContributions() {
           </div>
         ) : error ? (
           <div className="text-center py-12">
-            <p className="text-slate-400">{error}</p>
+            <p className="text-muted-foreground">{error}</p>
             <button
               onClick={fetchContributions}
               className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors"
@@ -170,7 +170,7 @@ export default function GitHubContributions() {
         ) : (
           <div className="overflow-x-auto">
             {/* Total contributions */}
-            <p className="text-slate-400 text-sm mb-4">
+            <p className="text-muted-foreground text-sm mb-4">
               {totalContributions.toLocaleString()} contributions in the last
               year
             </p>
@@ -184,7 +184,7 @@ export default function GitHubContributions() {
                 return (
                   <div
                     key={`${month}-${weekIndex}`}
-                    className="text-slate-400 text-xs"
+                    className="text-muted-foreground text-xs"
                     style={{
                       marginLeft: idx === 0 ? 0 : `${gap * 15 - 30}px`,
                       minWidth: "30px",
@@ -203,7 +203,7 @@ export default function GitHubContributions() {
                 {days.map((day) => (
                   <span
                     key={day}
-                    className="text-slate-400 text-xs h-[14px] leading-[14px]"
+                    className="text-muted-foreground text-xs h-[14px] leading-[14px]"
                   >
                     {day}
                   </span>
@@ -235,7 +235,7 @@ export default function GitHubContributions() {
 
             {/* Legend */}
             <div className="flex items-center justify-end gap-2 mt-4">
-              <span className="text-slate-400 text-xs">Less</span>
+              <span className="text-muted-foreground text-xs">Less</span>
               {[0, 1, 2, 3, 4].map((level) => (
                 <div
                   key={level}
@@ -244,7 +244,7 @@ export default function GitHubContributions() {
                   )}`}
                 />
               ))}
-              <span className="text-slate-400 text-xs">More</span>
+              <span className="text-muted-foreground text-xs">More</span>
             </div>
           </div>
         )}

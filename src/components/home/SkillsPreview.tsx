@@ -33,43 +33,43 @@ const colorMap: Record<
   blue: {
     bg: "bg-blue-500/10",
     border: "border-blue-500/30",
-    text: "text-blue-300",
+    text: "text-blue-600 dark:text-blue-300",
     hover: "hover:bg-blue-500/20 hover:border-blue-500/50",
   },
   red: {
     bg: "bg-red-500/10",
     border: "border-red-500/30",
-    text: "text-red-300",
+    text: "text-red-600 dark:text-red-300",
     hover: "hover:bg-red-500/20 hover:border-red-500/50",
   },
   yellow: {
     bg: "bg-yellow-500/10",
     border: "border-yellow-500/30",
-    text: "text-yellow-300",
+    text: "text-yellow-600 dark:text-yellow-300",
     hover: "hover:bg-yellow-500/20 hover:border-yellow-500/50",
   },
   green: {
     bg: "bg-green-500/10",
     border: "border-green-500/30",
-    text: "text-green-300",
+    text: "text-green-600 dark:text-green-300",
     hover: "hover:bg-green-500/20 hover:border-green-500/50",
   },
   purple: {
     bg: "bg-purple-500/10",
     border: "border-purple-500/30",
-    text: "text-purple-300",
+    text: "text-purple-600 dark:text-purple-300",
     hover: "hover:bg-purple-500/20 hover:border-purple-500/50",
   },
   indigo: {
     bg: "bg-indigo-500/10",
     border: "border-indigo-500/30",
-    text: "text-indigo-300",
+    text: "text-indigo-600 dark:text-indigo-300",
     hover: "hover:bg-indigo-500/20 hover:border-indigo-500/50",
   },
   emerald: {
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
-    text: "text-emerald-300",
+    text: "text-emerald-600 dark:text-emerald-300",
     hover: "hover:bg-emerald-500/20 hover:border-emerald-500/50",
   },
 };
@@ -81,10 +81,10 @@ const SkillsPreview: React.FC = () => {
     <div className="w-full relative">
       {/* Header Section */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
           Technical Skills
         </h2>
-        <p className="text-gray-400">Technologies I work with</p>
+        <p className="text-muted-foreground">Technologies I work with</p>
       </div>
 
       {/* Skills by Category */}

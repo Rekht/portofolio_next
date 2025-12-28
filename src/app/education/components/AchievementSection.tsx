@@ -74,7 +74,6 @@ const AchievementSection: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-8">Achievements</h2>
       {memoizedAchievements.map((achievement) => (
         <GlassCard
           key={achievement.id}
@@ -133,13 +132,13 @@ const AchievementSection: React.FC = () => {
 
               {/* Content Container dengan max-width untuk menghindari overlap */}
               <div className="flex-1 max-w-[70%] pr-4">
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-xl font-semibold text-foreground mb-2">
                   {achievement.title}
                 </h3>
-                <p className="text-gray-400 mb-2">
+                <p className="text-muted-foreground mb-2">
                   {achievement.organization} • {achievement.year}
                 </p>
-                <p className="text-gray-300 leading-relaxed mb-4">
+                <p className="text-foreground/80 leading-relaxed mb-4">
                   {achievement.description}
                 </p>
 
@@ -176,15 +175,15 @@ const AchievementSection: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75 transition-opacity duration-300 animate-fadeIn">
           <div
             ref={modalRef}
-            className="bg-gray-900 rounded-lg w-full h-full max-w-7xl max-h-screen flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn"
+            className="bg-card rounded-lg w-full h-full max-w-7xl max-h-screen flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn"
           >
             {/* Modal Header */}
-            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
+            <div className="flex justify-between items-center px-6 py-4 border-b border-border">
               <div>
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="text-xl font-semibold text-foreground">
                   Certificate of Achievement
                 </h3>
-                <p className="text-gray-400 text-sm mt-1">
+                <p className="text-muted-foreground text-sm mt-1">
                   {selectedCertificate.title}
                 </p>
               </div>
@@ -193,7 +192,7 @@ const AchievementSection: React.FC = () => {
                   setShowCertificateModal(false);
                   setSelectedCertificate(null);
                 }}
-                className="text-gray-400 hover:text-white text-2xl transition-colors"
+                className="text-muted-foreground hover:text-foreground text-2xl transition-colors"
               >
                 &times;
               </button>
@@ -222,8 +221,8 @@ const AchievementSection: React.FC = () => {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-gray-700 flex justify-between items-center">
-              <div className="text-sm text-gray-400">
+            <div className="px-6 py-4 border-t border-border flex justify-between items-center">
+              <div className="text-sm text-muted-foreground">
                 <p>{selectedCertificate.organization}</p>
                 <p>{selectedCertificate.year}</p>
               </div>

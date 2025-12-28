@@ -9,7 +9,7 @@ const ContactSection: React.FC = () => {
         {/* Bagian Kiri (Kontak & Sosmed) */}
         <div>
           <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-gray-400 mb-8">
+          <p className="text-muted-foreground mb-8">
             Feel free to contact me for collaboration or any questions.
           </p>
 
@@ -17,7 +17,7 @@ const ContactSection: React.FC = () => {
             {/* Informasi Kontak dengan Ikon */}
             <div className="flex items-center">
               <svg
-                className="w-6 h-6 text-blue-500 mr-4"
+                className="w-6 h-6 text-link mr-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ const ContactSection: React.FC = () => {
               </svg>
               <a
                 href="mailto:rekhtanggoro@gmail.com"
-                className="text-gray-300 hover:text-white transition"
+                className="text-muted-foreground hover:text-foreground transition"
               >
                 rekhtanggoro@gmail.com
               </a>
@@ -39,7 +39,7 @@ const ContactSection: React.FC = () => {
 
             <div className="flex items-center">
               <svg
-                className="w-6 h-6 text-blue-500 mr-4"
+                className="w-6 h-6 text-link mr-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -55,7 +55,7 @@ const ContactSection: React.FC = () => {
                 href="https://wa.me/62895363173787"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition"
+                className="text-muted-foreground hover:text-foreground transition"
               >
                 +62 895 3631 73787
               </a>
@@ -71,7 +71,7 @@ const ContactSection: React.FC = () => {
                 href="https://github.com/Rekht"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition"
+                className="text-muted-foreground hover:text-foreground transition"
               >
                 <svg
                   className="w-6 h-6"
@@ -91,7 +91,7 @@ const ContactSection: React.FC = () => {
                 href="https://www.linkedin.com/in/restu-anggoro-kasih-34a466218"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition"
+                className="text-muted-foreground hover:text-foreground transition"
               >
                 <svg
                   className="w-6 h-6"
@@ -107,7 +107,7 @@ const ContactSection: React.FC = () => {
                 href="https://wa.me/62895363173787"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition"
+                className="text-muted-foreground hover:text-foreground transition"
               >
                 <svg
                   className="w-6 h-6"

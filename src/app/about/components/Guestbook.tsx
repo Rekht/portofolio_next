@@ -98,7 +98,7 @@ export default function Guestbook() {
   return (
     <div className="w-full">
       {/* Title outside container */}
-      <h2 className="text-2xl font-bold text-white text-center mb-6">
+      <h2 className="text-2xl font-bold text-foreground text-center mb-6">
         Guestbook
       </h2>
 
@@ -121,7 +121,7 @@ export default function Guestbook() {
             </div>
           ) : messages.length === 0 ? (
             <div className="text-center py-8">
-              <p className="text-slate-400">
+              <p className="text-muted-foreground">
                 No messages yet. Be the first one!
               </p>
             </div>
@@ -136,22 +136,22 @@ export default function Guestbook() {
               {duplicatedMessages.map((msg, index) => (
                 <div
                   key={`${msg.id}-${index}`}
-                  className={`flex-shrink-0 w-[300px] bg-gradient-to-br from-slate-800/60 to-slate-900/60 border rounded-xl p-4 backdrop-blur-sm transition-all duration-300 cursor-pointer ${
+                  className={`flex-shrink-0 w-[300px] bg-card/60 border rounded-xl p-4 backdrop-blur-sm transition-all duration-300 cursor-pointer ${
                     hoveredId === msg.id
                       ? "border-purple-500/70 scale-105 shadow-lg shadow-purple-500/20"
-                      : "border-slate-700/50 hover:border-purple-500/50"
+                      : "border-border hover:border-purple-500/50"
                   }`}
                   onMouseEnter={() => setHoveredId(msg.id)}
                   onMouseLeave={() => setHoveredId(null)}
                 >
-                  <p className="text-slate-200 text-sm leading-relaxed mb-3">
+                  <p className="text-foreground text-sm leading-relaxed mb-3">
                     {msg.message}
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-purple-400 font-medium text-sm">
                       {msg.name}
                     </span>
-                    <span className="text-slate-500 text-xs">
+                    <span className="text-muted-foreground text-xs">
                       {formatDate(msg.created_at)}
                     </span>
                   </div>
@@ -186,16 +186,16 @@ export default function Guestbook() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-2xl p-6 w-full max-w-md shadow-2xl"
+              className="bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-xl font-bold text-foreground mb-4">
                 Write a Message
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-slate-400 text-sm mb-2">
+                  <label className="block text-muted-foreground text-sm mb-2">
                     Name
                   </label>
                   <input
@@ -203,13 +203,13 @@ export default function Guestbook() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name..."
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                    className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-xl text-foreground placeholder:text-placeholder focus:outline-none focus:border-purple-500/50 transition-colors"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-400 text-sm mb-2">
+                  <label className="block text-muted-foreground text-sm mb-2">
                     Message
                   </label>
                   <textarea
@@ -217,7 +217,7 @@ export default function Guestbook() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Write your message..."
                     rows={4}
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-xl text-foreground placeholder:text-placeholder focus:outline-none focus:border-purple-500/50 transition-colors resize-none"
                     required
                   />
                 </div>
@@ -226,7 +226,7 @@ export default function Guestbook() {
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="flex-1 px-4 py-3 bg-slate-700/50 text-slate-300 rounded-xl hover:bg-slate-600/50 transition-colors"
+                    className="flex-1 px-4 py-3 bg-secondary text-muted-foreground rounded-xl hover:bg-accent transition-colors"
                   >
                     Cancel
                   </button>

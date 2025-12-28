@@ -140,19 +140,14 @@ const CertificationSection: React.FC = () => {
   return (
     <div ref={certSectionRef} className="py-12">
       <GlassCard accentColor="blue" noAnimation>
-        <h2 className="text-4xl font-bold mb-4 text-white text-center">
-          Certifications
-        </h2>
-        <div className="w-24 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-
         <div className="relative -mx-8">
           <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-secondary bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
             onClick={scrollLeft}
             aria-label="Scroll left"
           >
             <svg
-              className="w-5 h-5 text-gray-300"
+              className="w-5 h-5 text-muted-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -166,12 +161,12 @@ const CertificationSection: React.FC = () => {
             </svg>
           </button>
           <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-secondary bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
             onClick={scrollRight}
             aria-label="Scroll right"
           >
             <svg
-              className="w-5 h-5 text-gray-300"
+              className="w-5 h-5 text-muted-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -343,15 +338,15 @@ const CertificationSection: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75 transition-opacity duration-300 animate-fadeIn">
           <div
             ref={modalRef}
-            className="bg-gray-900 rounded-lg w-full h-full max-w-7xl max-h-screen flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn"
+            className="bg-card rounded-lg w-full h-full max-w-7xl max-h-screen flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn"
           >
-            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-              <h3 className="text-xl font-semibold text-white">
+            <div className="flex justify-between items-center px-6 py-4 border-b border-border">
+              <h3 className="text-xl font-semibold text-foreground">
                 Certificate Preview
               </h3>
               <button
                 onClick={() => setShowCertificate(false)}
-                className="text-gray-400 hover:text-white text-2xl"
+                className="text-muted-foreground hover:text-foreground text-2xl"
               >
                 &times;
               </button>
@@ -365,7 +360,7 @@ const CertificationSection: React.FC = () => {
               />
             </div>
 
-            <div className="px-6 py-4 border-t border-gray-700 flex justify-between items-center">
+            <div className="px-6 py-4 border-t border-border flex justify-between items-center">
               <button
                 onClick={() => {
                   const link = document.createElement("a");

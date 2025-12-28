@@ -37,13 +37,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {visibleTags.map((tag, i) => (
           <span
             key={i}
-            className="bg-blue-500/20 text-blue-300 text-xs px-3 py-1 rounded-full truncate border border-blue-500/30"
+            className="bg-blue-500/20 text-blue-600 dark:text-blue-300 text-xs px-3 py-1 rounded-full truncate border border-blue-500/30"
           >
             {tag}
           </span>
         ))}
         {tags.length > 3 && (
-          <span className="text-gray-400 text-xs">+{tags.length - 3}</span>
+          <span className="text-muted-foreground text-xs">
+            +{tags.length - 3}
+          </span>
         )}
       </div>
     );
@@ -73,7 +75,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-xl font-bold mb-2 truncate">{project.title}</h3>
-          <p className="text-gray-400 mb-4 line-clamp-2 overflow-hidden text-sm h-10">
+          <p className="text-muted-foreground mb-4 line-clamp-2 overflow-hidden text-sm h-10">
             {project.description}
           </p>
           <div className="mb-4 h-8">{renderTags(project.tags)}</div>

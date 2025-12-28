@@ -40,16 +40,18 @@ const ExperiencePreview: React.FC = () => {
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             Experience & Projects
           </h2>
-          <p className="text-gray-400">My professional journey and work</p>
+          <p className="text-muted-foreground">
+            My professional journey and work
+          </p>
         </div>
         <motion.button
           onClick={handleViewAll}
-          className="px-5 py-2.5 border border-white/30 text-white text-sm rounded-full 
-                     bg-white/5 backdrop-blur-sm transition-all duration-300 
-                     hover:border-white/60 hover:bg-white/10 flex items-center gap-2"
+          className="px-5 py-2.5 border border-border text-foreground text-sm rounded-full 
+                     bg-secondary backdrop-blur-sm transition-all duration-300 
+                     hover:border-primary hover:bg-accent flex items-center gap-2"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -95,14 +97,14 @@ const ExperiencePreview: React.FC = () => {
               >
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-1">
+                    <h3 className="text-xl font-bold text-foreground mb-1">
                       {exp.position}
                     </h3>
                     <h4 className="text-blue-400 font-medium mb-2">
                       {exp.company}
                     </h4>
                     {exp.location && (
-                      <p className="text-gray-400 text-sm flex items-center gap-1">
+                      <p className="text-muted-foreground text-sm flex items-center gap-1">
                         <svg
                           className="w-3.5 h-3.5"
                           fill="currentColor"
@@ -118,7 +120,7 @@ const ExperiencePreview: React.FC = () => {
                       </p>
                     )}
                   </div>
-                  <span className="inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm font-medium border border-blue-500/30 whitespace-nowrap">
+                  <span className="inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-primary px-4 py-1.5 rounded-full text-sm font-medium border border-blue-500/30 whitespace-nowrap">
                     {exp.duration}
                   </span>
                 </div>
@@ -129,13 +131,13 @@ const ExperiencePreview: React.FC = () => {
                     {exp.technologies.slice(0, 5).map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 text-xs rounded-full bg-white/5 text-gray-300 border border-white/10"
+                        className="px-3 py-1 text-xs rounded-full bg-tag-bg text-tag-text border border-border"
                       >
                         {tech}
                       </span>
                     ))}
                     {exp.technologies.length > 5 && (
-                      <span className="px-3 py-1 text-xs rounded-full bg-white/5 text-gray-400">
+                      <span className="px-3 py-1 text-xs rounded-full bg-tag-bg text-muted-foreground">
                         +{exp.technologies.length - 5}
                       </span>
                     )}
@@ -154,7 +156,7 @@ const ExperiencePreview: React.FC = () => {
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+        <h3 className="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
           <svg
             className="w-5 h-5 text-purple-400"
             fill="none"

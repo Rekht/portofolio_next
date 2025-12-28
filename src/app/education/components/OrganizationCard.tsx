@@ -11,12 +11,16 @@ export default function OrganizationsSection() {
         {/* Organization */}
         <div className="organization-card">
           {/* Position */}
-          <h3 className="text-xl font-bold mb-1 text-white">{item.position}</h3>
+          <h3 className="text-xl font-bold mb-1 text-foreground">
+            {item.position}
+          </h3>
           {/* Period */}
-          <p className="text-xl font-bold mb-3 text-white">{item.period}</p>
+          <p className="text-xl font-bold mb-3 text-foreground">
+            {item.period}
+          </p>
 
           {/* Description */}
-          <div className="text-gray-300">
+          <div className="text-muted-foreground">
             {Array.isArray(item.description) ? (
               <ul className="list-disc list-outside pl-5 space-y-1">
                 {item.description.map((desc, index) => (
@@ -48,7 +52,7 @@ export default function OrganizationsSection() {
   }));
 
   return (
-    <div className="px-0 bg-transparent text-white">
+    <div className="px-0 bg-transparent text-foreground">
       <Timeline data={timelineData} />
     </div>
   );

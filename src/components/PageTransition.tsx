@@ -84,10 +84,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         {stage === "cover" && (
           <motion.div
             key="cover-curtain"
-            className="fixed inset-0 pointer-events-none"
+            className="fixed inset-0 pointer-events-none bg-background"
             style={{
               zIndex: 99999,
-              backgroundColor: "#000000",
               willChange: "transform",
             }}
             initial={{ y: "100%" }}
@@ -99,24 +98,23 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
           >
             {/* Curved TOP edge - concave */}
             <svg
-              className="absolute w-full"
+              className="absolute w-full fill-background"
               style={{ top: "-199px", height: "200px" }}
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
             >
-              <path d="M0 100 Q50 0 100 100 L100 100 L0 100 Z" fill="#000000" />
+              <path d="M0 100 Q50 0 100 100 L100 100 L0 100 Z" />
             </svg>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Hold - full black screen while page changes */}
+      {/* Hold - full screen while page changes */}
       {stage === "hold" && (
         <div
-          className="fixed inset-0 pointer-events-none"
+          className="fixed inset-0 pointer-events-none bg-background"
           style={{
             zIndex: 99999,
-            backgroundColor: "#000000",
           }}
         />
       )}
@@ -126,10 +124,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         {stage === "reveal" && (
           <motion.div
             key="reveal-curtain"
-            className="fixed inset-0 pointer-events-none"
+            className="fixed inset-0 pointer-events-none bg-background"
             style={{
               zIndex: 99999,
-              backgroundColor: "#000000",
               willChange: "transform",
             }}
             initial={{ y: "0%" }}
@@ -141,12 +138,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
           >
             {/* Curved TOP edge - convex curve bulging DOWN when falling */}
             <svg
-              className="absolute w-full"
+              className="absolute w-full fill-background"
               style={{ top: "-199px", height: "200px" }}
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
             >
-              <path d="M0 0 Q50 100 100 0 L100 100 L0 100 Z" fill="#000000" />
+              <path d="M0 0 Q50 100 100 0 L100 100 L0 100 Z" />
             </svg>
           </motion.div>
         )}

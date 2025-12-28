@@ -5,6 +5,8 @@ import "./globals.css";
 import VisitorLogger from "./about/components/VisitorLogger";
 import { TransitionProvider } from "@/components/PageTransition";
 import SmoothScroll from "@/components/SmoothScroll";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
@@ -97,13 +99,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {/* Gunakan className dari Montserrat */}
-      <body className={`${montserrat.className} bg-black min-h-screen`}>
-        <VisitorLogger />
-        <SmoothScroll>
-          <TransitionProvider>{children}</TransitionProvider>
-        </SmoothScroll>
+      <body className={`${montserrat.className} bg-background min-h-screen`}>
+        <ThemeProvider>
+          <VisitorLogger />
+          <SmoothScroll>
+            <TransitionProvider>{children}</TransitionProvider>
+          </SmoothScroll>
+          <ChatbotWidget />
+        </ThemeProvider>
       </body>
     </html>
   );

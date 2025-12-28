@@ -65,15 +65,15 @@ export default function GlassCard({
 
   const content = (
     <>
-      {/* Background with gradient - Opacity 50% */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-slate-800/50 to-slate-900/50" />
+      {/* Background with gradient - Uses theme variables */}
+      <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-muted/60 to-card/80" />
       <div className={`absolute inset-0 bg-gradient-to-tr ${gradient}`} />
 
       {/* Glassmorphism overlay - Enhanced blur */}
-      <div className="absolute inset-0 backdrop-blur-2xl bg-white/5" />
+      <div className="absolute inset-0 backdrop-blur-2xl bg-background/10" />
 
       {/* Border for glass effect */}
-      <div className="absolute inset-0 rounded-3xl border border-white/10" />
+      <div className="absolute inset-0 rounded-3xl border border-border" />
 
       {/* Decorative elements */}
       <div

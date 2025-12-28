@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { TransitionLink } from "@/components/PageTransition";
+import ThemeToggle from "@/components/ThemeToggle";
 
 // Icons for navigation
 const HomeIcon = () => (
@@ -154,7 +155,7 @@ const Navigation: React.FC<NavigationProps> = ({
       {/* Desktop Sidebar Navigation - Hidden on mobile via CSS */}
       <aside className="fixed left-4 inset-y-0 z-50 hidden md:flex items-center">
         {/* Glassmorphism container */}
-        <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl py-4 px-2 shadow-2xl">
+        <div className="bg-card/80 backdrop-blur-xl border border-border rounded-2xl py-4 px-2 shadow-2xl">
           {/* Logo */}
           <TransitionLink href="/" className="block mb-4">
             <motion.div
@@ -167,13 +168,13 @@ const Navigation: React.FC<NavigationProps> = ({
                 alt="Logo"
                 width={36}
                 height={36}
-                className="rounded-lg"
+                className="rounded-lg dark:invert-0 invert"
               />
             </motion.div>
           </TransitionLink>
 
           {/* Divider */}
-          <div className="w-6 h-px bg-white/20 mx-auto mb-4" />
+          <div className="w-6 h-px bg-border mx-auto mb-4" />
 
           {/* Navigation Items */}
           <div className="flex flex-col items-center space-y-2">
@@ -194,8 +195,8 @@ const Navigation: React.FC<NavigationProps> = ({
                     href={item.href}
                     className={`relative flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 group ${
                       isActive
-                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                        : "text-gray-400 hover:text-white hover:bg-white/10"
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent"
                     }`}
                   >
                     <Icon />
@@ -218,7 +219,7 @@ const Navigation: React.FC<NavigationProps> = ({
                   <AnimatePresence>
                     {hoveredItem === item.label && (
                       <motion.div
-                        className="absolute left-14 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-black/90 backdrop-blur-sm text-white text-sm font-medium rounded-lg whitespace-nowrap shadow-xl border border-white/10"
+                        className="absolute left-14 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-card/95 backdrop-blur-sm text-foreground text-sm font-medium rounded-lg whitespace-nowrap shadow-xl border border-border"
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -10 }}
@@ -226,7 +227,7 @@ const Navigation: React.FC<NavigationProps> = ({
                       >
                         {item.label}
                         {/* Arrow */}
-                        <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-[6px] border-r-black/90" />
+                        <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-[6px] border-r-card/95" />
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -234,6 +235,12 @@ const Navigation: React.FC<NavigationProps> = ({
               );
             })}
           </div>
+
+          {/* Divider */}
+          <div className="w-6 h-px bg-border mx-auto my-4" />
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Divider */}
           <div className="w-6 h-px bg-white/20 mx-auto my-4" />
@@ -253,7 +260,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
       {/* Mobile Navigation - Hidden on desktop via CSS */}
       <header className="fixed top-0 left-0 right-0 z-50 md:hidden">
-        <nav className="w-full px-4 py-3 backdrop-blur-xl border-b border-white/10">
+        <nav className="w-full px-4 py-3 backdrop-blur-xl border-b border-border bg-background/80">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <TransitionLink href="/">
@@ -267,52 +274,57 @@ const Navigation: React.FC<NavigationProps> = ({
                   alt="Logo"
                   width={36}
                   height={36}
-                  className="rounded-full"
+                  className="rounded-full dark:invert-0 invert"
                 />
               </motion.div>
             </TransitionLink>
 
-            {/* Burger Menu Button */}
-            <motion.button
-              className="relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsMenuOpen(!isMenuOpen);
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <motion.span
-                className="absolute w-6 h-0.5 bg-white"
-                animate={{
-                  rotate: isMenuOpen ? 45 : 0,
-                  y: isMenuOpen ? 0 : -6,
+            <div className="flex items-center space-x-2">
+              {/* Theme Toggle for Mobile */}
+              <ThemeToggle />
+
+              {/* Burger Menu Button */}
+              <motion.button
+                className="relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMenuOpen(!isMenuOpen);
                 }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.span
-                className="absolute w-6 h-0.5 bg-white"
-                animate={{
-                  opacity: isMenuOpen ? 0 : 1,
-                }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.span
-                className="absolute w-6 h-0.5 bg-white"
-                animate={{
-                  rotate: isMenuOpen ? -45 : 0,
-                  y: isMenuOpen ? 0 : 6,
-                }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <motion.span
+                  className="absolute w-6 h-0.5 bg-foreground"
+                  animate={{
+                    rotate: isMenuOpen ? 45 : 0,
+                    y: isMenuOpen ? 0 : -6,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.span
+                  className="absolute w-6 h-0.5 bg-foreground"
+                  animate={{
+                    opacity: isMenuOpen ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.span
+                  className="absolute w-6 h-0.5 bg-foreground"
+                  animate={{
+                    rotate: isMenuOpen ? -45 : 0,
+                    y: isMenuOpen ? 0 : 6,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+            </div>
           </div>
 
           {/* Mobile Menu Dropdown */}
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                className="absolute top-full left-0 right-0 bg-gray-900/98 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+                className="absolute top-full left-0 right-0 bg-card/98 backdrop-blur-xl border-b border-border shadow-2xl"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -342,8 +354,8 @@ const Navigation: React.FC<NavigationProps> = ({
                           href={item.href}
                           className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                             isActive
-                              ? "bg-blue-600 text-white"
-                              : "text-gray-300 hover:text-white hover:bg-white/10"
+                              ? "bg-primary text-primary-foreground"
+                              : "text-muted-foreground hover:text-foreground hover:bg-accent"
                           }`}
                           onClick={() => setIsMenuOpen(false)}
                         >

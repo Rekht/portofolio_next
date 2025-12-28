@@ -29,13 +29,13 @@ const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
         />
 
         <div>
-          <h3 className="text-xl font-bold mb-1 text-white">
+          <h3 className="text-xl font-bold mb-1 text-foreground">
             {education.degree}
           </h3>
           <p className="text-blue-400 mb-2">
             {education.institution} | {education.period}
           </p>
-          <p className="text-gray-300">
+          <p className="text-muted-foreground">
             {education.description}
             {education.gpa && <span> IPK: {education.gpa}</span>}
           </p>

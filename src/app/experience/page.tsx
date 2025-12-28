@@ -142,7 +142,7 @@ export default function ExperiencePage() {
 
   return (
     <div
-      className="font-sans min-h-screen bg-black text-white relative"
+      className="font-sans min-h-screen bg-background text-foreground relative"
       ref={mainContainerRef}
     >
       {/* Background */}
@@ -167,35 +167,39 @@ export default function ExperiencePage() {
           {/* Hero Section */}
           <section className="py-16 text-center">
             <div className="hero-content">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-400 to-blue-500 bg-clip-text text-transparent">
                 Experience & Projects
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12">
                 A comprehensive overview of my professional journey, work
                 experience, and creative projects.
               </p>
 
               {/* Statistics */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-500/20">
-                  <div className="text-3xl font-bold text-blue-400 mb-2">
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <div className="text-3xl font-bold text-primary mb-2">
                     Freelance
                   </div>
-                  <div className="text-gray-400">Work Experience</div>
+                  <div className="text-muted-foreground">Work Experience</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-500/20">
-                  <div className="text-3xl font-bold text-blue-400 mb-2">
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <div className="text-3xl font-bold text-primary mb-2">
                     ≤ {new Date().getFullYear() - 2024}
                   </div>
-                  <div className="text-gray-400">Years of Experience</div>
+                  <div className="text-muted-foreground">
+                    Years of Experience
+                  </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-500/20">
-                  <div className="text-3xl font-bold text-blue-400 mb-2">
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <div className="text-3xl font-bold text-primary mb-2">
                     {projectCount}
                   </div>
-                  <div className="text-gray-400">Independent Projects</div>
+                  <div className="text-muted-foreground">
+                    Independent Projects
+                  </div>
                 </div>
               </div>
             </div>
@@ -207,7 +211,7 @@ export default function ExperiencePage() {
               <h2 className="text-3xl font-bold mb-4 text-center">
                 Work Experience
               </h2>
-              <p className="text-gray-400 text-lg text-center">
+              <p className="text-muted-foreground text-lg text-center">
                 A chronological overview of my professional journey
               </p>
             </div>
@@ -221,7 +225,7 @@ export default function ExperiencePage() {
                   )}
 
                   {/* Timeline dot */}
-                  <div className="absolute left-2 top-8 w-4 h-4 bg-blue-500 rounded-full border-4 border-black z-20"></div>
+                  <div className="absolute left-2 top-8 w-4 h-4 bg-primary rounded-full border-4 border-background z-20"></div>
 
                   {/* Experience card with margin for timeline */}
                   <div className="ml-12">

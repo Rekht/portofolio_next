@@ -28,11 +28,13 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-slate-800/90 backdrop-blur-sm border border-slate-600/50 rounded-xl px-4 py-3 shadow-xl">
+      <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl px-4 py-3 shadow-xl">
         <p className="text-cyan-400 font-medium text-sm">{label}</p>
-        <p className="text-white font-bold text-lg">
+        <p className="text-foreground font-bold text-lg">
           {payload[0].value}{" "}
-          <span className="text-slate-400 text-sm font-normal">visitors</span>
+          <span className="text-muted-foreground text-sm font-normal">
+            visitors
+          </span>
         </p>
       </div>
     );
@@ -83,7 +85,7 @@ export default function VisitorStats() {
   return (
     <div>
       {/* Section Title - Outside container, centered */}
-      <h3 className="text-2xl font-bold text-white mb-6 text-center">
+      <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
         Visitor Statistics
       </h3>
 
@@ -101,7 +103,7 @@ export default function VisitorStats() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 view === v.key
                   ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/50"
-                  : "text-slate-400 hover:text-cyan-400 hover:bg-slate-700/50"
+                  : "text-muted-foreground hover:text-cyan-400 hover:bg-accent"
               }`}
             >
               {v.label}
@@ -133,9 +135,11 @@ export default function VisitorStats() {
                   />
                 </svg>
               </div>
-              <span className="text-slate-400 text-sm">Total Visitors</span>
+              <span className="text-muted-foreground text-sm">
+                Total Visitors
+              </span>
             </div>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-3xl font-bold text-foreground">
               {isLoading ? "..." : totalVisitors.toLocaleString()}
             </p>
           </motion.div>
@@ -162,7 +166,7 @@ export default function VisitorStats() {
                   />
                 </svg>
               </div>
-              <span className="text-slate-400 text-sm">
+              <span className="text-muted-foreground text-sm">
                 {view === "day"
                   ? "Today"
                   : view === "month"
@@ -170,7 +174,7 @@ export default function VisitorStats() {
                   : "This Year"}
               </span>
             </div>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-3xl font-bold text-foreground">
               {isLoading ? "..." : todayVisitors.toLocaleString()}
             </p>
           </motion.div>
@@ -181,20 +185,20 @@ export default function VisitorStats() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="bg-gradient-to-br from-slate-900/60 via-blue-950/40 to-slate-900/60 border border-slate-700/30 rounded-2xl p-4 backdrop-blur-sm"
+          className="bg-card/60 border border-border rounded-2xl p-4 backdrop-blur-sm"
         >
           {isLoading ? (
             <div className="flex items-center justify-center h-[300px]">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-10 h-10 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
-                <p className="text-slate-400">Loading data...</p>
+                <p className="text-muted-foreground">Loading data...</p>
               </div>
             </div>
           ) : data.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-[300px] text-center">
-              <div className="p-4 bg-slate-700/30 rounded-full mb-4">
+              <div className="p-4 bg-secondary rounded-full mb-4">
                 <svg
-                  className="w-12 h-12 text-slate-500"
+                  className="w-12 h-12 text-muted-foreground"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -207,8 +211,10 @@ export default function VisitorStats() {
                   />
                 </svg>
               </div>
-              <p className="text-slate-400 text-lg">No visitor data yet</p>
-              <p className="text-slate-500 text-sm mt-1">
+              <p className="text-muted-foreground text-lg">
+                No visitor data yet
+              </p>
+              <p className="text-muted-foreground/70 text-sm mt-1">
                 Data will appear after visits
               </p>
             </div>

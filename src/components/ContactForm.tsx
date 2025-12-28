@@ -59,7 +59,7 @@ const ContactForm: React.FC = () => {
           <input type="hidden" name="_template" value="box" />
 
           <div>
-            <label htmlFor="name" className="block text-gray-300 mb-2">
+            <label htmlFor="name" className="block text-muted-foreground mb-2">
               Name
             </label>
             <input
@@ -67,12 +67,12 @@ const ContactForm: React.FC = () => {
               id="name"
               name="name"
               required
-              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full bg-input-bg border border-input-border rounded-lg px-4 py-3 text-foreground placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-gray-300 mb-2">
+            <label htmlFor="email" className="block text-muted-foreground mb-2">
               Email
             </label>
             <input
@@ -80,12 +80,15 @@ const ContactForm: React.FC = () => {
               id="email"
               name="email"
               required
-              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full bg-input-bg border border-input-border rounded-lg px-4 py-3 text-foreground placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-gray-300 mb-2">
+            <label
+              htmlFor="message"
+              className="block text-muted-foreground mb-2"
+            >
               Message
             </label>
             <textarea
@@ -93,7 +96,7 @@ const ContactForm: React.FC = () => {
               name="message"
               rows={4}
               required
-              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="w-full bg-input-bg border border-input-border rounded-lg px-4 py-3 text-foreground placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
             ></textarea>
           </div>
 

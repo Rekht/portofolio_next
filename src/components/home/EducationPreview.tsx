@@ -136,16 +136,18 @@ const EducationPreview: React.FC = () => {
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             Education
           </h2>
-          <p className="text-gray-400">Academic background & achievements</p>
+          <p className="text-muted-foreground">
+            Academic background & achievements
+          </p>
         </div>
         <motion.button
           onClick={handleViewAll}
-          className="px-5 py-2.5 border border-white/30 text-white text-sm rounded-full 
-                     bg-white/5 backdrop-blur-sm transition-all duration-300 
-                     hover:border-white/60 hover:bg-white/10 flex items-center gap-2"
+          className="px-5 py-2.5 border border-border text-foreground text-sm rounded-full 
+                     bg-secondary backdrop-blur-sm transition-all duration-300 
+                     hover:border-primary hover:bg-accent flex items-center gap-2"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -194,10 +196,10 @@ const EducationPreview: React.FC = () => {
               >
                 <span className="text-white">{stat.icon}</span>
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-white mb-1">
+              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">
                 {stat.value}
               </div>
-              <div className="text-gray-400 text-xs md:text-sm">
+              <div className="text-muted-foreground text-xs md:text-sm">
                 {stat.label}
               </div>
             </GlassCard>
@@ -237,13 +239,15 @@ const EducationPreview: React.FC = () => {
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-bold text-white mb-1">
+                  <h3 className="text-lg font-bold text-foreground mb-1">
                     {education.degree}
                   </h3>
                   <h4 className="text-blue-400 font-medium text-sm mb-2">
                     {education.institution}
                   </h4>
-                  <p className="text-gray-400 text-xs">{education.period}</p>
+                  <p className="text-muted-foreground text-xs">
+                    {education.period}
+                  </p>
                 </div>
               </div>
             </GlassCard>
@@ -262,7 +266,7 @@ const EducationPreview: React.FC = () => {
             noAnimation
             className="h-full hover:scale-[1.01] transition-transform"
           >
-            <h4 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">
+            <h4 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">
               Organizations
             </h4>
             <div className="space-y-3">
@@ -270,15 +274,17 @@ const EducationPreview: React.FC = () => {
                 <div key={org.id} className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-2 flex-shrink-0" />
                   <div className="min-w-0">
-                    <p className="text-white font-medium text-sm truncate">
+                    <p className="text-foreground font-medium text-sm truncate">
                       {org.title}
                     </p>
-                    <p className="text-gray-400 text-xs">{org.position}</p>
+                    <p className="text-muted-foreground text-xs">
+                      {org.position}
+                    </p>
                   </div>
                 </div>
               ))}
               {orgCount > 2 && (
-                <p className="text-gray-500 text-xs pl-5">
+                <p className="text-muted-foreground/70 text-xs pl-5">
                   +{orgCount - 2} more organizations
                 </p>
               )}

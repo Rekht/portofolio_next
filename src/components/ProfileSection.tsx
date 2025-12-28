@@ -36,7 +36,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
           absolute z-20 
           top-6 left-6 sm:top-10 sm:left-10 
           max-w-[90%] sm:max-w-xs 
-          text-white font-semibold tracking-wide leading-relaxed
+          text-foreground font-semibold tracking-wide leading-relaxed
         "
       >
         <span className="pl-10 block">HELLO, MY NAME’S RESTU</span>

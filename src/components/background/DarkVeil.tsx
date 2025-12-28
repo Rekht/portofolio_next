@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { Renderer, Program, Mesh, Triangle, Vec2 } from "ogl";
+import { useTheme } from "@/components/ThemeProvider";
 import "./DarkVeil.css";
 
 const vertex = `
@@ -96,8 +97,15 @@ export default function DarkVeil({
   resolutionScale = 1,
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const { theme, mounted } = useTheme();
+  const isDark = theme === "dark";
+
   useEffect(() => {
+    // Don't run WebGL in light mode to save resources
+    if (!isDark || !mounted) return;
+
     const canvas = ref.current as HTMLCanvasElement;
+    if (!canvas) return;
     const parent = canvas.parentElement as HTMLElement;
 
     const renderer = new Renderer({
@@ -163,6 +171,22 @@ export default function DarkVeil({
     scanlineFrequency,
     warpAmount,
     resolutionScale,
+    isDark,
+    mounted,
   ]);
-  return <canvas ref={ref} className="darkveil-canvas" />;
+
+  // In light mode: use CSS filter to invert colors (black → white, purple → teal/yellow)
+  // In dark mode: show original colors
+  return (
+    <canvas
+      ref={ref}
+      className="darkveil-canvas"
+      style={{
+        filter: isDark ? "none" : "invert(1) hue-rotate(180deg)",
+        opacity: 1,
+        transition: "filter 0.5s ease-in-out",
+        pointerEvents: "none",
+      }}
+    />
+  );
 }

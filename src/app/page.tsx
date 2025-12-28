@@ -98,7 +98,7 @@ export default function HomePage() {
   return (
     <div
       ref={mainContainerRef}
-      className="font-sans min-h-screen text-white relative"
+      className="font-sans min-h-screen text-foreground relative"
     >
       {/* Background transparan */}
       <div className="fixed inset-0 -z-10">

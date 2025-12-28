@@ -133,7 +133,7 @@ export default function EducationPage() {
 
   return (
     <div
-      className="font-sans min-h-screen bg-black text-white relative"
+      className="font-sans min-h-screen bg-background text-foreground relative"
       ref={mainContainerRef}
     >
       {/* Background */}
@@ -162,10 +162,10 @@ export default function EducationPage() {
         <div className="w-full px-section">
           {/* Hero Section */}
           <section className="py-16 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-blue-400 to-primary bg-clip-text text-transparent">
               Education & Achievements
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Academic background, organizational experiences, achievements, and
               certifications that shaped my professional growth.
             </p>
