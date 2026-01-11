@@ -101,7 +101,7 @@
     "title": "Mobile Stocks App",
     "description": "Real-time stocks tracking app with watchlists, recommendations, and visual analysis tools.",
     "detailedDescription": "This project is the final assignment for the Mobile Development course in the sixth semester.\n\nThis comprehensive stock market tracking application provides a streamlined mobile platform for monitoring market movements and portfolio insights. Built with Flutter for cross-platform compatibility, the app ensures a seamless experience across both iOS and Android devices.\n\nThe app retrieves financial data via APIs to display real-time stock prices, historical charts across multiple timeframes, and essential financial indicators. Users can create custom watchlists to follow selected stocks and explore automatic stock recommendations highlighting strong-performing assets at a given moment.\n\nAdditional features include technical analysis tools with common indicators such as moving averages and relative strength index, portfolio performance visualization, and a curated financial news feed tailored to user interests.",
-    "image": "/assets/projects/stocks-project.jpg",
+    "image": "/assets/projects/stocks-project.png",
     "url": "https://github.com/Rekht/Multiplatform-Stocks-with-Flutter",
     "tags": ["Flutter", "Dart", "Firebase", "RESTful APIs"],
     "features": [
@@ -118,7 +118,7 @@
     "title": "Mobile Weather Application",
     "description": "Simple weather application with forecast, location tracking, and beautiful UI.",
     "detailedDescription": "This project is the midterm assignment for the Mobile Development course in the sixth semester.\n\nThis elegant weather application combines beautiful design with practical functionality to deliver accurate weather information in a visually engaging format. The app utilizes geolocation services to automatically detect the user's location and provide localized weather data, while also allowing manual location searches.\n\nThe interface presents current conditions along with hourly and 7-day forecasts, displaying temperature, precipitation probability, wind speed, humidity, and UV index. Weather data visualization includes animated icons that represent different weather conditions and intuitive charts for temperature and precipitation trends.\n\nDeveloped with Flutter, the application maintains consistent performance across platforms while adapting to device-specific design guidelines.",
-    "image": "/assets/projects/weather-project.jpg",
+    "image": "/assets/projects/weather-project.png",
     "url": "https://github.com/Rekht/Simple-Weather-App-using-Flutter",
     "tags": ["Flutter", "RESTful APIs"],
     "features": [

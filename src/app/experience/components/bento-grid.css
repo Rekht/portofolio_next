@@ -1,0 +1,82 @@
+/* Bento Grid Layout - Exact mockup match */
+
+.bento-container {
+  display: grid;
+  /* 3 columns: large col on left (wider), 2 smaller cols on right */
+  grid-template-columns: 1.3fr 1fr 1fr;
+  /* 3 rows with specific heights */
+  grid-template-rows: 180px 180px 180px;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Large card: spans entire left column (all 3 rows) */
+.bento-large {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  height: 100%;
+}
+
+/* Medium cards: single cells in the right 2 columns */
+.bento-medium {
+  height: 100%;
+}
+
+/* Small cards: same as medium */
+.bento-small {
+  height: 100%;
+}
+
+/* Make sure all items fill their container */
+.bento-item {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Empty state */
+.bento-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+  }
+
+  .bento-large {
+    grid-column: 1 / 3;
+    grid-row: span 1;
+    height: 300px;
+  }
+
+  .bento-medium,
+  .bento-small {
+    grid-column: span 1;
+    height: 220px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 640px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .bento-large,
+  .bento-medium,
+  .bento-small {
+    grid-column: span 1;
+    grid-row: span 1;
+    height: 280px;
+  }
+}

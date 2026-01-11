@@ -1,6 +1,7 @@
-// components/ProjectDetailModal.tsx - Komponen modal detail proyek
+// components/ProjectDetailModal.tsx - Premium Modal with Glassmorphism
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Project {
   id: number;
@@ -24,7 +25,6 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Handle klik di luar modal untuk menutupnya
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -35,41 +35,81 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
       }
     };
 
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
-    // Mencegah scrolling saat modal terbuka
+    document.addEventListener("keydown", handleEscKey);
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscKey);
       document.body.style.overflow = "auto";
     };
   }, [onClose]);
 
-  // Keluar jika tidak ada proyek yang diberikan
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75 overflow-y-auto">
-      <div
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onWheel={(e) => e.stopPropagation()}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      {/* Backdrop with blur */}
+      <motion.div
+        className="absolute inset-0 bg-black/60 backdrop-blur-md"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Modal container */}
+      <motion.div
         ref={modalRef}
-        className="bg-gray-900 rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn overflow-hidden"
+        className="relative w-full max-w-4xl max-h-[90vh] flex flex-col 
+                       bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95
+                       backdrop-blur-xl rounded-3xl border border-white/10 
+                       shadow-2xl shadow-purple-500/10 overflow-hidden"
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 25,
+        }}
       >
-        {/* Header dengan gambar dan tombol tutup */}
-        <div className="relative">
+        {/* Header with image */}
+        <div className="relative h-64 md:h-72 flex-shrink-0 overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
-            width={800}
-            height={400}
-            className="w-full h-56 object-cover"
+            fill
+            className="object-cover"
           />
-          <button
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+
+          {/* Close button */}
+          <motion.button
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-75 transition-colors"
+            className="absolute top-4 right-4 p-3 bg-black/40 backdrop-blur-sm rounded-full 
+                           text-white/80 hover:text-white hover:bg-black/60 
+                           border border-white/10 transition-all duration-200"
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -81,84 +121,155 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </button>
-        </div>
+          </motion.button>
 
-        {/* Konten */}
-        <div
-          className="p-6 overflow-y-auto"
-          style={{ maxHeight: "calc(90vh - 224px)" }}
-        >
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags &&
-              project.tags.map((tag, i) => (
+          {/* Title overlay on image */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-white mb-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              {project.title}
+            </motion.h2>
+
+            {/* Tags */}
+            <motion.div
+              className="flex flex-wrap gap-2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              {project.tags?.map((tag, i) => (
                 <span
                   key={i}
-                  className="bg-blue-600 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full"
+                  className="px-3 py-1 bg-gradient-to-r from-blue-500/30 to-purple-500/30 
+                                 backdrop-blur-sm text-white text-xs font-medium rounded-full
+                                 border border-white/20"
                 >
                   {tag}
                 </span>
               ))}
+            </motion.div>
           </div>
-
-          <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
-
-          {/* Deskripsi utama */}
-          <div className="text-gray-300 mb-6 whitespace-pre-line">
-            {project.detailedDescription || project.description}
-          </div>
-
-          {/* Section fitur */}
-          {project.features && (
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-3 text-blue-400">
-                Fitur Utama
-              </h3>
-              <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                {project.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
 
-        {/* Footer dengan link */}
-        <div className="px-6 py-4 border-t border-gray-800 flex justify-between">
-          <div className="flex space-x-4">
-            {project.url && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center gap-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+        {/* Scrollable content */}
+        <div
+          className="flex-1 overflow-y-auto overscroll-contain scroll-smooth custom-scrollbar"
+          style={{ scrollBehavior: "smooth" }}
+          onWheel={(e) => e.stopPropagation()}
+        >
+          <div className="p-6 md:p-8 space-y-8">
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+            >
+              <h3 className="text-lg font-semibold text-white/90 mb-3 flex items-center gap-2">
+                <span
+                  className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 
+                                     flex items-center justify-center text-white text-sm"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Lihat Source Code
-              </a>
+                  📝
+                </span>
+                About
+              </h3>
+              <p className="text-white/70 leading-relaxed whitespace-pre-line">
+                {project.detailedDescription || project.description}
+              </p>
+            </motion.div>
+
+            {/* Features */}
+            {project.features && project.features.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+              >
+                <h3 className="text-lg font-semibold text-white/90 mb-4 flex items-center gap-2">
+                  <span
+                    className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 
+                                       flex items-center justify-center text-white text-sm"
+                  >
+                    ✨
+                  </span>
+                  Key Features
+                </h3>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {project.features.map((feature, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start gap-3 p-3 rounded-xl 
+                                     bg-white/5 border border-white/10 hover:bg-white/10 
+                                     transition-colors duration-200"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 + index * 0.05 }}
+                    >
+                      <span
+                        className="w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 
+                                           flex items-center justify-center flex-shrink-0 mt-0.5"
+                      >
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={3}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </span>
+                      <span className="text-white/70 text-sm">{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
             )}
           </div>
-
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-white transition"
-          >
-            Tutup
-          </button>
         </div>
-      </div>
-    </div>
+
+        {/* Footer with action buttons */}
+        {project.url && (
+          <motion.div
+            className="flex-shrink-0 px-6 md:px-8 py-5 border-t border-white/10 
+                           bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <motion.a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 
+                             bg-gradient-to-r from-blue-600 to-purple-600 
+                             text-white font-medium rounded-full
+                             hover:from-blue-500 hover:to-purple-500 
+                             shadow-lg shadow-purple-500/25 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              View Source Code
+            </motion.a>
+          </motion.div>
+        )}
+      </motion.div>
+    </motion.div>
   );
 };
 

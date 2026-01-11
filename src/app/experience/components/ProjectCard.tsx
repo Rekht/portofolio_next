@@ -1,7 +1,7 @@
-// components/ProjectCard.tsx - Komponen kartu proyek
+// ProjectCard.tsx - Cards yang MEMANJANG (tall/vertical)
 import React from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import GlassCard from "@/components/ui/GlassCard";
 
 interface Project {
   id: number;
@@ -14,124 +14,146 @@ interface Project {
   url?: string;
 }
 
+// Variants:
+// - "large": Very tall (3 rows), image top + full description bottom
+// - "medium": Medium tall (1-2 rows), image + title + short desc
+// - "small": Compact tall, image top + title + short desc
+type CardVariant = "large" | "medium" | "small";
+
 interface ProjectCardProps {
   project: Project;
   isVisible: boolean;
   onClick: (project: Project) => void;
+  variant?: CardVariant;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
-  isVisible,
   onClick,
+  variant = "medium",
 }) => {
-  // Fungsi untuk membatasi jumlah tag yang ditampilkan
-  const renderTags = (tags: string[] | undefined) => {
-    if (!tags || tags.length === 0) return null;
-
-    // Tampilkan maksimal 3 tag saja
-    const visibleTags = tags.slice(0, 3);
-
+  // LARGE card - spans 3 rows, image dominant with full description
+  if (variant === "large") {
     return (
-      <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap">
-        {visibleTags.map((tag, i) => (
-          <span
-            key={i}
-            className="bg-blue-500/20 text-blue-600 dark:text-blue-300 text-xs px-3 py-1 rounded-full truncate border border-blue-500/30"
-          >
-            {tag}
-          </span>
-        ))}
-        {tags.length > 3 && (
-          <span className="text-muted-foreground text-xs">
-            +{tags.length - 3}
-          </span>
-        )}
-      </div>
-    );
-  };
-
-  return (
-    <div
-      className={`transition-all duration-300 transform hover:scale-105 cursor-pointer w-full h-96 flex flex-col ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
-      onClick={() => onClick(project)}
-    >
-      <GlassCard
-        accentColor="blue"
-        noAnimation
-        noPadding
-        className="h-full flex flex-col overflow-hidden"
+      <motion.div
+        className="group w-full h-full cursor-pointer"
+        onClick={() => onClick(project)}
+        whileHover={{ scale: 1.01 }}
+        transition={{ duration: 0.3 }}
       >
-        <div className="w-full h-48 overflow-hidden">
+        <div
+          className="w-full h-full rounded-2xl overflow-hidden 
+                        bg-slate-800/40 backdrop-blur-xl 
+                        border border-white/10 hover:border-purple-500/30
+                        flex flex-col transition-all duration-300"
+        >
+          {/* Image - takes ~60% of height */}
+          <div className="relative flex-[3] min-h-0">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 35vw"
+            />
+          </div>
+
+          {/* Text section - takes ~40% */}
+          <div className="p-4 flex-[2] flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+              <p className="text-[10px] uppercase tracking-widest text-purple-400/80 font-semibold">
+                Project:
+              </p>
+            </div>
+            <h3 className="text-lg font-bold text-white leading-tight mb-2">
+              {project.title}
+            </h3>
+            <p className="text-white/60 text-xs leading-relaxed line-clamp-4">
+              {project.description}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // MEDIUM card - image top, title + short description below
+  if (variant === "medium") {
+    return (
+      <motion.div
+        className="group w-full h-full cursor-pointer"
+        onClick={() => onClick(project)}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.25 }}
+      >
+        <div
+          className="w-full h-full rounded-xl overflow-hidden 
+                        bg-slate-800/40 backdrop-blur-xl 
+                        border border-white/10 hover:border-purple-500/30
+                        flex flex-col transition-all duration-300"
+        >
+          {/* Image - top section */}
+          <div className="relative flex-[2] min-h-0">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+          </div>
+
+          {/* Text - bottom section */}
+          <div className="p-3 flex-1 flex flex-col justify-center">
+            <h3 className="text-sm font-bold text-white leading-tight mb-1">
+              {project.title}
+            </h3>
+            <p className="text-white/50 text-xs leading-snug line-clamp-2">
+              {project.description}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // SMALL card - compact, image + title + short description
+  return (
+    <motion.div
+      className="group w-full h-full cursor-pointer"
+      onClick={() => onClick(project)}
+      whileHover={{ scale: 1.03, y: -2 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div
+        className="w-full h-full rounded-xl overflow-hidden 
+                      bg-slate-800/40 backdrop-blur-xl 
+                      border border-white/10 hover:border-purple-500/30
+                      flex flex-col transition-all duration-300"
+      >
+        {/* Image - top, takes most space */}
+        <div className="relative flex-[3] min-h-0">
           <Image
             src={project.image}
             alt={project.title}
-            width={400}
-            height={300}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 33vw, 20vw"
           />
         </div>
-        <div className="p-6 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold mb-2 truncate">{project.title}</h3>
-          <p className="text-muted-foreground mb-4 line-clamp-2 overflow-hidden text-sm h-10">
+
+        {/* Text - bottom, compact */}
+        <div className="p-2 flex-1 flex flex-col justify-center">
+          <h3 className="text-xs font-bold text-white leading-tight mb-0.5">
+            {project.title}
+          </h3>
+          <p className="text-white/50 text-[10px] leading-snug line-clamp-2">
             {project.description}
           </p>
-          <div className="mb-4 h-8">{renderTags(project.tags)}</div>
-          <div className="flex justify-between items-center mt-auto">
-            <div className="flex space-x-3">
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 transition"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <span className="flex items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 mr-1"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Kode
-                  </span>
-                </a>
-              )}
-            </div>
-            <button
-              className="text-sm text-blue-400 hover:text-blue-300 flex items-center"
-              onClick={(e) => {
-                e.stopPropagation();
-                onClick(project);
-              }}
-            >
-              Detail
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 ml-1"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
         </div>
-      </GlassCard>
-    </div>
+      </div>
+    </motion.div>
   );
 };
 

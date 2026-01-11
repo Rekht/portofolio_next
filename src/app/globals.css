@@ -284,3 +284,103 @@ body {
     @apply px-2 md:px-4;
   }
 }
+
+/* Bento Grid Layout System */
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 1.25rem;
+}
+
+/* Large card: 2 columns x 2 rows - Hero feature */
+.bento-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 420px;
+}
+
+/* Medium card: 1 column x 2 rows - Tall */
+.bento-medium {
+  grid-column: span 1;
+  grid-row: span 2;
+  min-height: 380px;
+}
+
+/* Small card: 1 column x 1 row - Compact */
+.bento-small {
+  grid-column: span 1;
+  grid-row: span 1;
+  min-height: 180px;
+}
+
+/* Empty state for no results */
+.bento-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 360px;
+  }
+
+  .bento-medium {
+    grid-column: span 1;
+    grid-row: span 2;
+    min-height: 320px;
+  }
+
+  .bento-small {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 160px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 640px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .bento-large,
+  .bento-medium,
+  .bento-small {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 300px;
+  }
+}
+
+/* Custom scrollbar for modal */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

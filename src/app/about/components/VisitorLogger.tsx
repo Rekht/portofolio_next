@@ -16,12 +16,11 @@ export default function VisitorLogger() {
         // Get today's date in YYYY-MM-DD format (UTC)
         const today = new Date().toISOString().split("T")[0];
 
-        // Check if this IP + page combination already exists today
+        // Check if this IP already exists today
         const { data: existing, error: checkError } = await supabase
           .from("visitors")
           .select("id")
           .eq("ip_address", ip)
-          .eq("page", page)
           .gte("created_at", `${today}T00:00:00.000Z`)
           .lt("created_at", `${today}T23:59:59.999Z`)
           .limit(1);
@@ -31,13 +30,9 @@ export default function VisitorLogger() {
           return;
         }
 
-        // If already exists for this IP + page + day, skip insert
+        // If already exists for this IP + day, skip insert
         if (existing && existing.length > 0) {
-          console.log(
-            "ℹ️ Visitor already logged today for this page:",
-            ip,
-            page
-          );
+          console.log("ℹ️ Visitor already logged today:", ip);
           return;
         }
 

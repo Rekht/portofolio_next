@@ -46,6 +46,8 @@ interface Experience {
   duration: string;
   location?: string;
   description: string | string[];
+  technologies?: string[];
+  images?: string[];
 }
 
 // Register GSAP plugins
@@ -216,32 +218,17 @@ export default function ExperiencePage() {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto space-y-8">
               {memoizedExperience.map((exp, index) => (
-                <div key={exp.id} className="relative">
-                  {/* Timeline line */}
-                  {index < memoizedExperience.length - 1 && (
-                    <div className="absolute left-4 top-32 w-0.5 h-24 bg-gradient-to-b from-blue-500 to-purple-500 z-10"></div>
-                  )}
-
-                  {/* Timeline dot */}
-                  <div className="absolute left-2 top-8 w-4 h-4 bg-primary rounded-full border-4 border-background z-20"></div>
-
-                  {/* Experience card with margin for timeline */}
-                  <div className="ml-12">
-                    <ExperienceCard experience={exp} />
-                  </div>
-                </div>
+                <ExperienceCard key={exp.id} experience={exp} index={index} />
               ))}
             </div>
           </section>
 
           {/* Project Section */}
-          <section className="py-16" id="project">
-            <Suspense fallback={<SectionLoader />}>
-              <ProjectSection />
-            </Suspense>
-          </section>
+          <Suspense fallback={<SectionLoader />}>
+            <ProjectSection />
+          </Suspense>
 
           {/* Skills Summary */}
           <section className="py-16">

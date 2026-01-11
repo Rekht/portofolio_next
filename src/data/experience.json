@@ -2,7 +2,7 @@
   {
     "id": 1,
     "company": "PT Rakamin Kolektif Madani",
-    "position": "Data Analyst",
+    "position": "Data Analyst (MagangHub Internship)",
     "duration": "Nov 2025 - Present",
     "location": "Remote",
     "description": [
@@ -22,6 +22,11 @@
       "Looker Studio",
       "SQL",
       "Machine Learning"
+    ],
+    "images": [
+      "/assets/experience/rakamin1.png",
+      "/assets/experience/rakamin2.png",
+      "/assets/experience/rakamin3.png"
     ]
   },
   {
@@ -33,7 +38,7 @@
     "description": [
       "Completed over 10 freelance projects independently and through various digital platforms",
       "Responsible for building Machine Learning/Deep Learning models, performing data entry, data annotation, data management and scraping, developing websites, creating Roblox games, and academic projects.",
-      "Communicated effectively with clients to ensure deliverables met client expectations and"
+      "Communicated effectively with clients to ensure deliverables met client expectations"
     ],
     "technologies": [
       "Excel",
@@ -42,12 +47,13 @@
       "Lua",
       "Statistical Analysis",
       "Data Validation"
-    ]
+    ],
+    "images": ["/assets/experience/freelance1.png"]
   },
   {
     "id": 3,
     "company": "Department of Mathematics Education, Yogyakarta State University",
-    "position": "Research Assistant",
+    "position": "Research Assistant (Project Based)",
     "duration": "May 2024 - Jul 2024",
     "location": "Yogyakarta",
     "description": [
@@ -61,12 +67,13 @@
       "Data Entry",
       "Document Formatting",
       "Quality Control"
-    ]
+    ],
+    "images": ["/assets/experience/tracer1.png"]
   },
   {
     "id": 4,
     "company": "Grogol Village, Paliyan District, Gunung Kidul Regency",
-    "position": "Media Staff (Internship)",
+    "position": "Media Staff (Internship via PPK Ormawa)",
     "duration": "Jul 2023 - Aug 2023",
     "location": "Gunung Kidul Regency, Yogyakarta",
     "description": [
@@ -81,6 +88,7 @@
       "Report Writing",
       "Digital Documentation",
       "Web Design"
-    ]
+    ],
+    "images": ["/assets/experience/ppko1.png", "/assets/experience/ppko2.png"]
   }
 ]
