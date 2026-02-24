@@ -5,7 +5,7 @@ import React, {
   useState,
   useRef,
   useMemo,
-  useLayoutEffect,
+  useEffect,
   Suspense,
   lazy,
   useCallback,
@@ -29,20 +29,20 @@ import {
 // Components
 import Navigation from "../../components/Navigation";
 import EducationCard from "./components/EducationCard";
-import DarkVeil from "../../components/background/DarkVeil";
+// DarkVeil moved to layout.tsx — single instance for all pages
 
 // Data
 import educationData from "../../data/education.json";
 
 // Lazy components
 const AchievementSection = lazy(
-  () => import("@/app/education/components/AchievementSection")
+  () => import("@/app/education/components/AchievementSection"),
 );
 const CertificationSection = lazy(
-  () => import("@/app/education/components/CertificationSection")
+  () => import("@/app/education/components/CertificationSection"),
 );
 const OrganizationsSection = lazy(
-  () => import("@/app/education/components/OrganizationCard")
+  () => import("@/app/education/components/OrganizationCard"),
 );
 
 // Types
@@ -60,7 +60,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function EducationPage() {
   const mainContainerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -89,11 +88,11 @@ export default function EducationPage() {
         smoothScrollToSection(sectionId);
       }
     },
-    [handleNavClick]
+    [handleNavClick],
   );
 
-  // GSAP Animations
-  useLayoutEffect(() => {
+  // GSAP Animations - useEffect to avoid blocking paint
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const animations = createCommonAnimations(gsap, ScrollTrigger);
 
@@ -106,7 +105,7 @@ export default function EducationPage() {
           y: 0,
           duration: 0.8,
           ease: "power2.out",
-        }
+        },
       );
 
       // Section fade-in
@@ -117,9 +116,6 @@ export default function EducationPage() {
       animations.animateCards(".organization-card");
       animations.animateCards(".achievement-item");
       animations.animateCards(".certification-item");
-
-      // Header background animation
-      animations.animateHeader(headerRef);
     }, mainContainerRef);
 
     setIsLoaded(true);
@@ -136,22 +132,14 @@ export default function EducationPage() {
       className="font-sans min-h-screen bg-background text-foreground relative"
       ref={mainContainerRef}
     >
-      {/* Background */}
-      <div className="fixed inset-0 z-0">
-        <DarkVeil />
-      </div>
+      {/* Background moved to layout.tsx */}
 
       {/* Navigation */}
-      <div
-        ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-      >
-        <Navigation
-          scrolled={scrolled}
-          activePage="education"
-          handleNavClick={handleSmoothNavClick}
-        />
-      </div>
+      <Navigation
+        scrolled={scrolled}
+        activePage="education"
+        handleNavClick={handleSmoothNavClick}
+      />
 
       {/* Main Content */}
       <main className="relative z-10 education-page-content">
@@ -162,7 +150,7 @@ export default function EducationPage() {
         <div className="w-full px-section">
           {/* Hero Section */}
           <section className="py-16 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-blue-400 to-primary bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-400 to-blue-500 bg-clip-text text-transparent">
               Education & Achievements
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

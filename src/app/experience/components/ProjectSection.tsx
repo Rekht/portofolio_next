@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectCard from "./ProjectCard";
-import ProjectDetailModal from "./ProjectDetailModal";
+import { useRouter } from "next/navigation";
 import ProjectFilterScroller from "./ProjectFilterScroller";
 import projectsData from "../../../data/projects.json";
 
@@ -25,12 +25,20 @@ interface ProjectCache {
 
 type CardVariant = "large" | "medium" | "small";
 
+export const createSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "") // Remove non-word characters
+    .trim()
+    .replace(/\s+/g, "-"); // Replace spaces with dashes
+};
+
 const ProjectSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [projectsToDisplay, setProjectsToDisplay] = useState<Project[]>([]);
   const [showMoreProjects, setShowMoreProjects] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const router = useRouter();
 
   const [projectsCache, setProjectsCache] = useState<
     Record<string, ProjectCache>
@@ -49,7 +57,7 @@ const ProjectSection: React.FC = () => {
   // Col 3: 3 cards - each spans 1 row
 
   const getCardConfig = (
-    index: number
+    index: number,
   ): { variant: CardVariant; gridStyle: React.CSSProperties } => {
     switch (index) {
       case 0: // LARGE - Col 1, spans ALL 3 rows
@@ -96,7 +104,7 @@ const ProjectSection: React.FC = () => {
       return projects;
     }
     return projects.filter(
-      (project) => project.tags && project.tags.includes(activeFilter)
+      (project) => project.tags && project.tags.includes(activeFilter),
     );
   }, [activeFilter]);
 
@@ -106,7 +114,7 @@ const ProjectSection: React.FC = () => {
       setIsAnimating(true);
       setActiveFilter(filter);
     },
-    [activeFilter, isAnimating]
+    [activeFilter, isAnimating],
   );
 
   useEffect(() => {
@@ -145,7 +153,7 @@ const ProjectSection: React.FC = () => {
       "JavaScript",
       "Flutter",
     ],
-    []
+    [],
   );
 
   const containerVariants = {
@@ -249,7 +257,9 @@ const ProjectSection: React.FC = () => {
                     <ProjectCard
                       project={project}
                       isVisible={true}
-                      onClick={(project) => setSelectedProject(project)}
+                      onClick={(project) =>
+                        router.push(`/project/${createSlug(project.title)}`)
+                      }
                       variant={variant}
                     />
                   </motion.div>
@@ -300,7 +310,9 @@ const ProjectSection: React.FC = () => {
                   <ProjectCard
                     project={project}
                     isVisible={true}
-                    onClick={(p) => setSelectedProject(p)}
+                    onClick={(p) =>
+                      router.push(`/project/${createSlug(p.title)}`)
+                    }
                     variant="small"
                   />
                 </motion.div>
@@ -317,8 +329,8 @@ const ProjectSection: React.FC = () => {
             onClick={() => setShowMoreProjects(!showMoreProjects)}
             className="group flex items-center gap-2 px-6 py-3 
                        bg-gradient-to-r from-blue-600/20 to-purple-600/20 
-                       text-white rounded-xl border border-white/15 
-                       hover:border-white/30 hover:from-blue-600/30 hover:to-purple-600/30
+                       text-foreground dark:text-white rounded-xl border border-border dark:border-white/15 
+                       hover:border-foreground/30 dark:hover:border-white/30 hover:from-blue-600/30 hover:to-purple-600/30
                        backdrop-blur-md transition-all duration-300 text-sm"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -346,15 +358,7 @@ const ProjectSection: React.FC = () => {
         </div>
       )}
 
-      {/* Project Detail Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectDetailModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-      </AnimatePresence>
+      {/* Project Detail Modal Removed */}
     </section>
   );
 };

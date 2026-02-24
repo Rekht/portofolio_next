@@ -62,12 +62,14 @@ export default function Guestbook() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim()) return;
+    const trimmedName = name.trim().slice(0, 50);
+    const trimmedMessage = message.trim().slice(0, 500);
+    if (!trimmedName || !trimmedMessage) return;
 
     setIsSubmitting(true);
     const { error } = await supabase
       .from("messages")
-      .insert([{ name: name.trim(), message: message.trim() }]);
+      .insert([{ name: trimmedName, message: trimmedMessage }]);
 
     if (error) {
       console.error("Error submitting message:", error);

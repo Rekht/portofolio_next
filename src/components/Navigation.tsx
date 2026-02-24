@@ -113,6 +113,12 @@ const navItems = [
     label: "Education",
     page: "education",
   },
+  {
+    href: "/contact",
+    icon: ContactIcon,
+    label: "Contact",
+    page: "contact",
+  },
 ];
 
 const Navigation: React.FC<NavigationProps> = ({
@@ -246,15 +252,23 @@ const Navigation: React.FC<NavigationProps> = ({
           <div className="w-6 h-px bg-white/20 mx-auto my-4" />
 
           {/* Available for Work indicator */}
-          <motion.div
-            className="flex items-center justify-center"
-            whileHover={{ scale: 1.1 }}
-          >
-            <div className="relative">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-              <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-75" />
+          <div className="relative group flex justify-center">
+            <motion.div
+              className="flex items-center justify-center cursor-help"
+              whileHover={{ scale: 1.1 }}
+            >
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-75" />
+              </div>
+            </motion.div>
+
+            {/* Tooltip */}
+            <div className="absolute left-10 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-card/95 backdrop-blur-sm text-foreground text-sm font-medium rounded-lg whitespace-nowrap shadow-xl border border-border opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 z-50">
+              Available to work
+              <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-[6px] border-r-card/95" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </aside>
 

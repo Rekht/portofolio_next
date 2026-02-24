@@ -19,7 +19,7 @@ const AchievementSection: React.FC = () => {
   // Memoize achievements data to prevent unnecessary re-renders
   const memoizedAchievements = useMemo(
     () => achievementsData as Achievement[],
-    []
+    [],
   );
 
   // State for certificate modal
@@ -146,7 +146,7 @@ const AchievementSection: React.FC = () => {
                 {achievement.certificate && (
                   <button
                     onClick={() => handleCertificateClick(achievement)}
-                    className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
+                    className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors duration-200 text-sm font-medium"
                   >
                     <svg
                       className="w-4 h-4 mr-2"
@@ -230,7 +230,7 @@ const AchievementSection: React.FC = () => {
               <div className="flex space-x-3">
                 <button
                   onClick={handleDownloadCertificate}
-                  className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-2 rounded-full flex items-center hover:scale-105 transition-all shadow-lg text-sm"
+                  className="bg-primary text-primary-foreground px-6 py-2 rounded-full flex items-center hover:scale-105 transition-all shadow-lg text-sm"
                 >
                   <svg
                     className="w-4 h-4 mr-2"
@@ -250,7 +250,7 @@ const AchievementSection: React.FC = () => {
 
                 <button
                   onClick={handleOpenCertificateInNewTab}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-full flex items-center hover:bg-blue-700 transition text-sm"
+                  className="bg-primary text-primary-foreground px-4 py-2 rounded-full flex items-center hover:bg-primary/90 transition text-sm"
                 >
                   <svg
                     className="w-4 h-4 mr-2"

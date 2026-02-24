@@ -29,7 +29,9 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl px-4 py-3 shadow-xl">
-        <p className="text-cyan-400 font-medium text-sm">{label}</p>
+        <p className="text-cyan-700 dark:text-cyan-400 font-medium text-sm">
+          {label}
+        </p>
         <p className="text-foreground font-bold text-lg">
           {payload[0].value}{" "}
           <span className="text-muted-foreground text-sm font-normal">
@@ -71,7 +73,7 @@ export default function VisitorStats() {
       // Calculate total visitors
       const total = (data || []).reduce(
         (sum: number, item: VisitorData) => sum + item.count,
-        0
+        0,
       );
       setTotalVisitors(total);
       setIsLoading(false);
@@ -102,8 +104,8 @@ export default function VisitorStats() {
               onClick={() => setView(v.key as "day" | "month" | "year")}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 view === v.key
-                  ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/50"
-                  : "text-muted-foreground hover:text-cyan-400 hover:bg-accent"
+                  ? "bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border border-cyan-500/50"
+                  : "text-muted-foreground hover:text-cyan-700 dark:hover:text-cyan-400 hover:bg-accent"
               }`}
             >
               {v.label}
@@ -122,7 +124,7 @@ export default function VisitorStats() {
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2 bg-cyan-500/20 rounded-lg">
                 <svg
-                  className="w-5 h-5 text-cyan-400"
+                  className="w-5 h-5 text-cyan-700 dark:text-cyan-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -153,7 +155,7 @@ export default function VisitorStats() {
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2 bg-purple-500/20 rounded-lg">
                 <svg
-                  className="w-5 h-5 text-purple-400"
+                  className="w-5 h-5 text-purple-700 dark:text-purple-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -170,8 +172,8 @@ export default function VisitorStats() {
                 {view === "day"
                   ? "Today"
                   : view === "month"
-                  ? "This Month"
-                  : "This Year"}
+                    ? "This Month"
+                    : "This Year"}
               </span>
             </div>
             <p className="text-3xl font-bold text-foreground">

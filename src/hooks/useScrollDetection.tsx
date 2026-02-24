@@ -6,20 +6,16 @@ interface UseScrollDetectionReturn {
 }
 
 export default function useScrollDetection(
-  scrollThreshold: number = 10
+  scrollThreshold: number = 10,
 ): UseScrollDetectionReturn {
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = (): void => {
-      // Cek jika halaman di-scroll untuk mengubah background navbar
-      const isScrolled = window.scrollY > scrollThreshold;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(window.scrollY > scrollThreshold);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     // Periksa posisi scroll saat awal load
     handleScroll();
@@ -27,7 +23,7 @@ export default function useScrollDetection(
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrolled, scrollThreshold]);
+  }, [scrollThreshold]);
 
   return { scrolled };
 }

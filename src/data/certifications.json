@@ -1,98 +1,162 @@
 [
   {
     "id": 1,
-    "title": "Learning Basic AI",
+    "title": "Belajar Fundamental Deep Learning",
+    "title_en": "Learning Fundamental Deep Learning",
     "issuer": "Dicoding",
-    "date": "2024 - 2027",
-    "image": "/assets/certificates/certif1.jpg",
-    "url": "https://dicoding.com/certificates/EYX4VM4NWZDL"
+    "date": "2026-2029",
+    "created_at": "23 Februari 2026",
+    "image": "/assets/certificates/Belajar Fundamental Deep Learning - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/0LZ0Y3KKNX65"
   },
   {
     "id": 2,
-    "title": "Learning Basic Data Visualization",
+    "title": "Belajar Machine Learning untuk Pemula",
+    "title_en": "Learning Machine Learning for Beginners",
     "issuer": "Dicoding",
-    "date": "2024 - 2027",
-    "image": "/assets/certificates/certif2.jpg",
-    "url": "https://www.dicoding.com/certificates/6RPN153W5X2M"
+    "date": "2025 - 2028",
+    "created_at": "05 November 2025",
+    "image": "/assets/certificates/Belajar Machine Learning untuk Pemula - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/4EXG31RDDZRL"
   },
   {
     "id": 3,
-    "title": "Learning Basic Structured Query Language (SQL)",
+    "title": "Belajar Back-End Pemula dengan JavaScript",
+    "title_en": "Learning Back-End for Beginners with JavaScript",
     "issuer": "Dicoding",
-    "date": "2024 - 2027",
-    "image": "/assets/certificates/certif3.jpg",
-    "url": "https://dicoding.com/certificates/1OP8W86E1XQK"
+    "date": "2025 - 2028",
+    "created_at": "23 Juni 2025",
+    "image": "/assets/certificates/Belajar Back-End Pemula dengan JavaScript - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/4EXGVW2RQXRL"
   },
   {
     "id": 4,
-    "title": "Getting Started with Python Programming",
+    "title": "Belajar Dasar Cloud dan Gen AI di AWS",
+    "title_en": "Learn Cloud Basics and Gen AI on AWS",
     "issuer": "Dicoding",
-    "date": "2024 - 2027",
-    "image": "/assets/certificates/certif4.jpg",
-    "url": "https://dicoding.com/certificates/1RXYLRMGQPVM"
+    "date": "2025 - 2028",
+    "created_at": "21 Juni 2025",
+    "image": "/assets/certificates/Belajar Dasar Cloud dan Gen AI di AWS - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/72ZD54D5LZYW"
   },
   {
     "id": 5,
+    "title": "Belajar Dasar Google Cloud",
+    "title_en": "Learning Google Cloud Basics",
+    "issuer": "Dicoding",
+    "date": "2025 - 2028",
+    "created_at": "02 Maret 2025",
+    "image": "/assets/certificates/Belajar Dasar Google Cloud - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/KEXL7QJGRXG2"
+  },
+  {
+    "id": 6,
+    "title": "Memulai Pemrograman dengan Python",
+    "title_en": "Getting Started with Python Programming",
+    "issuer": "Dicoding",
+    "date": "2025 - 2028",
+    "created_at": "03 November 2025",
+    "image": "/assets/certificates/Memulai Pemrograman dengan Python - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/MRZM6WRNRPYQ"
+  },
+  {
+    "id": 7,
+    "title": "Belajar Dasar Structured Query Language (SQL)",
+    "title_en": "Learning Basic Structured Query Language (SQL)",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "created_at": "28 Agustus 2024",
+    "image": "/assets/certificates/Belajar Dasar Structured Query Language (SQL) - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/1OP8W86E1XQK"
+  },
+  {
+    "id": 8,
+    "title": "Belajar Dasar Visualisasi Data",
+    "title_en": "Learning Basic Data Visualization",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "created_at": "26 Agustus 2024",
+    "image": "/assets/certificates/Belajar Dasar Visualisasi Data - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/6RPN153W5X2M"
+  },
+  {
+    "id": 9,
+    "title": "Belajar Dasar AI",
+    "title_en": "Learning Basic AI",
+    "issuer": "Dicoding",
+    "date": "2025 - 2028",
+    "created_at": "20 Oktober 2025",
+    "image": "/assets/certificates/Belajar Dasar AI - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/QLZ963OQMZ5D"
+  },
+  {
+    "id": 10,
+    "title": "Belajar Membuat Front-End Web untuk Pemula",
+    "title_en": "Learning to Create Front-End Web for Beginners",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "created_at": "18 Maret 2024",
+    "image": "/assets/certificates/Belajar Membuat Front-End Web untuk Pemula - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/1OP8N933QXQK"
+  },
+  {
+    "id": 11,
+    "title": "Belajar Dasar Pemrograman JavaScript",
+    "title_en": "Learning Basic JavaScript Programming",
+    "issuer": "Dicoding",
+    "date": "2025 - 2028",
+    "created_at": "21 Juni 2025",
+    "image": "/assets/certificates/Belajar Dasar Pemrograman JavaScript - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/JMZVEY0KRPN9"
+  },
+  {
+    "id": 12,
+    "title": "Belajar Dasar Pemrograman Web",
+    "title_en": "Learning Basic Web Programming",
+    "issuer": "Dicoding",
+    "date": "2024 - 2027",
+    "created_at": "06 Februari 2024",
+    "image": "/assets/certificates/Belajar Dasar Pemrograman Web - Dicoding.jpg",
+    "url": "https://www.dicoding.com/certificates/53XEYKO2KPRN"
+  },
+  {
+    "id": 13,
+    "title": "Data Analysis with Python",
+    "title_en": "Data Analysis with Python",
+    "issuer": "IBM (Coursera)",
+    "date": "2025",
+    "created_at": "23 April 2025",
+    "image": "/assets/certificates/data-analysis-with-python-coursera.jpg",
+    "url": "https://www.coursera.org/account/accomplishments/verify/6Z5C8TCA892X"
+  },
+  {
+    "id": 14,
+    "title": "AWS re/Start program",
+    "title_en": "AWS re/Start Program",
+    "issuer": "Orbit Future Academy",
+    "date": "Oktober 2025",
+    "created_at": "17 Oktober 2025",
+    "image": "/assets/certificates/IDJAK126_Restu_Anggoro_Kasih.jpg",
+    "url": "https://drive.google.com/file/d/1fjvxQRm1Fx78C2fRMkQ0BH3DIEnZqXWE/view"
+  },
+  {
+    "id": 15,
     "title": "TOEFL Score",
+    "title_en": "TOEFL Score",
     "issuer": "Lembaga Kajian dan Pengajaran Bahasa",
     "date": "April 2025",
+    "created_at": "20 April 2025",
     "image": "/assets/toefl.jpg",
     "url": "/assets/toefl.pdf",
     "isEnglish": true
   },
   {
-    "id": 6,
-    "title": "Data Analysis with Python",
-    "issuer": "Orbit",
-    "date": "2025",
-    "image": "/assets/certificates/data-analysis-with-python-coursera.jpg",
-    "url": "https://www.coursera.org/account/accomplishments/verify/6Z5C8TCA892X"
-  },
-  {
-    "id": 7,
-    "title": "AWS re/Start program",
-    "issuer": "IBM",
-    "date": "2025",
-    "image": "/assets/certificates/IDJAK126_Restu_Anggoro_Kasih.jpg",
-    "url": "https://drive.google.com/file/d/1fjvxQRm1Fx78C2fRMkQ0BH3DIEnZqXWE/view"
-  },
-  {
-    "id": 8,
-    "title": "Learning Basic Web Programming",
-    "issuer": "Dicoding",
-    "date": "2024 - 2027",
-    "image": "/assets/certificates/certif5.jpg",
-    "url": "https://dicoding.com/certificates/53XEYKO2KPRN"
-  },
-  {
-    "id": 9,
-    "title": "Learning Basic JavaScript Programming",
-    "issuer": "Dicoding",
-    "date": "2025 - 2028",
-    "image": "/assets/certificates/certif6.jpg",
-    "url": "https://www.dicoding.com/certificates/JMZVEY0KRPN9"
-  },
-  {
-    "id": 10,
-    "title": "Learning to Create Front-End Web for Beginners",
-    "issuer": "Dicoding",
-    "date": "2024 - 2027",
-    "image": "/assets/certificates/certif7.jpg",
-    "url": "https://dicoding.com/certificates/1OP8N933QXQK"
-  },
-  {
-    "id": 11,
-    "title": "Learn Cloud Basics and AI Genes on AWS",
-    "issuer": "Dicoding",
-    "date": "2025 - 2028",
-    "image": "/assets/certificates/certif8.jpg",
-    "url": "https://www.dicoding.com/certificates/72ZD54D5LZYW"
-  },
-  {
-    "id": 12,
+    "id": 16,
     "title": "Junior Mobile Programmer",
+    "title_en": "Junior Mobile Programmer",
     "issuer": "Inixindo",
-    "date": "2022",
+    "date": "November 2022",
+    "created_at": "05 November 2022",
     "image": "/assets/certificates/junior-mobile-inixindo.jpg",
     "url": "https://drive.google.com/file/d/1AtZg09PGcRny7n8o5uroq4A2GgOgC6WV/view?usp=sharing"
   }

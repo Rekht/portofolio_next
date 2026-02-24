@@ -1,16 +1,19 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
+import { jsPDF } from "jspdf";
 import certificationsData from "../../../data/certifications.json";
 import GlassCard from "@/components/ui/GlassCard";
 
 // Define types for our certification data
 interface Certification {
-  id: number; // Changed from string to number based on your JSON
+  id: number;
   title: string;
+  title_en: string;
   issuer: string;
   date: string;
+  created_at: string;
   image: string;
   url: string;
-  isEnglish?: boolean; // Made optional based on your JSON structure
+  isEnglish?: boolean;
 }
 
 // Type assertion - since your JSON is an array directly
@@ -21,9 +24,138 @@ const CertificationSection: React.FC = () => {
   const certContainerRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null); // Changed to number
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [showCertificate, setShowCertificate] = useState(false);
   const [currentCertificateUrl, setCurrentCertificateUrl] = useState("");
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(0);
+
+  // Download all certificates as a single PDF
+  const downloadAllCerts = useCallback(async () => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+    setDownloadProgress(0);
+
+    try {
+      const pdf = new jsPDF({
+        orientation: "landscape",
+        unit: "px",
+        format: "a4",
+      });
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      for (let i = 0; i < certifications.length; i++) {
+        const cert = certifications[i];
+        setDownloadProgress(i + 1);
+
+        try {
+          // Fetch image and convert to base64 via canvas
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          const imageData = await new Promise<string>((resolve, reject) => {
+            img.onload = () => {
+              const canvas = document.createElement("canvas");
+              canvas.width = img.naturalWidth;
+              canvas.height = img.naturalHeight;
+              const ctx = canvas.getContext("2d")!;
+              ctx.drawImage(img, 0, 0);
+              resolve(canvas.toDataURL("image/jpeg", 0.85));
+            };
+            img.onerror = () =>
+              reject(new Error(`Failed to load ${cert.title}`));
+            img.src = cert.image;
+          });
+
+          // Add new page for all certs after the first
+          if (i > 0) pdf.addPage();
+
+          // Calculate dimensions to fit the image within the page (with padding)
+          const padding = 40;
+          const maxW = pageWidth - padding * 2;
+          const maxH = pageHeight - padding * 2 - 30; // extra space for title
+          const ratio = Math.min(
+            maxW / img.naturalWidth,
+            maxH / img.naturalHeight,
+          );
+          const imgW = img.naturalWidth * ratio;
+          const imgH = img.naturalHeight * ratio;
+          const x = (pageWidth - imgW) / 2;
+
+          // Add title
+          pdf.setFontSize(14);
+          pdf.setFont("helvetica", "bold");
+          pdf.text(
+            `${cert.title_en} — ${cert.issuer}`,
+            pageWidth / 2,
+            padding,
+            {
+              align: "center",
+            },
+          );
+
+          // Add clickable link below the title (pushed down more)
+          const linkY = padding + 24; // Increased from 16 to 24
+          pdf.setFontSize(12);
+          pdf.setFont("helvetica", "bold");
+          pdf.setTextColor(59, 130, 246); // blue
+          const linkText = "View Certificate";
+          pdf.textWithLink(
+            linkText,
+            pageWidth / 2 - pdf.getTextWidth(linkText) / 2,
+            linkY,
+            {
+              url: cert.url.startsWith("/")
+                ? `https://restuanggorokasih-portofolio.vercel.app${cert.url}`
+                : cert.url,
+            },
+          );
+          pdf.setTextColor(0, 0, 0); // reset to black
+
+          // Add image below link (adjust Y position to account for link and extra padding)
+          const imageStartY = linkY + 24; // Increased from 16 to 24
+
+          // Recalculate max height since we added the link
+          const maxHWithLink = pageHeight - padding - imageStartY - 10;
+          const ratioWithLink = Math.min(
+            maxW / img.naturalWidth,
+            maxHWithLink / img.naturalHeight,
+          );
+          const imgWFinal = img.naturalWidth * ratioWithLink;
+          const imgHFinal = img.naturalHeight * ratioWithLink;
+          const xFinal = (pageWidth - imgWFinal) / 2;
+
+          pdf.addImage(
+            imageData,
+            "JPEG",
+            xFinal,
+            imageStartY,
+            imgWFinal,
+            imgHFinal,
+          );
+        } catch (imgErr) {
+          // If a single image fails, add an error page instead of aborting
+          if (i > 0) pdf.addPage();
+          pdf.setFontSize(16);
+          pdf.text(
+            `Could not load: ${cert.title}`,
+            pageWidth / 2,
+            pageHeight / 2,
+            { align: "center" },
+          );
+          console.error(imgErr);
+        }
+      }
+
+      pdf.save("Restu_All_Certifications.pdf");
+    } catch (err) {
+      console.error("Error generating PDF:", err);
+      alert("Gagal membuat PDF. Silakan coba lagi.");
+    } finally {
+      setIsDownloading(false);
+      setDownloadProgress(0);
+    }
+  }, [isDownloading]);
 
   // Handle click outside modal to close
   useEffect(() => {
@@ -66,7 +198,7 @@ const CertificationSection: React.FC = () => {
             certContainer.scrollWidth - certContainer.clientWidth;
           const scrollAmount = Math.max(
             0,
-            Math.min(scrollWidth, scrollWidth * relativeScrollPos)
+            Math.min(scrollWidth, scrollWidth * relativeScrollPos),
           );
 
           certContainer.scrollTo({
@@ -102,7 +234,7 @@ const CertificationSection: React.FC = () => {
       if (certContainer) {
         certContainer.removeEventListener(
           "wheel",
-          handleWheel as EventListener
+          handleWheel as EventListener,
         );
       }
     };
@@ -188,30 +320,26 @@ const CertificationSection: React.FC = () => {
             {certifications.map((cert) => (
               <div
                 key={cert.id}
-                className={`flex-shrink-0 w-80 mx-4 snap-center overflow-hidden shadow-xl transform transition-all duration-300 cert-card ${
+                className={`flex-shrink-0 w-80 mx-4 snap-center rounded-[24px] overflow-hidden shadow-xl transform transition-all duration-300 cert-card relative ${
                   hoveredCard === cert.id ? "scale-102" : ""
+                } ${
+                  cert.isEnglish
+                    ? "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 border-[1.5px] border-primary/20 dark:border-primary/40"
+                    : "bg-card/90 dark:bg-gray-800 border border-border dark:border-white/10"
                 }`}
                 onMouseEnter={() => setHoveredCard(cert.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 style={{
-                  borderRadius: "24px",
-                  background: cert.isEnglish
-                    ? "linear-gradient(145deg, #1e3a8a, #1e40af)"
-                    : "linear-gradient(145deg, #1f2937, #111827)",
                   boxShadow: cert.isEnglish
-                    ? "0 10px 20px -5px rgba(59, 130, 246, 0.5), 0 5px 10px -5px rgba(59, 130, 246, 0.3)"
+                    ? "0 10px 20px -5px rgba(59, 130, 246, 0.15), 0 5px 10px -5px rgba(59, 130, 246, 0.1)"
                     : hoveredCard === cert.id
-                    ? "0 10px 20px -5px rgba(0, 0, 0, 0.3), 0 5px 10px -5px rgba(0, 0, 0, 0.2), 0 0 10px rgba(59, 130, 246, 0.3)"
-                    : "0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)",
-                  position: "relative",
-                  border: cert.isEnglish
-                    ? "2px solid rgba(59, 130, 246, 0.5)"
-                    : "none",
+                      ? "0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -5px rgba(0, 0, 0, 0.1), 0 0 10px rgba(59, 130, 246, 0.1)"
+                      : "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
                 }}
               >
                 <div className="flex flex-col h-full">
                   <div
-                    className="bg-gray-800 relative overflow-hidden"
+                    className={`${cert.isEnglish ? "bg-transparent" : "bg-card/90 dark:bg-gray-800 border-x border-t border-border"} relative overflow-hidden`}
                     style={{
                       borderTopLeftRadius: "24px",
                       borderTopRightRadius: "24px",
@@ -226,7 +354,7 @@ const CertificationSection: React.FC = () => {
                           onError={(e) => {
                             console.error(
                               `Error loading image for ${cert.title}:`,
-                              cert.image
+                              cert.image,
                             );
                             setImageErrors((prev) => ({
                               ...prev,
@@ -237,7 +365,7 @@ const CertificationSection: React.FC = () => {
                       )}
 
                       {imageErrors[cert.id] && (
-                        <div className="w-full h-44 flex items-center justify-center text-gray-500">
+                        <div className="w-full h-44 flex items-center justify-center text-muted-foreground dark:text-gray-500">
                           <svg
                             className="w-16 h-16"
                             fill="none"
@@ -257,7 +385,7 @@ const CertificationSection: React.FC = () => {
                   </div>
 
                   <div
-                    className="p-6 flex-grow flex flex-col bg-gray-800 cert-content"
+                    className={`p-6 flex-grow flex flex-col cert-content ${cert.isEnglish ? "bg-transparent" : "bg-card/90 dark:bg-gray-800 border-x border-b border-border"}`}
                     style={{
                       borderBottomLeftRadius: "24px",
                       borderBottomRightRadius: "24px",
@@ -265,23 +393,27 @@ const CertificationSection: React.FC = () => {
                   >
                     <h3
                       className={`text-lg font-bold mb-2 line-clamp-2 ${
-                        cert.isEnglish ? "text-blue-300" : "text-white"
+                        cert.isEnglish
+                          ? "text-blue-950 dark:text-blue-200"
+                          : "text-foreground dark:text-white"
                       }`}
                     >
-                      {cert.title}
+                      {cert.title_en}
                     </h3>
                     <div className="flex items-center mb-2">
                       <span
                         className={`font-medium ${
-                          cert.isEnglish ? "text-blue-300" : "text-blue-400"
+                          cert.isEnglish
+                            ? "text-blue-700 dark:text-blue-400"
+                            : "text-blue-600 dark:text-blue-400"
                         }`}
                       >
                         {cert.issuer}
                       </span>
                     </div>
-                    <div className="flex items-center text-gray-400 text-sm mb-4">
+                    <div className="flex items-center text-muted-foreground dark:text-gray-400 text-sm mb-1">
                       <svg
-                        className="w-4 h-4 mr-1"
+                        className="w-4 h-4 mr-1 flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -293,15 +425,31 @@ const CertificationSection: React.FC = () => {
                           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                         />
                       </svg>
-                      <span>{cert.date}</span>
+                      <span>Valid: {cert.date}</span>
+                    </div>
+                    <div className="flex items-center text-muted-foreground dark:text-gray-400 text-xs mb-4">
+                      <svg
+                        className="w-3.5 h-3.5 mr-1 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span>Issued: {cert.created_at}</span>
                     </div>
                     <div className="mt-auto">
                       <button
                         onClick={() => handleCertificateClick(cert)}
                         className={`inline-flex items-center px-4 py-2 transition-colors duration-300 text-sm font-medium ${
                           cert.isEnglish
-                            ? "bg-blue-600 hover:bg-blue-700 text-white"
-                            : "bg-blue-600 hover:bg-blue-700 text-white"
+                            ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                            : "bg-primary hover:bg-primary/90 text-primary-foreground"
                         }`}
                         style={{
                           borderRadius: "16px",
@@ -330,6 +478,59 @@ const CertificationSection: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Download All Button */}
+        <div className="flex justify-center mt-6 px-4">
+          <button
+            onClick={downloadAllCerts}
+            disabled={isDownloading}
+            className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-purple-500 hover:from-primary/90 hover:to-purple-500/90 text-white font-semibold rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 disabled:opacity-60 disabled:cursor-wait"
+          >
+            {isDownloading ? (
+              <>
+                <svg
+                  className="w-5 h-5 animate-spin"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+                <span>
+                  Generating PDF... ({downloadProgress}/{certifications.length})
+                </span>
+              </>
+            ) : (
+              <>
+                <svg
+                  className="w-5 h-5 transition-transform group-hover:translate-y-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+                <span>Download All Certificates (PDF)</span>
+              </>
+            )}
+          </button>
         </div>
       </GlassCard>
 
@@ -370,7 +571,7 @@ const CertificationSection: React.FC = () => {
                   link.click();
                   document.body.removeChild(link);
                 }}
-                className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-3 rounded-full flex items-center hover:scale-105 transition-all shadow-lg"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-full flex items-center hover:scale-105 hover:bg-primary/90 transition-all shadow-lg"
               >
                 <svg
                   className="ml-2 w-4 h-4"
@@ -390,7 +591,7 @@ const CertificationSection: React.FC = () => {
 
               <button
                 onClick={() => window.open(currentCertificateUrl, "_blank")}
-                className="bg-blue-600 text-white px-4 py-2 rounded-full flex items-center hover:bg-blue-700 transition text-sm"
+                className="bg-primary text-primary-foreground px-4 py-2 rounded-full flex items-center hover:bg-primary/90 transition text-sm"
               >
                 Open in New Tab
                 <svg

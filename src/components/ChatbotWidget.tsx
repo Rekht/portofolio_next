@@ -158,27 +158,24 @@ const ChatbotWidget: React.FC = () => {
         throw new Error("Failed to get response");
       }
 
-      const reader = response.body?.getReader();
-      if (!reader) throw new Error("No reader available");
+      const fullContent = await response.text();
 
-      const decoder = new TextDecoder();
-      let fullContent = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        fullContent += chunk;
-        setStreamingContent(fullContent);
-      }
-
-      // Add assistant message only if we got content
       if (fullContent.trim()) {
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: fullContent },
-        ]);
+        // Simulate typing effect for a natural feel
+        let idx = 0;
+        const chunkSize = 3; // characters per tick
+        const interval = setInterval(() => {
+          idx = Math.min(idx + chunkSize, fullContent.length);
+          setStreamingContent(fullContent.slice(0, idx));
+          if (idx >= fullContent.length) {
+            clearInterval(interval);
+            setStreamingContent("");
+            setMessages((prev) => [
+              ...prev,
+              { role: "assistant", content: fullContent },
+            ]);
+          }
+        }, 10);
       } else {
         // No content received - show error
         setMessages((prev) => [
@@ -189,7 +186,6 @@ const ChatbotWidget: React.FC = () => {
           },
         ]);
       }
-      setStreamingContent("");
     } catch (error) {
       console.error("Chat error:", error);
       setMessages((prev) => [

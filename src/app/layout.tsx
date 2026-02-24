@@ -7,6 +7,7 @@ import { TransitionProvider } from "@/components/PageTransition";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ChatbotWidget from "@/components/ChatbotWidget";
+import DarkVeil from "@/components/background/DarkVeil";
 
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
@@ -104,6 +105,10 @@ export default function RootLayout({
       <body className={`${montserrat.className} bg-background min-h-screen`}>
         <ThemeProvider>
           <VisitorLogger />
+          {/* DarkVeil - single instance for all pages, avoids re-mount on navigation */}
+          <div className="fixed inset-0 -z-10">
+            <DarkVeil />
+          </div>
           <SmoothScroll>
             <TransitionProvider>{children}</TransitionProvider>
           </SmoothScroll>

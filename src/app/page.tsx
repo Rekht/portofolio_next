@@ -25,7 +25,7 @@ import {
 import Navigation from "@/components/Navigation";
 import CvModal from "@/app/about/components/CvModal";
 import ProfileSection from "@/components/ProfileSection";
-import DarkVeil from "@/components/background/DarkVeil";
+// DarkVeil moved to layout.tsx — single instance for all pages
 import HeroSection from "@/components/HeroSection";
 
 // Data
@@ -39,16 +39,15 @@ interface About {
 // Lazy components
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const ExperiencePreview = lazy(
-  () => import("@/components/home/ExperiencePreview")
+  () => import("@/components/home/ExperiencePreview"),
 );
 const EducationPreview = lazy(
-  () => import("@/components/home/EducationPreview")
+  () => import("@/components/home/EducationPreview"),
 );
 const SkillsPreview = lazy(() => import("@/components/home/SkillsPreview"));
 
 export default function HomePage() {
   const mainContainerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const [isLoaded, setIsLoaded] = useState(true); // langsung true karena tidak ada loading GSAP
@@ -83,7 +82,7 @@ export default function HomePage() {
         section.scrollIntoView({ behavior: "smooth" });
       }
     },
-    [handleNavClick]
+    [handleNavClick],
   );
 
   // CV Modal
@@ -100,22 +99,14 @@ export default function HomePage() {
       ref={mainContainerRef}
       className="font-sans min-h-screen text-foreground relative"
     >
-      {/* Background transparan */}
-      <div className="fixed inset-0 -z-10">
-        <DarkVeil />
-      </div>
+      {/* Background moved to layout.tsx */}
 
       {/* Navigation */}
-      <div
-        ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-      >
-        <Navigation
-          scrolled={scrolled}
-          activePage="home"
-          handleNavClick={handleSmoothNavClick}
-        />
-      </div>
+      <Navigation
+        scrolled={scrolled}
+        activePage="home"
+        handleNavClick={handleSmoothNavClick}
+      />
 
       {/* Main Content */}
       <main className="relative z-10">

@@ -19,7 +19,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
         onClose();
       }
     },
-    [onClose]
+    [onClose],
   );
 
   // Effect untuk event listener modal
@@ -81,7 +81,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
         <div className="px-6 py-4 border-t border-gray-700 flex justify-between items-center">
           <button
             onClick={handleDownloadCV}
-            className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-3 rounded-full flex items-center hover:scale-105 transition-all shadow-lg"
+            className="bg-primary text-primary-foreground px-6 py-3 rounded-full flex items-center hover:scale-105 hover:bg-primary/90 transition-all shadow-lg"
           >
             <svg
               className="ml-2 w-4 h-4"
@@ -101,7 +101,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
 
           <button
             onClick={handleOpenCVInNewTab}
-            className="bg-blue-600 text-white px-4 py-2 rounded-full flex items-center hover:bg-blue-700 transition text-sm"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-full flex items-center hover:bg-primary/90 transition text-sm"
           >
             Open in New Tab
             <svg

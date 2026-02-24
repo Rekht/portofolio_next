@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 
 const ProfileCard = dynamic(
   () => import("@/components/profilecard/ProfileCard"),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface HeroSectionProps {
@@ -46,7 +46,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="mt-8 flex space-x-4">
           <button
             onClick={onShowCVModal}
-            className="bg-blue-500 text-white px-6 py-3 rounded-full flex items-center hover:bg-blue-600 transition transform hover:scale-105"
+            className="bg-primary text-primary-foreground px-6 py-3 rounded-full flex items-center hover:bg-primary/90 transition transform hover:scale-105"
           >
             Curriculum Vitae
             <svg

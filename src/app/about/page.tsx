@@ -9,7 +9,7 @@ import React, {
   lazy,
   Suspense,
 } from "react";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -30,7 +30,7 @@ import {
 import Navigation from "../../components/Navigation";
 import CvModal from "./components/CvModal";
 import HeroSection from "./components/HeroSection";
-import DarkVeil from "../../components/background/DarkVeil";
+// DarkVeil moved to layout.tsx — single instance for all pages
 
 // Data
 import aboutData from "../../data/about.json";
@@ -49,15 +49,13 @@ const ContactSection = lazy(() => import("../../components/ContactSection"));
 const VisitorStats = lazy(() => import("./components/VisitorStats"));
 const Guestbook = lazy(() => import("./components/Guestbook"));
 const GitHubContributions = lazy(
-  () => import("./components/GitHubContributions")
+  () => import("./components/GitHubContributions"),
 );
 
-// Direct imports for always-rendered components
-import VisitorLogger from "./components/VisitorLogger";
+// Direct imports removed — VisitorLogger is in layout.tsx
 
 export default function AboutPage() {
   const mainContainerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [showCVModal, setShowCVModal] = useState<boolean>(false);
@@ -86,7 +84,7 @@ export default function AboutPage() {
         smoothScrollToSection(sectionId);
       }
     },
-    [handleNavClick]
+    [handleNavClick],
   );
 
   const handleShowCVModal = useCallback(() => {
@@ -97,16 +95,13 @@ export default function AboutPage() {
     setShowCVModal(false);
   }, []);
 
-  // GSAP Animations - menggunakan utils
-  useLayoutEffect(() => {
+  // GSAP Animations - useEffect to avoid blocking paint
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const animations = createCommonAnimations(gsap, ScrollTrigger);
 
       // Fade in sections
       animations.fadeInSections();
-
-      // Animate header background
-      animations.animateHeader(headerRef);
     }, mainContainerRef);
 
     setIsLoaded(true);
@@ -123,22 +118,14 @@ export default function AboutPage() {
       className="font-sans min-h-screen bg-background text-foreground relative"
       ref={mainContainerRef}
     >
-      {/* Background */}
-      <div className="fixed inset-0 z-0">
-        <DarkVeil />
-      </div>
+      {/* Background moved to layout.tsx */}
 
       {/* Navigation */}
-      <div
-        ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-      >
-        <Navigation
-          scrolled={scrolled}
-          activePage="about"
-          handleNavClick={handleSmoothNavClick}
-        />
-      </div>
+      <Navigation
+        scrolled={scrolled}
+        activePage="about"
+        handleNavClick={handleSmoothNavClick}
+      />
 
       {/* Main Content */}
       <main className="relative z-10">
@@ -180,9 +167,6 @@ export default function AboutPage() {
               <VisitorStats />
             </Suspense>
           </section>
-
-          {/* Visitor Logger - tracks visitors silently */}
-          <VisitorLogger />
 
           {/* Contact Section */}
           <section className="py-24" id="contact">

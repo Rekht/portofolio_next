@@ -1,17 +1,21 @@
 // utils/pageUtils.ts - Utilities sederhana untuk halaman
 
 import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+// Register ScrollToPlugin so smoothScrollToSection works on all pages
+gsap.registerPlugin(ScrollToPlugin);
 
 // Utility untuk smooth scroll ke section
 export const smoothScrollToSection = (
   sectionId: string,
-  offset: number = 80
+  offset: number = 80,
 ) => {
   const element = document.getElementById(sectionId);
   if (element) {
     const offsetTop = element.offsetTop - offset;
     gsap.to(window, {
-      duration: 1.5,
+      duration: 0.8,
       scrollTo: { y: offsetTop, autoKill: false },
       ease: "power2.inOut",
     });
@@ -39,7 +43,7 @@ export const createCommonAnimations = (gsap: any, ScrollTrigger: any) => {
               end: "bottom 60%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       });
     },
@@ -61,26 +65,6 @@ export const createCommonAnimations = (gsap: any, ScrollTrigger: any) => {
       });
     },
 
-    // Animasi background header
-    animateHeader: (headerRef: React.RefObject<HTMLDivElement | null>) => {
-      ScrollTrigger.create({
-        start: 0,
-        end: "max",
-        onUpdate: (self: any) => {
-          const header = headerRef.current;
-          if (!header) return;
-
-          if (self.progress > 0.05) {
-            header.style.background = "rgba(0, 0, 0, 0.95)";
-            header.style.backdropFilter = "blur(10px)";
-          } else {
-            header.style.background = "transparent";
-            header.style.backdropFilter = "none";
-          }
-        },
-      });
-    },
-
     // Animasi hero content
     animateHero: (selector: string = ".hero-content") => {
       gsap.fromTo(
@@ -92,7 +76,7 @@ export const createCommonAnimations = (gsap: any, ScrollTrigger: any) => {
           duration: 1,
           ease: "power2.out",
           delay: 0.2,
-        }
+        },
       );
     },
   };

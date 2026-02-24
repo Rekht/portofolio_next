@@ -17,7 +17,7 @@ const ContactForm: React.FC = () => {
 
   const showNotification = (
     message: string,
-    type: "success" | "error"
+    type: "success" | "error",
   ): void => {
     setNotification({ show: true, message, type });
     setTimeout(() => {
@@ -30,13 +30,12 @@ const ContactForm: React.FC = () => {
     const form = e.target as HTMLFormElement;
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/rekhtanggoro@gmail.com",
-        {
-          method: "POST",
-          body: new FormData(form),
-        }
-      );
+      const email =
+        process.env.NEXT_PUBLIC_CONTACT_EMAIL || "rekhtanggoro@gmail.com";
+      const response = await fetch(`https://formsubmit.co/ajax/${email}`, {
+        method: "POST",
+        body: new FormData(form),
+      });
 
       const data = await response.json();
 
@@ -102,7 +101,7 @@ const ContactForm: React.FC = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-8 rounded-full transition"
           >
             Send Message
           </button>

@@ -44,12 +44,12 @@ const accentColors: Record<
 };
 
 const accentGradients: Record<AccentColor, string> = {
-  purple: "from-purple-500/5 via-transparent to-cyan-500/5",
-  cyan: "from-cyan-500/5 via-transparent to-purple-500/5",
-  fuchsia: "from-fuchsia-500/5 via-transparent to-purple-500/5",
-  blue: "from-blue-500/5 via-transparent to-indigo-500/5",
-  green: "from-green-500/5 via-transparent to-emerald-500/5",
-  orange: "from-orange-500/5 via-transparent to-amber-500/5",
+  purple: "from-purple-500/5 to-cyan-500/5",
+  cyan: "from-cyan-500/5 to-purple-500/5",
+  fuchsia: "from-fuchsia-500/5 to-purple-500/5",
+  blue: "from-blue-500/5 to-indigo-500/5",
+  green: "from-green-500/5 to-emerald-500/5",
+  orange: "from-orange-500/5 to-amber-500/5",
 };
 
 export default function GlassCard({
@@ -66,7 +66,7 @@ export default function GlassCard({
   const content = (
     <>
       {/* Background with gradient - Uses theme variables */}
-      <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-muted/60 to-card/80" />
+      <div className="absolute inset-0 bg-card/80" />
       <div className={`absolute inset-0 bg-gradient-to-tr ${gradient}`} />
 
       {/* Glassmorphism overlay - Enhanced blur */}

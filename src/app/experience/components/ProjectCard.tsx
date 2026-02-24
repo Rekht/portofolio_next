@@ -43,8 +43,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       >
         <div
           className="w-full h-full rounded-2xl overflow-hidden 
-                        bg-slate-800/40 backdrop-blur-xl 
-                        border border-white/10 hover:border-purple-500/30
+                        bg-card/70 dark:bg-slate-800/40 backdrop-blur-xl 
+                        border border-border dark:border-white/10 hover:border-purple-500/30
                         flex flex-col transition-all duration-300"
         >
           {/* Image - takes ~60% of height */}
@@ -66,10 +66,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 Project:
               </p>
             </div>
-            <h3 className="text-lg font-bold text-white leading-tight mb-2">
+            <h3 className="text-lg font-bold text-foreground dark:text-white leading-tight mb-2">
               {project.title}
             </h3>
-            <p className="text-white/60 text-xs leading-relaxed line-clamp-4">
+            <p className="text-muted-foreground dark:text-white/60 text-xs leading-relaxed line-clamp-4">
               {project.description}
             </p>
           </div>
@@ -89,8 +89,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       >
         <div
           className="w-full h-full rounded-xl overflow-hidden 
-                        bg-slate-800/40 backdrop-blur-xl 
-                        border border-white/10 hover:border-purple-500/30
+                        bg-card/70 dark:bg-slate-800/40 backdrop-blur-xl 
+                        border border-border dark:border-white/10 hover:border-purple-500/30
                         flex flex-col transition-all duration-300"
         >
           {/* Image - top section */}
@@ -106,10 +106,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
           {/* Text - bottom section */}
           <div className="p-3 flex-1 flex flex-col justify-center">
-            <h3 className="text-sm font-bold text-white leading-tight mb-1">
+            <h3 className="text-sm font-bold text-foreground dark:text-white leading-tight mb-1">
               {project.title}
             </h3>
-            <p className="text-white/50 text-xs leading-snug line-clamp-2">
+            <p className="text-muted-foreground dark:text-white/50 text-xs leading-snug line-clamp-2">
               {project.description}
             </p>
           </div>
@@ -128,8 +128,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       <div
         className="w-full h-full rounded-xl overflow-hidden 
-                      bg-slate-800/40 backdrop-blur-xl 
-                      border border-white/10 hover:border-purple-500/30
+                      bg-card/70 dark:bg-slate-800/40 backdrop-blur-xl 
+                      border border-border dark:border-white/10 hover:border-purple-500/30
                       flex flex-col transition-all duration-300"
       >
         {/* Image - top, takes most space */}
@@ -145,10 +145,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Text - bottom, compact */}
         <div className="p-2 flex-1 flex flex-col justify-center">
-          <h3 className="text-xs font-bold text-white leading-tight mb-0.5">
+          <h3 className="text-xs font-bold text-foreground dark:text-white leading-tight mb-0.5">
             {project.title}
           </h3>
-          <p className="text-white/50 text-[10px] leading-snug line-clamp-2">
+          <p className="text-muted-foreground dark:text-white/50 text-[10px] leading-snug line-clamp-2">
             {project.description}
           </p>
         </div>

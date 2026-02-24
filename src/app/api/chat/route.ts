@@ -3,9 +3,59 @@ import { NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 
-// ✅ Hugging Face Router URL (New endpoint)
+// ─── Configuration ───────────────────────────────────────────────
 const HF_API_URL = "https://router.huggingface.co/v1/chat/completions";
-const MODEL = "Qwen/Qwen2.5-7B-Instruct:together";
+const MODEL = process.env.HF_MODEL || "Qwen/Qwen2.5-7B-Instruct:together";
+const MAX_TOKENS = Number(process.env.CHAT_MAX_TOKENS) || 1024;
+const FETCH_TIMEOUT_MS = 30_000; // 30 seconds
+const DEBUG = process.env.NODE_ENV !== "production";
+
+// ─── Logging helper ──────────────────────────────────────────────
+function log(...args: unknown[]) {
+  if (DEBUG) console.log(...args);
+}
+
+// ─── Module-level cache ──────────────────────────────────────────
+let cachedPortfolio: {
+  summary: string;
+  structureAnalysis: string;
+} | null = null;
+
+function getPortfolioContext(): {
+  summary: string;
+  structureAnalysis: string;
+} {
+  if (cachedPortfolio) {
+    log("Using cached portfolio data ✓");
+    return cachedPortfolio;
+  }
+
+  log("Building portfolio cache...");
+  const srcStructure = scanSrcStructure();
+  const jsonData = loadAllJSONData();
+
+  cachedPortfolio = {
+    summary: summarizePortfolioData(jsonData),
+    structureAnalysis: analyzeWebsiteStructure(srcStructure, jsonData),
+  };
+
+  log("Portfolio cache built ✓");
+  return cachedPortfolio;
+}
+
+// ─── Helpers ─────────────────────────────────────────────────────
+
+/** Build a consistent JSON error response */
+function errorResponse(
+  message: string,
+  status: number,
+  details?: string,
+): Response {
+  return new Response(
+    JSON.stringify({ error: message, ...(details ? { details } : {}) }),
+    { status, headers: { "Content-Type": "application/json; charset=utf-8" } },
+  );
+}
 
 // Function to scan src directory structure
 function scanSrcStructure(): string {
@@ -44,7 +94,7 @@ function scanSrcStructure(): string {
   }
 }
 
-// Function to load all JSON files from src/data
+// Function to load all JSON files from src/data (safe per-file parsing)
 function loadAllJSONData(): Record<string, any> {
   try {
     const dataDir = path.join(process.cwd(), "src", "data");
@@ -55,10 +105,15 @@ function loadAllJSONData(): Record<string, any> {
     const allData: Record<string, any> = {};
 
     files.forEach((file) => {
-      const filePath = path.join(dataDir, file);
-      const fileContent = fs.readFileSync(filePath, "utf-8");
-      const fileName = file.replace(".json", "");
-      allData[fileName] = JSON.parse(fileContent);
+      try {
+        const filePath = path.join(dataDir, file);
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+        const fileName = file.replace(".json", "");
+        allData[fileName] = JSON.parse(fileContent);
+      } catch (parseError) {
+        console.error(`Failed to parse ${file}:`, parseError);
+        // Skip this file and continue loading others
+      }
     });
 
     return allData;
@@ -139,7 +194,7 @@ function summarizePortfolioData(data: Record<string, any>): string {
       summary.push("--- PERSONAL INFORMATION ---");
       summary.push(`NAME: ${data.about.name || "Restu Anggoro Kasih"}`);
       summary.push(
-        `TITLE: ${data.about.title || "Data Scientist & ML Engineer"}`
+        `TITLE: ${data.about.title || "Data Scientist & ML Engineer"}`,
       );
       summary.push(`LOCATION: ${data.about.location || "Indonesia"}`);
       if (data.about.bio)
@@ -263,7 +318,7 @@ function summarizePortfolioData(data: Record<string, any>): string {
       data.organizations.length > 0
     ) {
       summary.push(
-        "--- ORGANIZATIONAL EXPERIENCE (Student Organizations, Committees, etc.) ---"
+        "--- ORGANIZATIONAL EXPERIENCE (Student Organizations, Committees, etc.) ---",
       );
       data.organizations.forEach((org: any) => {
         const name = org.name || org.organization || "";
@@ -294,7 +349,7 @@ function summarizePortfolioData(data: Record<string, any>): string {
         summary.push(`• ${name}`);
         if (tech)
           summary.push(
-            `  Technologies: ${Array.isArray(tech) ? tech.join(", ") : tech}`
+            `  Technologies: ${Array.isArray(tech) ? tech.join(", ") : tech}`,
           );
         if (desc) summary.push(`  Description: ${desc}`);
         if (link) summary.push(`  Link: ${link}`);
@@ -368,7 +423,7 @@ function summarizePortfolioData(data: Record<string, any>): string {
 // Analyze structure to find pages/sections
 function analyzeWebsiteStructure(
   structure: string,
-  data: Record<string, any>
+  data: Record<string, any>,
 ): string {
   const analysis: string[] = ["\n--- WEBSITE STRUCTURE ANALYSIS ---"];
 
@@ -402,7 +457,7 @@ function analyzeWebsiteStructure(
 
     // Check if there's an exact match page
     const exactMatch = Array.from(pages).find(
-      (p) => p.toLowerCase() === normalizedKey
+      (p) => p.toLowerCase() === normalizedKey,
     );
     if (exactMatch) {
       targetPage = exactMatch;
@@ -449,49 +504,74 @@ function analyzeWebsiteStructure(
 
   analysis.push("\n⚠️ CRITICAL INSTRUCTIONS for answering 'WHERE' questions:");
   analysis.push(
-    "\nWhen users ask 'where can I see/find [something]', you MUST answer in this format:"
+    "\nWhen users ask 'where can I see/find [something]', you MUST answer in this format:",
   );
   analysis.push(
-    "1. Start with: 'Kamu bisa lihat [item] di halaman [PAGE NAME]' (Indonesian) or 'You can see [item] on the [PAGE NAME] page' (English)"
+    "1. Start with: 'Kamu bisa lihat [item] di halaman [PAGE NAME]' (Indonesian) or 'You can see [item] on the [PAGE NAME] page' (English)",
   );
   analysis.push(
-    "2. If the page has multiple sections, add: 'di bagian [SECTION NAME]' (Indonesian) or 'in the [SECTION NAME] section' (English)"
+    "2. If the page has multiple sections, add: 'di bagian [SECTION NAME]' (Indonesian) or 'in the [SECTION NAME] section' (English)",
   );
   analysis.push("\nEXAMPLES:");
   analysis.push(
-    "❌ BAD: 'Anda bisa melihat daftar sertifikat Restu di bagian Certifications'"
+    "❌ BAD: 'Anda bisa melihat daftar sertifikat Restu di bagian Certifications'",
   );
   analysis.push(
-    "✅ GOOD: 'Kamu bisa lihat sertifikat saya di halaman Education, di bagian Certifications'"
+    "✅ GOOD: 'Kamu bisa lihat sertifikat saya di halaman Education, di bagian Certifications'",
   );
   analysis.push(
-    "✅ GOOD: 'You can see my certifications on the Education page, in the Certifications section'"
+    "✅ GOOD: 'You can see my certifications on the Education page, in the Certifications section'",
   );
   analysis.push("\n❌ BAD: 'Check out the Projects section'");
   analysis.push("✅ GOOD: 'Kamu bisa lihat projects saya di halaman Projects'");
   analysis.push("✅ GOOD: 'You can see my projects on the Projects page'");
   analysis.push(
-    "\nALWAYS mention the PAGE first, then the SECTION (if applicable). Be specific and clear!"
+    "\nALWAYS mention the PAGE first, then the SECTION (if applicable). Be specific and clear!",
   );
 
   return analysis.join("\n");
 }
 
+// ─── Sanitize & validate incoming messages ───────────────────────
+function sanitizeMessages(
+  raw: any[],
+): { role: "user" | "assistant"; content: string }[] {
+  const MAX_CONTENT_LENGTH = 2000;
+  const MAX_MESSAGES = 20; // keep conversation history reasonable
+
+  return raw
+    .filter(
+      (m: any) =>
+        m &&
+        typeof m.content === "string" &&
+        m.content.trim() !== "" &&
+        ["user", "assistant"].includes(m.role),
+    )
+    .slice(-MAX_MESSAGES) // keep only the most recent messages
+    .map((m: any) => ({
+      role: m.role as "user" | "assistant",
+      content: m.content.substring(0, MAX_CONTENT_LENGTH),
+    }));
+}
+
+// ─── Main handler ────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
-  console.log("=== Chat API Called (HF Router) ===");
+  log("=== Chat API Called (HF Router) ===");
 
   try {
     const body = await req.json();
     const { messages } = body;
 
-    console.log("Received messages:", messages?.length || 0);
+    log("Received messages:", messages?.length || 0);
 
     if (!messages || !Array.isArray(messages)) {
-      console.error("Invalid messages format");
-      return new Response(
-        JSON.stringify({ error: "Messages array required" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return errorResponse("Messages array required", 400);
+    }
+
+    // Sanitize input
+    const sanitizedMessages = sanitizeMessages(messages);
+    if (sanitizedMessages.length === 0) {
+      return errorResponse("At least one valid user message is required", 400);
     }
 
     const apiKey =
@@ -501,25 +581,16 @@ export async function POST(req: NextRequest) {
 
     if (!apiKey) {
       console.error("HF_TOKEN not found");
-      return new Response(
-        JSON.stringify({ error: "HuggingFace token not configured" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
+      return errorResponse("HuggingFace token not configured", 500);
     }
 
-    console.log("API token found ✓");
-    console.log("Scanning website structure...");
+    log("API token found ✓");
 
-    // Scan src structure
-    const srcStructure = scanSrcStructure();
+    // Use cached portfolio data
+    const { summary: portfolioSummary, structureAnalysis } =
+      getPortfolioContext();
 
-    console.log("Loading portfolio data...");
-    const jsonData = loadAllJSONData();
-    const portfolioSummary = summarizePortfolioData(jsonData);
-    const structureAnalysis = analyzeWebsiteStructure(srcStructure, jsonData);
-
-    console.log("Portfolio summary length:", portfolioSummary.length);
-    console.log("Structure analysis complete ✓");
+    log("Portfolio summary length:", portfolioSummary.length);
 
     // Get current date for temporal reasoning
     const currentDate = new Date();
@@ -723,72 +794,102 @@ Now, process each question carefully following ALL the instructions above.`;
     // Prepare API messages
     const apiMessages = [
       { role: "system", content: systemMessage },
-      ...messages,
+      ...sanitizedMessages,
     ];
 
-    console.log("Total messages:", apiMessages.length);
-    console.log("Calling HF Router API...");
+    log("Total messages:", apiMessages.length);
+    log("Calling HF Router API...");
 
-    const response = await fetch(HF_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: apiMessages,
-        max_tokens: 600,
-        temperature: 0.7,
-        top_p: 0.9,
-        stream: false,
-      }),
-    });
+    // Fetch with timeout via AbortController
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-    console.log("HF response status:", response.status);
+    let response: Response;
+    try {
+      response = await fetch(HF_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          messages: apiMessages,
+          max_tokens: MAX_TOKENS,
+          temperature: 0.7,
+          top_p: 0.9,
+          stream: false,
+        }),
+        signal: controller.signal,
+      });
+    } catch (fetchError: any) {
+      clearTimeout(timeout);
+      if (fetchError.name === "AbortError") {
+        console.error("HF API request timed out");
+        return errorResponse(
+          "Request timed out. Model mungkin sedang sibuk, coba lagi nanti.",
+          504,
+        );
+      }
+      throw fetchError; // re-throw for the outer catch
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    log("HF response status:", response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
       console.error("HF Error:", errorText);
 
       if (response.status === 503) {
-        return new Response(
+        return errorResponse(
           "Model sedang loading, tunggu 20 detik lalu coba lagi... (Model is loading, wait 20 seconds and try again...)",
-          { headers: { "Content-Type": "text/plain; charset=utf-8" } }
+          503,
         );
       }
 
       if (response.status === 401) {
-        return new Response(
+        return errorResponse(
           "Token tidak valid. Cek HF_TOKEN di .env.local (Invalid token. Check HF_TOKEN in .env.local)",
-          { headers: { "Content-Type": "text/plain; charset=utf-8" } }
+          401,
         );
       }
 
-      return new Response(
-        JSON.stringify({
-          error: `API error: ${response.status}`,
-          details: errorText,
-        }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
+      return errorResponse(`API error: ${response.status}`, 500, errorText);
     }
 
     const data = await response.json();
-    console.log("Response received from HF Router ✓");
+    log("Response received from HF Router ✓");
 
-    const content = data.choices?.[0]?.message?.content || "";
-
-    if (!content || content.trim() === "") {
-      console.error("Empty response from HF");
-      console.log("Full response:", JSON.stringify(data).substring(0, 500));
-      return new Response(
-        "Maaf, tidak ada respons. Coba lagi! (Sorry, no response. Try again!)",
-        { headers: { "Content-Type": "text/plain; charset=utf-8" } }
+    // Validate response structure
+    if (
+      !data.choices ||
+      !Array.isArray(data.choices) ||
+      data.choices.length === 0
+    ) {
+      console.error(
+        "Unexpected HF response format:",
+        JSON.stringify(data).substring(0, 500),
+      );
+      return errorResponse(
+        "Format respons dari model tidak dikenali. Coba lagi.",
+        502,
       );
     }
 
-    console.log("✓ Success! Response length:", content.length);
+    const content = data.choices[0]?.message?.content || "";
+
+    if (!content || content.trim() === "") {
+      console.error("Empty response from HF");
+      log("Full response:", JSON.stringify(data).substring(0, 500));
+      return errorResponse(
+        "Maaf, tidak ada respons dari model. Coba lagi! (Sorry, no response. Try again!)",
+        502,
+      );
+    }
+
+    log("✓ Success! Response length:", content.length);
 
     return new Response(content, {
       headers: { "Content-Type": "text/plain; charset=utf-8" },
@@ -797,12 +898,10 @@ Now, process each question carefully following ALL the instructions above.`;
     console.error("=== UNHANDLED ERROR ===");
     console.error("Error:", error);
 
-    return new Response(
-      JSON.stringify({
-        error: "Internal server error",
-        message: error instanceof Error ? error.message : "Unknown error",
-      }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+    return errorResponse(
+      "Internal server error",
+      500,
+      error instanceof Error ? error.message : "Unknown error",
     );
   }
 }

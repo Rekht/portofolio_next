@@ -2,7 +2,7 @@
 "use client";
 
 import React, {
-  useLayoutEffect,
+  useEffect,
   useRef,
   useMemo,
   lazy,
@@ -28,7 +28,7 @@ import {
 // Components
 import Navigation from "../../components/Navigation";
 import ExperienceCard from "./components/ExperienceCard";
-import DarkVeil from "../../components/background/DarkVeil";
+// DarkVeil moved to layout.tsx — single instance for all pages
 import SkillsSection from "./components/SkillsSection";
 
 // Data
@@ -78,11 +78,11 @@ export default function ExperiencePage() {
         smoothScrollToSection(sectionId);
       }
     },
-    [handleNavClick]
+    [handleNavClick],
   );
 
-  // GSAP Animations
-  useLayoutEffect(() => {
+  // GSAP Animations - useEffect to avoid blocking paint
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const animations = createCommonAnimations(gsap, ScrollTrigger);
 
@@ -91,7 +91,7 @@ export default function ExperiencePage() {
 
       // Experience cards animation
       const experienceCards = gsap.utils.toArray(
-        ".experience-card"
+        ".experience-card",
       ) as Element[];
       experienceCards.forEach((card, index) => {
         gsap.fromTo(
@@ -108,7 +108,7 @@ export default function ExperiencePage() {
               toggleActions: "play none none reverse",
             },
             delay: index * 0.1,
-          }
+          },
         );
       });
 
@@ -129,7 +129,7 @@ export default function ExperiencePage() {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     }, mainContainerRef);
 
@@ -147,10 +147,7 @@ export default function ExperiencePage() {
       className="font-sans min-h-screen bg-background text-foreground relative"
       ref={mainContainerRef}
     >
-      {/* Background */}
-      <div className="fixed inset-0 z-0">
-        <DarkVeil />
-      </div>
+      {/* Background moved to layout.tsx */}
 
       {/* Navigation */}
       <Navigation
@@ -187,9 +184,7 @@ export default function ExperiencePage() {
                 </div>
 
                 <div className="bg-card border border-border rounded-xl p-6">
-                  <div className="text-3xl font-bold text-primary mb-2">
-                    ≤ {new Date().getFullYear() - 2024}
-                  </div>
+                  <div className="text-3xl font-bold text-primary mb-2">1+</div>
                   <div className="text-muted-foreground">
                     Years of Experience
                   </div>
