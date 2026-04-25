@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import DarkVeil from "@/components/background/DarkVeil";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
@@ -113,6 +114,7 @@ export default function RootLayout({
             <TransitionProvider>{children}</TransitionProvider>
           </SmoothScroll>
           <ChatbotWidget />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
