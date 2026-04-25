@@ -93,7 +93,7 @@ const ContactIcon = () => (
   </svg>
 );
 
-const PerformanceIcon = () => (
+const AnalyticsIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -265,22 +265,22 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* Theme Toggle */}
           <ThemeToggle />
 
-          {/* Performance Link */}
+          {/* Analytics Link */}
           <div 
             className="relative mt-2"
-            onMouseEnter={() => setHoveredItem("Performance")}
+            onMouseEnter={() => setHoveredItem("Analytics")}
             onMouseLeave={() => setHoveredItem(null)}
           >
             <TransitionLink
-              href="/performance"
+              href="/analytics"
               className={`relative flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 group ${
-                activePage === "performance"
+                activePage === "analytics"
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
                   : "text-muted-foreground hover:text-foreground hover:bg-accent"
               }`}
             >
-              <PerformanceIcon />
-              {activePage === "performance" && (
+              <AnalyticsIcon />
+              {activePage === "analytics" && (
                 <motion.div
                   className="absolute -left-3 w-1 h-4 bg-blue-500 rounded-r-full"
                   layoutId="activeIndicator"
@@ -291,7 +291,7 @@ const Navigation: React.FC<NavigationProps> = ({
             
             {/* Tooltip */}
             <AnimatePresence>
-              {hoveredItem === "Performance" && (
+              {hoveredItem === "Analytics" && (
                 <motion.div
                   className="absolute left-14 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-card/95 backdrop-blur-sm text-foreground text-sm font-medium rounded-lg whitespace-nowrap shadow-xl border border-border z-50"
                   initial={{ opacity: 0, x: -10 }}
@@ -299,7 +299,7 @@ const Navigation: React.FC<NavigationProps> = ({
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.15 }}
                 >
-                  Performance
+                  Analytics
                   <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-[6px] border-r-card/95" />
                 </motion.div>
               )}
@@ -438,23 +438,23 @@ const Navigation: React.FC<NavigationProps> = ({
                     );
                   })}
                   
-                  {/* Performance Mobile Link */}
+                  {/* Analytics Mobile Link */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: navItems.length * 0.05 }}
                   >
                     <TransitionLink
-                      href="/performance"
+                      href="/analytics"
                       className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-                        activePage === "performance"
+                        activePage === "analytics"
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      <PerformanceIcon />
-                      <span className="font-medium">Performance</span>
+                      <AnalyticsIcon />
+                      <span className="font-medium">Analytics</span>
                     </TransitionLink>
                   </motion.div>
                 </div>

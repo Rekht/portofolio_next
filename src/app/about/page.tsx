@@ -48,7 +48,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 // Lazy components
 const AboutSection = lazy(() => import("./components/AboutSection"));
 const ContactSection = lazy(() => import("../../components/ContactSection"));
-const VisitorStats = lazy(() => import("./components/VisitorStats"));
 const Guestbook = lazy(() => import("./components/Guestbook"));
 const GitHubContributions = lazy(
   () => import("./components/GitHubContributions"),
@@ -164,12 +163,6 @@ export default function AboutPage() {
             </Suspense>
           </section>
 
-          {/* Visitor Stats Section */}
-          <section className="py-8">
-            <Suspense fallback={<SectionLoader />}>
-              <VisitorStats />
-            </Suspense>
-          </section>
 
           {/* Contact Section */}
           <section className="py-24" id="contact">

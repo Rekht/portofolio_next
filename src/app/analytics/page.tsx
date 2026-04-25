@@ -10,7 +10,7 @@ import useScrollDetection from "@/hooks/useScrollDetection";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function PerformancePage() {
+export default function AnalyticsPage() {
   const { scrolled } = useScrollDetection(10);
 
   useEffect(() => {
@@ -26,17 +26,17 @@ export default function PerformancePage() {
       {/* Navigation */}
       <Navigation 
         scrolled={scrolled} 
-        activePage="performance" 
+        activePage="analytics" 
         handleNavClick={() => {}} 
       />
 
       {/* Main Content Area */}
       <div className="flex-1 w-full min-h-screen ml-0 md:ml-24">
-        <div className="pt-32 pb-16 px-4 md:px-8 max-w-5xl mx-auto flex flex-col items-center">
+        <div className="pt-32 pb-16 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center">
           <div className="hero-content w-full">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
-                Platform Performance
+                Platform Analytics
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                 Real-time analytics and visitor statistics for this portfolio.
