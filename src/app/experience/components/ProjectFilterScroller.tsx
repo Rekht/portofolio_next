@@ -24,14 +24,14 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
   });
 
   const iconMap: Record<string, string> = {
-    All: "/assets/icons/all-mono.svg",
-    Python: "/assets/icons/python-mono.svg",
-    SQL: "/assets/icons/sql-mono.svg",
-    "Power BI": "/assets/icons/powerbi-mono.svg",
-    "Google Looker Studio": "/assets/icons/looker-mono.svg",
-    JavaScript: "/assets/icons/js-mono.svg",
-    Flutter: "/assets/icons/flutter-mono.svg",
-    AWS: "/assets/icons/aws-mono.svg",
+    All: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/all-mono.svg",
+    Python: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/python-mono.svg",
+    SQL: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/sql-mono.svg",
+    "Power BI": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/powerbi-mono.svg",
+    "Google Looker Studio": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/looker-mono.svg",
+    JavaScript: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/js-mono.svg",
+    Flutter: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/flutter-mono.svg",
+    AWS: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icons/aws-mono.svg",
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {

@@ -69,8 +69,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Bagian kanan - ProfileCard */}
       <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
         <ProfileCard
-          avatarUrl="/assets/profile.png"
-          miniAvatarUrl="/assets/logo.png"
+          avatarUrl="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/profile.png"
+          miniAvatarUrl="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png"
           name={" "}
           title=" "
           handle="restu22ak"
@@ -80,7 +80,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           enableMobileTilt={true}
           mobileTiltSensitivity={5}
           onContactClick={scrollToContact}
-          // grainUrl="/assets/texture.png"
+          // grainUrl="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/texture.png"
         />
       </div>
     </section>

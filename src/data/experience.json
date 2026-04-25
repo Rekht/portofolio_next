@@ -24,9 +24,9 @@
       "Machine Learning"
     ],
     "images": [
-      "/assets/experience/rakamin1.png",
-      "/assets/experience/rakamin2.png",
-      "/assets/experience/rakamin3.png"
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/rakamin1.png",
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/rakamin2.png",
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/rakamin3.png"
     ]
   },
   {
@@ -48,7 +48,7 @@
       "Statistical Analysis",
       "Data Validation"
     ],
-    "images": ["/assets/experience/freelance1.png"]
+    "images": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/freelance1.png"]
   },
   {
     "id": 3,
@@ -68,7 +68,7 @@
       "Document Formatting",
       "Quality Control"
     ],
-    "images": ["/assets/experience/tracer1.png"]
+    "images": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/tracer1.png"]
   },
   {
     "id": 4,
@@ -89,6 +89,6 @@
       "Digital Documentation",
       "Web Design"
     ],
-    "images": ["/assets/experience/ppko1.png", "/assets/experience/ppko2.png"]
+    "images": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/ppko1.png", "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/ppko2.png"]
   }
 ]

@@ -5,10 +5,10 @@
     "organization": "Universitas Negeri Yogyakarta",
     "year": "2023",
     "description": "Juara 3 pada LIKMI dalam bidang Applied Technology Business. Project: 'FO-Shion (Find Your Shade Cushion)', solusi berbasis Spark AR Studio untuk memilih shade cushion sesuai warna kulit.",
-    "certificate": "/assets/certificates/competition/file/Sertifikat_LIKMI.pdf",
+    "certificate": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/file/Sertifikat_LIKMI.pdf",
     "hasImage": true,
-    "certificateImage": "/assets/certificates/competition/image/Sertifikat_LIKMI.jpg",
-    "documentationImage": "/assets/certificates/competition/documentation/LIKMI_doc.png"
+    "certificateImage": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/image/Sertifikat_LIKMI.jpg",
+    "documentationImage": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/documentation/LIKMI_doc.png"
   },
   {
     "id": 2,
@@ -16,10 +16,10 @@
     "organization": "PPATK",
     "year": "2023",
     "description": "Finalis dalam TrackAML Hackathon yang diselenggarakan oleh PPATK. Project: 'Combined Fraud Detection and Ensemble Learning System' untuk analisis anomali terkait indikasi pencucian uang dan pendanaan terorisme.",
-    "certificate": "/assets/certificates/competition/file/Sertifikat_PPATK.pdf",
+    "certificate": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/file/Sertifikat_PPATK.pdf",
     "hasImage": true,
-    "certificateImage": "/assets/certificates/competition/image/Sertifikat_PPATK.jpg",
-    "documentationImage": "/assets/certificates/competition/documentation/PPATK_doc.jpeg"
+    "certificateImage": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/image/Sertifikat_PPATK.jpg",
+    "documentationImage": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/documentation/PPATK_doc.jpeg"
   },
   {
     "id": 3,
@@ -27,9 +27,9 @@
     "organization": "Ministry of Education, Culture, Research, and Technology",
     "year": "2023",
     "description": "Finalis Abdidaya Ormawa (PPK Ormawa). Project: Pengabdian masyarakat untuk membangun desa tangguh iklim melalui agroforestry, biogas, biopori, serta pemberdayaan UMKM dengan produk ekoprint.",
-    "certificate": "/assets/certificates/competition/file/Sertifikat_PPKO.pdf",
+    "certificate": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/file/Sertifikat_PPKO.pdf",
     "hasImage": true,
-    "certificateImage": "/assets/certificates/competition/image/Sertifikat_PPKO.jpg",
-    "documentationImage": "/assets/certificates/competition/documentation/PPKO_doc.jpg"
+    "certificateImage": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/image/Sertifikat_PPKO.jpg",
+    "documentationImage": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/certificates/competition/documentation/PPKO_doc.jpg"
   }
 ]

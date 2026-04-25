@@ -34,7 +34,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
   // Handle download CV
   const handleDownloadCV = useCallback(() => {
     const link = document.createElement("a");
-    link.href = "/assets/cv.pdf";
+    link.href = "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/cv.pdf";
     link.download = "Restu_Anggoro_CV.pdf";
     document.body.appendChild(link);
     link.click();
@@ -43,7 +43,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
 
   // Handle buka CV di tab baru
   const handleOpenCVInNewTab = useCallback(() => {
-    window.open("/assets/cv.pdf", "_blank");
+    window.open("https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/cv.pdf", "_blank");
   }, []);
 
   // Jangan render jika tidak terbuka
@@ -71,7 +71,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
         {/* PDF Viewer - hanya dimuat saat modal diaktifkan */}
         <div className="flex-1 overflow-hidden">
           <iframe
-            src="/assets/cv.pdf"
+            src="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/cv.pdf"
             className="w-full h-full"
             title="My Curriculum Vitae"
           />

@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   creator: "Restu Anggoro Kasih",
   publisher: "Restu Anggoro Kasih",
   icons: {
-    icon: "/assets/icon_google_bar.png",
+    icon: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/icon_google_bar.png",
   },
   verification: {
     google: "T6Fqd0UxL66HiQRVJlFiZ0I4t8ax01Ai3RdsKJBuevs",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
       "Data Analyst & ML Engineer specializing in Machine Learning, LLM, Python, Streamlit, and Data Analytics. View my projects and dashboards.",
     images: [
       {
-        url: "/assets/og-image.png",
+        url: "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Restu Anggoro Kasih - Data Scientist & ML Engineer",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     title: "Restu Anggoro Kasih - Data Scientist & ML Engineer Portfolio",
     description:
       "Data Analyst & ML Engineer specializing in Machine Learning, LLM, Python, Streamlit, and Data Analytics. View my projects and dashboards.",
-    images: ["/assets/og-image.png"],
+    images: ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/og-image.png"],
   },
   robots: {
     index: true,

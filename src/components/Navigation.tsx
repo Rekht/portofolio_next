@@ -170,7 +170,7 @@ const Navigation: React.FC<NavigationProps> = ({
               whileTap={{ scale: 0.95 }}
             >
               <Image
-                src="/assets/logo.png"
+                src="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png"
                 alt="Logo"
                 width={36}
                 height={36}
@@ -284,7 +284,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 whileTap={{ scale: 0.95 }}
               >
                 <Image
-                  src="/assets/logo.png"
+                  src="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png"
                   alt="Logo"
                   width={36}
                   height={36}
