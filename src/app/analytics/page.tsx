@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createCommonAnimations } from "@/utils/pageUtils";
 import VisitorStats from "@/app/about/components/VisitorStats";
-import PerformanceStats from "./components/PerformanceStats";
 import Navigation from "@/components/Navigation";
 import useScrollDetection from "@/hooks/useScrollDetection";
 
@@ -47,7 +46,6 @@ export default function AnalyticsPage() {
             </div>
             <div className="max-w-6xl mx-auto w-full">
               <VisitorStats />
-              <PerformanceStats />
             </div>
           </section>
         </div>
