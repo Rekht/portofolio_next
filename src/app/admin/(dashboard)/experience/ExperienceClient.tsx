@@ -13,7 +13,7 @@ function parseDateFromPeriod(period: string): Date {
   if (!period) return new Date(0)
   
   const parts = period.split('-').map(s => s.trim())
-  const dateStr = parts[parts.length - 1] 
+  const dateStr = parts[0] // Sort by START DATE instead of end date
   
   if (dateStr.toLowerCase() === 'present' || dateStr.toLowerCase() === 'sekarang') {
     return new Date() 
