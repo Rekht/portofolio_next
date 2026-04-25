@@ -5,7 +5,9 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import projectsData from "../../../data/projects.json";
+import projectsDataFallback from "../../../data/projects.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchProjects } from "@/lib/data";
 
 // Helper function to match slugs correctly (outside component for stability)
 function createSlug(title: string): string {
@@ -20,10 +22,23 @@ export default function ProjectDetailPage() {
   const { slug } = useParams();
   const router = useRouter();
 
+  // Add type for projects
+  interface Project {
+    title: string;
+    description: string;
+    detailedDescription?: string;
+    image: string;
+    url?: string;
+    tags?: string[];
+    features?: string[];
+  }
+
+  const projectsData = useSupabaseData<Project[]>(fetchProjects, projectsDataFallback as Project[]);
+
   // Find the requested project using slug
   const project = useMemo(() => {
     return projectsData.find((p) => createSlug(p.title) === slug);
-  }, [slug]);
+  }, [slug, projectsData]);
 
   const handleBack = () => {
     router.push("/experience#project");

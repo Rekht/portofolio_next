@@ -1,9 +1,20 @@
 "use client";
 
 import { Timeline } from "@/components/ui/timeline";
-import organizations from "../../../data/organizations.json";
+import organizationsFallback from "../../../data/organizations.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchOrganizations } from "@/lib/data";
+
+interface Organization {
+  title: string;
+  position: string;
+  period: string;
+  description: string | string[];
+  image?: string[];
+}
 
 export default function OrganizationsSection() {
+  const organizations = useSupabaseData<Organization[]>(fetchOrganizations, organizationsFallback as Organization[]);
   const timelineData = organizations.map((item) => ({
     title: `${item.title}`,
     content: (
@@ -23,7 +34,7 @@ export default function OrganizationsSection() {
           <div className="text-muted-foreground">
             {Array.isArray(item.description) ? (
               <ul className="list-disc list-outside pl-5 space-y-1">
-                {item.description.map((desc, index) => (
+                {(item.description as string[]).map((desc: string, index: number) => (
                   <li key={index}>{desc}</li>
                 ))}
               </ul>

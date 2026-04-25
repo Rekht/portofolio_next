@@ -4,10 +4,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { FocusCards } from "@/components/ui/focus-cards";
-import projectsData from "@/data/projects.json";
+import projectsDataFallback from "@/data/projects.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchProjects } from "@/lib/data";
 
 const ProjectSection: React.FC = () => {
   const router = useRouter();
+  const projectsData = useSupabaseData(fetchProjects, projectsDataFallback);
 
   // Ambil 3 proyek pertama
   const projects = projectsData.slice(0, 3).map((project) => ({

@@ -29,7 +29,9 @@ import ProfileSection from "@/components/ProfileSection";
 import HeroSection from "@/components/HeroSection";
 
 // Data
-import aboutData from "@/data/about.json";
+import aboutDataFallback from "@/data/about.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchAbout } from "@/lib/data";
 
 // Types
 interface About {
@@ -54,7 +56,8 @@ export default function HomePage() {
   const [showCVModal, setShowCVModal] = useState<boolean>(false);
 
   // Memoized data
-  const memoizedAbout = useMemo(() => aboutData as About, []);
+  const aboutData = useSupabaseData(fetchAbout, aboutDataFallback as About);
+  const memoizedAbout = useMemo(() => aboutData as About, [aboutData]);
 
   // Hooks
   const { scrolled } = useScrollDetection(10);

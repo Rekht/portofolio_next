@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { jsPDF } from "jspdf";
-import certificationsData from "../../../data/certifications.json";
+import certificationsDataFallback from "../../../data/certifications.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchCertifications } from "@/lib/data";
 import GlassCard from "@/components/ui/GlassCard";
 
 // Define types for our certification data
@@ -17,9 +19,12 @@ interface Certification {
 }
 
 // Type assertion - since your JSON is an array directly
-const certifications = certificationsData as Certification[];
+// (Removed static 'certifications' assignment to use hook inside component)
 
 const CertificationSection: React.FC = () => {
+  const certificationsData = useSupabaseData(fetchCertifications, certificationsDataFallback as Certification[]);
+  const certifications = certificationsData as Certification[];
+
   const certSectionRef = useRef<HTMLDivElement>(null);
   const certContainerRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);

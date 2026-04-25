@@ -5,10 +5,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import { usePageTransition } from "@/components/PageTransition";
-import educationData from "@/data/education.json";
-import certificationsData from "@/data/certifications.json";
-import achievementsData from "@/data/achievements.json";
-import organizationsData from "@/data/organizations.json";
+import educationDataFallback from "@/data/education.json";
+import certificationsDataFallback from "@/data/certifications.json";
+import achievementsDataFallback from "@/data/achievements.json";
+import organizationsDataFallback from "@/data/organizations.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchEducation, fetchCertifications, fetchAchievements, fetchOrganizations } from "@/lib/data";
 
 interface Education {
   id: number;
@@ -28,6 +30,11 @@ interface Organization {
 
 const EducationPreview: React.FC = () => {
   const { startTransition, isTransitioning } = usePageTransition();
+
+  const educationData = useSupabaseData(fetchEducation, educationDataFallback as Education[]);
+  const certificationsData = useSupabaseData(fetchCertifications, certificationsDataFallback);
+  const achievementsData = useSupabaseData(fetchAchievements, achievementsDataFallback);
+  const organizationsData = useSupabaseData(fetchOrganizations, organizationsDataFallback as Organization[]);
 
   const education = (educationData as Education[])[0];
   const certCount = certificationsData.length;

@@ -32,7 +32,9 @@ import EducationCard from "./components/EducationCard";
 // DarkVeil moved to layout.tsx — single instance for all pages
 
 // Data
-import educationData from "../../data/education.json";
+import educationDataFallback from "../../data/education.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchEducation } from "@/lib/data";
 
 // Lazy components
 const AchievementSection = lazy(
@@ -64,7 +66,8 @@ export default function EducationPage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Memoized data
-  const memoizedEducation = useMemo(() => educationData as Education[], []);
+  const educationData = useSupabaseData(fetchEducation, educationDataFallback as Education[]);
+  const memoizedEducation = useMemo(() => educationData as Education[], [educationData]);
 
   // Hooks - certification section after achievements
   const { scrolled } = useScrollDetection(10);

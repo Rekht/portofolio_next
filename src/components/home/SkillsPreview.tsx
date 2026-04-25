@@ -4,7 +4,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
-import skillsData from "@/data/skills.json";
+import skillsDataFallback from "@/data/skills.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchSkills } from "@/lib/data";
 
 interface SkillCategory {
   title: string;
@@ -75,6 +77,7 @@ const colorMap: Record<
 };
 
 const SkillsPreview: React.FC = () => {
+  const skillsData = useSupabaseData(fetchSkills, skillsDataFallback);
   const skills = skillsData.skills as Record<string, SkillCategory>;
 
   return (

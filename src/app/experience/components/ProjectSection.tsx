@@ -5,7 +5,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectCard from "./ProjectCard";
 import { useRouter } from "next/navigation";
 import ProjectFilterScroller from "./ProjectFilterScroller";
-import projectsData from "../../../data/projects.json";
+import projectsDataFallback from "../../../data/projects.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchProjects } from "@/lib/data";
 
 interface Project {
   id: number;
@@ -39,6 +41,8 @@ const ProjectSection: React.FC = () => {
   const [showMoreProjects, setShowMoreProjects] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const router = useRouter();
+
+  const projectsData = useSupabaseData(fetchProjects, projectsDataFallback as Project[]);
 
   const [projectsCache, setProjectsCache] = useState<
     Record<string, ProjectCache>
@@ -106,7 +110,7 @@ const ProjectSection: React.FC = () => {
     return projects.filter(
       (project) => project.tags && project.tags.includes(activeFilter),
     );
-  }, [activeFilter]);
+  }, [activeFilter, projectsData]);
 
   const handleFilterClick = useCallback(
     (filter: string) => {

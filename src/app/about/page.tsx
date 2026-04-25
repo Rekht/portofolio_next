@@ -33,7 +33,9 @@ import HeroSection from "./components/HeroSection";
 // DarkVeil moved to layout.tsx — single instance for all pages
 
 // Data
-import aboutData from "../../data/about.json";
+import aboutDataFallback from "../../data/about.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchAbout } from "@/lib/data";
 
 // Types
 interface About {
@@ -61,7 +63,8 @@ export default function AboutPage() {
   const [showCVModal, setShowCVModal] = useState<boolean>(false);
 
   // Memoized data
-  const memoizedAbout = useMemo(() => aboutData as About, []);
+  const aboutData = useSupabaseData(fetchAbout, aboutDataFallback as About);
+  const memoizedAbout = useMemo(() => aboutData as About, [aboutData]);
 
   // Hooks - sections yang ada di halaman about (tanpa certification)
   const { scrolled } = useScrollDetection(10);

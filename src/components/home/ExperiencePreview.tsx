@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import { FocusCards } from "@/components/ui/focus-cards";
 import { usePageTransition } from "@/components/PageTransition";
-import experienceData from "@/data/experience.json";
-import projectsData from "@/data/projects.json";
+import experienceDataFallback from "@/data/experience.json";
+import projectsDataFallback from "@/data/projects.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchExperience, fetchProjects } from "@/lib/data";
 
 interface Experience {
   id: number;
@@ -20,6 +22,9 @@ interface Experience {
 
 const ExperiencePreview: React.FC = () => {
   const { startTransition, isTransitioning } = usePageTransition();
+
+  const experienceData = useSupabaseData(fetchExperience, experienceDataFallback as Experience[]);
+  const projectsData = useSupabaseData(fetchProjects, projectsDataFallback);
 
   // Get first 2 experiences
   const experiences = (experienceData as Experience[]).slice(0, 2);

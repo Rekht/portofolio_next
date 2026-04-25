@@ -32,8 +32,10 @@ import ExperienceCard from "./components/ExperienceCard";
 import SkillsSection from "./components/SkillsSection";
 
 // Data
-import experienceData from "../../data/experience.json";
-import projectsData from "../../data/projects.json";
+import experienceDataFallback from "../../data/experience.json";
+import projectsDataFallback from "../../data/projects.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchExperience, fetchProjects } from "@/lib/data";
 
 // Lazy components
 const ProjectSection = lazy(() => import("./components/ProjectSection"));
@@ -65,8 +67,10 @@ export default function ExperiencePage() {
   ]);
 
   // Memoized data
-  const memoizedExperience = useMemo(() => experienceData as Experience[], []);
-  const projectCount = useMemo(() => projectsData.length, []);
+  const experienceData = useSupabaseData(fetchExperience, experienceDataFallback as Experience[]);
+  const projectsData = useSupabaseData(fetchProjects, projectsDataFallback);
+  const memoizedExperience = useMemo(() => experienceData as Experience[], [experienceData]);
+  const projectCount = useMemo(() => projectsData.length, [projectsData]);
 
   // Navigation handler - for sections within the same page
   const handleSmoothNavClick = useCallback(

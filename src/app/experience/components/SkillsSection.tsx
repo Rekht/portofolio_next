@@ -1,6 +1,8 @@
 // components/SkillsSection.tsx
 import React from "react";
-import skillsData from "@/data/skills.json";
+import skillsDataFallback from "@/data/skills.json";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
+import { fetchSkills } from "@/lib/data";
 import GlassCard from "@/components/ui/GlassCard";
 
 // Type definitions
@@ -67,6 +69,7 @@ const colorMap = {
 };
 
 const SkillsSection: React.FC = () => {
+  const skillsData = useSupabaseData(fetchSkills, skillsDataFallback as SkillsData);
   const { skills } = skillsData as SkillsData;
 
   return (
