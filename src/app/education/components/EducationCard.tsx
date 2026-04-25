@@ -35,7 +35,7 @@ const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
           <p className="text-blue-400 mb-2">
             {education.institution} | {education.period}
           </p>
-          <p className="text-muted-foreground">
+          <p className="text-base text-foreground/90 leading-relaxed">
             {education.description}
             {education.gpa && <span> IPK: {education.gpa}</span>}
           </p>

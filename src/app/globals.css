@@ -129,7 +129,7 @@ html.dark {
   --secondary: oklch(22% 0.038 265.69);
   --secondary-foreground: oklch(98% 0.002 247.9);
   --muted: oklch(22% 0.038 265.69);
-  --muted-foreground: oklch(70% 0.015 256.23);
+  --muted-foreground: oklch(80% 0.015 256.23); /* Diperterang untuk kontras (sebelumnya 70%) */
   --accent: oklch(22% 0.038 265.69);
   --accent-foreground: oklch(98% 0.002 247.9);
   --destructive: oklch(70% 0.191 22.216);
@@ -231,6 +231,21 @@ html.light {
   body {
     @apply bg-background text-foreground;
   }
+  h1, h2, h3 {
+    @apply text-foreground tracking-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+  p {
+    @apply text-base md:text-lg;
+  }
 }
 
 /* Custom scrollbar untuk browser WebKit */
@@ -274,7 +289,7 @@ body {
 @layer utilities {
   /* untuk konten utama */
   .px-section {
-    @apply px-8 md:px-16;
+    @apply px-8 md:px-28;
   }
 
   /* untuk footer */

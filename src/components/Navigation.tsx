@@ -265,10 +265,10 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* Theme Toggle */}
           <ThemeToggle />
 
-          {/* Analytics Link */}
+          {/* Monitoring Link */}
           <div 
             className="relative mt-2"
-            onMouseEnter={() => setHoveredItem("Analytics")}
+            onMouseEnter={() => setHoveredItem("Monitoring")}
             onMouseLeave={() => setHoveredItem(null)}
           >
             <TransitionLink
@@ -291,7 +291,7 @@ const Navigation: React.FC<NavigationProps> = ({
             
             {/* Tooltip */}
             <AnimatePresence>
-              {hoveredItem === "Analytics" && (
+              {hoveredItem === "Monitoring" && (
                 <motion.div
                   className="absolute left-14 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-card/95 backdrop-blur-sm text-foreground text-sm font-medium rounded-lg whitespace-nowrap shadow-xl border border-border z-50"
                   initial={{ opacity: 0, x: -10 }}
@@ -299,7 +299,7 @@ const Navigation: React.FC<NavigationProps> = ({
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.15 }}
                 >
-                  Analytics
+                  Monitoring
                   <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-[6px] border-r-card/95" />
                 </motion.div>
               )}
@@ -438,7 +438,7 @@ const Navigation: React.FC<NavigationProps> = ({
                     );
                   })}
                   
-                  {/* Analytics Mobile Link */}
+                  {/* Monitoring Mobile Link */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -454,7 +454,7 @@ const Navigation: React.FC<NavigationProps> = ({
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <AnalyticsIcon />
-                      <span className="font-medium">Analytics</span>
+                      <span className="font-medium">Monitoring</span>
                     </TransitionLink>
                   </motion.div>
                 </div>

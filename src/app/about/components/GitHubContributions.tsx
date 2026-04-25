@@ -140,7 +140,7 @@ export default function GitHubContributions() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-6xl mx-auto">
       {/* Title outside container */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-foreground mb-2">

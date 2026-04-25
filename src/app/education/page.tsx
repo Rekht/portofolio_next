@@ -198,7 +198,7 @@ export default function EducationPage() {
           {/* Education Section */}
           <section className="py-16" id="education">
             <h2 className="text-3xl font-bold mb-8 text-center">Education</h2>
-            <div className="grid gap-6 max-w-4xl mx-auto">
+            <div className="grid gap-6 max-w-6xl mx-auto w-full">
               {memoizedEducation.map((edu) => (
                 <div key={edu.id} className="education-card">
                   <EducationCard education={edu} />

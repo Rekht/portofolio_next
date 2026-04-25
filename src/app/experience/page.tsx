@@ -250,7 +250,7 @@ export default function ExperiencePage() {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-6xl mx-auto w-full space-y-8">
               {memoizedExperience.map((exp, index) => (
                 <ExperienceCard key={exp.id} experience={exp} index={index} />
               ))}

@@ -84,7 +84,7 @@ export default function GlassCard({
       />
 
       {/* Content */}
-      <div className={`relative z-10 ${noPadding ? "" : "p-8"}`}>
+      <div className={`relative z-10 ${noPadding ? "" : "p-4 md:p-6 lg:p-8"}`}>
         {children}
       </div>
     </>

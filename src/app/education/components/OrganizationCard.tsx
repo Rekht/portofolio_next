@@ -31,7 +31,7 @@ export default function OrganizationsSection() {
           </p>
 
           {/* Description */}
-          <div className="text-muted-foreground">
+          <div className="text-base text-foreground/90 leading-relaxed">
             {Array.isArray(item.description) ? (
               <ul className="list-disc list-outside pl-5 space-y-1">
                 {(item.description as string[]).map((desc: string, index: number) => (

@@ -120,17 +120,17 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                       {description.map((item, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-muted-foreground"
+                          className="flex items-start gap-3 text-foreground/90"
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                          <span className="text-sm leading-relaxed">
+                          <span className="text-base leading-relaxed">
                             {item}
                           </span>
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-base text-foreground/90 leading-relaxed">
                       {description}
                     </p>
                   )}

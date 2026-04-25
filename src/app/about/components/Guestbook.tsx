@@ -98,7 +98,7 @@ export default function Guestbook() {
   const duplicatedMessages = [...messages, ...messages];
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-6xl mx-auto">
       {/* Title outside container */}
       <h2 className="text-2xl font-bold text-foreground text-center mb-6">
         Guestbook

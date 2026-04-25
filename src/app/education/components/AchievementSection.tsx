@@ -142,7 +142,7 @@ const AchievementSection: React.FC = () => {
                 <p className="text-muted-foreground mb-2">
                   {achievement.organization} • {achievement.year}
                 </p>
-                <p className="text-foreground/80 leading-relaxed mb-4">
+                <p className="text-base text-foreground/90 leading-relaxed mb-4">
                   {achievement.description}
                 </p>
 

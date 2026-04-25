@@ -31,7 +31,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="profile"
-      className="py-8 flex flex-col md:flex-row items-center justify-between"
+      className="py-8 flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto w-full"
     >
       {/* Bagian kiri */}
       <div className="md:w-1/2">

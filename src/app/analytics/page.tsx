@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createCommonAnimations } from "@/utils/pageUtils";
 import VisitorStats from "@/app/about/components/VisitorStats";
+import PerformanceStats from "./components/PerformanceStats";
 import Navigation from "@/components/Navigation";
 import useScrollDetection from "@/hooks/useScrollDetection";
 
@@ -22,7 +23,7 @@ export default function AnalyticsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30 selection:text-primary relative flex">
+    <main className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30 selection:text-primary relative">
       {/* Navigation */}
       <Navigation 
         scrolled={scrolled} 
@@ -31,21 +32,26 @@ export default function AnalyticsPage() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 w-full min-h-screen ml-0 md:ml-24">
-        <div className="pt-32 pb-16 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center">
-          <div className="hero-content w-full">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
-                Platform Analytics
+      <main className="relative z-10">
+        <div className="h-20"></div>
+
+        <div className="w-full px-section">
+          <section className="py-16 text-center">
+            <div className="hero-content max-w-6xl mx-auto w-full text-left">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Monitoring Website
               </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Real-time analytics and visitor statistics for this portfolio.
+              <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed mb-12">
+                Real-time tracking and visitor statistics for this platform.
               </p>
             </div>
-            <VisitorStats />
-          </div>
+            <div className="max-w-6xl mx-auto w-full">
+              <VisitorStats />
+              <PerformanceStats />
+            </div>
+          </section>
         </div>
-      </div>
+      </main>
     </main>
   );
 }

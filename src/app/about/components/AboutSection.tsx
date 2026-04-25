@@ -12,8 +12,8 @@ interface AboutSectionProps {
 
 const AboutSection: React.FC<AboutSectionProps> = ({ about }) => {
   return (
-    <GlassCard accentColor="purple">
-      <p className="text-lg text-foreground leading-relaxed font-semibold">
+    <GlassCard accentColor="purple" className="max-w-6xl mx-auto w-full">
+      <p className="text-lg text-foreground/90 leading-relaxed font-semibold">
         {about.description}
       </p>
     </GlassCard>
