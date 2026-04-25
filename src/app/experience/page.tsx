@@ -52,6 +52,18 @@ interface Experience {
   images?: string[];
 }
 
+// Helper to parse period string for sorting
+function parseDateFromPeriod(period: string): Date {
+  if (!period) return new Date(0);
+  const parts = period.split('-').map(s => s.trim());
+  const dateStr = parts[parts.length - 1]; // End date
+  if (dateStr.toLowerCase() === 'present' || dateStr.toLowerCase() === 'sekarang') {
+    return new Date();
+  }
+  const parsed = new Date(dateStr);
+  return isNaN(parsed.getTime()) ? new Date(0) : parsed;
+}
+
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,10 +78,16 @@ export default function ExperiencePage() {
     "project",
   ]);
 
-  // Memoized data
+  // Memoized & Sorted data
   const experienceData = useSupabaseData(fetchExperience, experienceDataFallback as Experience[]);
   const projectsData = useSupabaseData(fetchProjects, projectsDataFallback);
-  const memoizedExperience = useMemo(() => experienceData as Experience[], [experienceData]);
+  const memoizedExperience = useMemo(() => {
+    return [...(experienceData as Experience[])].sort((a, b) => {
+      const dateA = parseDateFromPeriod(a.duration);
+      const dateB = parseDateFromPeriod(b.duration);
+      return dateB.getTime() - dateA.getTime();
+    });
+  }, [experienceData]);
   const projectCount = useMemo(() => projectsData.length, [projectsData]);
 
   // Navigation handler - for sections within the same page
