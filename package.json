@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.9.3",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
+    "@supabase/ssr": "^0.10.2",
     "@supabase/supabase-js": "^2.89.0",
     "@types/pdf-parse": "^1.1.5",
     "@types/react-router-dom": "^5.3.3",
