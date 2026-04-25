@@ -1,12 +1,36 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { saveExperience, deleteExperience } from './actions'
+import FileUpload from '@/components/admin/FileUpload'
+
+function parseDateFromPeriod(period: string): Date {
+  if (!period) return new Date(0)
+  
+  // Extract the end date part if there's a dash (e.g. "Aug 2024 - Present")
+  const parts = period.split('-').map(s => s.trim())
+  const dateStr = parts[parts.length - 1] // Get the end part
+  
+  if (dateStr.toLowerCase() === 'present' || dateStr.toLowerCase() === 'sekarang') {
+    return new Date() // Current date
+  }
+  
+  const parsed = new Date(dateStr)
+  return isNaN(parsed.getTime()) ? new Date(0) : parsed
+}
 
 export default function ExperienceClient({ initialExperience }: { initialExperience: any[] }) {
   const [editingId, setEditingId] = useState<number | null>(null)
   const [formData, setFormData] = useState<any>(null)
   const [isSaving, setIsSaving] = useState(false)
+
+  const sortedExperience = useMemo(() => {
+    return [...initialExperience].sort((a, b) => {
+      const dateA = parseDateFromPeriod(a.duration)
+      const dateB = parseDateFromPeriod(b.duration)
+      return dateB.getTime() - dateA.getTime() // Newest first
+    })
+  }, [initialExperience])
 
   const handleEdit = (exp: any) => {
     setEditingId(exp.id)
@@ -94,7 +118,15 @@ export default function ExperienceClient({ initialExperience }: { initialExperie
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Images (One URL per line)</label>
-              <textarea value={formData.images || ''} onChange={e => setFormData({...formData, images: e.target.value})} placeholder="https://...&#10;https://..." className="w-full px-3 py-2 bg-secondary border border-border rounded-lg h-24" />
+              <div className="flex flex-col md:flex-row gap-4 items-start">
+                <textarea value={formData.images || ''} onChange={e => setFormData({...formData, images: e.target.value})} placeholder="https://...&#10;https://..." className="flex-1 w-full px-3 py-2 bg-secondary border border-border rounded-lg h-32" />
+                <div className="w-full md:w-64 flex-shrink-0">
+                  <FileUpload 
+                    folder="assets/experience" 
+                    onUploadComplete={(url) => setFormData({...formData, images: formData.images ? `${formData.images}\n${url}` : url})} 
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -134,12 +166,12 @@ export default function ExperienceClient({ initialExperience }: { initialExperie
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {initialExperience.length === 0 ? (
+              {sortedExperience.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">No experience found. Create one above!</td>
                 </tr>
               ) : (
-                initialExperience.map((exp) => (
+                sortedExperience.map((exp) => (
                   <tr key={exp.id} className="hover:bg-secondary/30 transition-colors">
                     <td className="px-4 py-3 font-semibold text-foreground">{exp.company}</td>
                     <td className="px-4 py-3 text-muted-foreground">{exp.position}</td>

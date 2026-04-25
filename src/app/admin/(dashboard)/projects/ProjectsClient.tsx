@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { saveProject, deleteProject } from './actions'
+import FileUpload from '@/components/admin/FileUpload'
 
 export default function ProjectsClient({ initialProjects }: { initialProjects: any[] }) {
   const [editingId, setEditingId] = useState<number | null>(null)
@@ -81,7 +82,20 @@ export default function ProjectsClient({ initialProjects }: { initialProjects: a
 
           <div>
             <label className="block text-sm font-medium mb-1">Image URL *</label>
-            <input required value={formData.image} onChange={e => setFormData({...formData, image: e.target.value})} className="w-full px-3 py-2 bg-secondary border border-border rounded-lg" />
+            <div className="flex flex-col md:flex-row gap-4 items-start">
+              <input required value={formData.image} onChange={e => setFormData({...formData, image: e.target.value})} className="flex-1 px-3 py-2 bg-secondary border border-border rounded-lg" placeholder="https://..." />
+              <div className="w-full md:w-64 flex-shrink-0">
+                <FileUpload 
+                  folder="assets/projects" 
+                  onUploadComplete={(url) => setFormData({...formData, image: url})} 
+                />
+              </div>
+            </div>
+            {formData.image && (
+              <div className="mt-2">
+                <img src={formData.image} alt="Preview" className="h-32 object-cover rounded-lg border border-border" />
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
