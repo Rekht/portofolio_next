@@ -18,7 +18,8 @@ export default function SettingsPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* CV Upload */}
         <div className="bg-card border border-border p-6 rounded-2xl flex flex-col items-center">
-          <h2 className="text-lg font-bold mb-4">Resume / CV (PDF)</h2>
+          <h2 className="text-lg font-bold mb-1">Resume / CV (PDF)</h2>
+          <p className="text-xs text-muted-foreground mb-4">Current file: <strong>cv.pdf</strong></p>
           <div className="w-full mb-4">
             <FileUpload 
               folder="assets" 
@@ -34,7 +35,8 @@ export default function SettingsPage() {
 
         {/* Profile Photo Upload */}
         <div className="bg-card border border-border p-6 rounded-2xl flex flex-col items-center">
-          <h2 className="text-lg font-bold mb-4">Profile Photo (PNG/JPG)</h2>
+          <h2 className="text-lg font-bold mb-1">Profile Photo (PNG/JPG)</h2>
+          <p className="text-xs text-muted-foreground mb-4">Current file: <strong>profile.png</strong></p>
           <div className="w-32 h-32 mb-4 rounded-full overflow-hidden border-4 border-secondary">
             <img src={profileUrl} alt="Profile" className="w-full h-full object-cover" />
           </div>
@@ -50,7 +52,8 @@ export default function SettingsPage() {
 
         {/* Logo Upload */}
         <div className="bg-card border border-border p-6 rounded-2xl flex flex-col items-center">
-          <h2 className="text-lg font-bold mb-4">Website Logo (PNG)</h2>
+          <h2 className="text-lg font-bold mb-1">Website Logo (PNG)</h2>
+          <p className="text-xs text-muted-foreground mb-4">Current file: <strong>logo.png</strong></p>
           <div className="w-32 h-32 mb-4 rounded-2xl overflow-hidden bg-secondary flex items-center justify-center border-4 border-secondary p-4">
             <img src={logoUrl} alt="Logo" className="max-w-full max-h-full object-contain" />
           </div>

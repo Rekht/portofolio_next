@@ -58,7 +58,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
         {/* Header Modal */}
         <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
           <h3 className="text-xl font-semibold text-white">
-            Curriculum Vitae Saya
+            My Curriculum Vitae
           </h3>
           <button
             onClick={onClose}
