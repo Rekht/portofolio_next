@@ -40,8 +40,8 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
         "
       >
         <span className="pl-10 block">HELLO, MY NAME’S RESTU</span>
-        I’M A DATA ENTHUSIAST <br />
-        FOCUSING ON DATA & AI
+        I’M A DATA SCIENTIST & <br />
+        ML ENGINEER
       </div>
 
       {/* ProfileCard di tengah */}
@@ -58,7 +58,6 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
           enableMobileTilt={true}
           mobileTiltSensitivity={5}
           onContactClick={scrollToContact}
-          // grainUrl="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/texture.png"
         />
       </div>
     </section>

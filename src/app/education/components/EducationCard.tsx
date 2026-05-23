@@ -32,7 +32,7 @@ const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
           <h3 className="text-xl font-bold mb-1 text-foreground">
             {education.degree}
           </h3>
-          <p className="text-blue-400 mb-2">
+          <p className="text-link mb-2">
             {education.institution} | {education.period}
           </p>
           <p className="text-base text-foreground/90 leading-relaxed">

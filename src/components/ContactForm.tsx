@@ -113,8 +113,8 @@ const ContactForm: React.FC = () => {
         <div
           className={`fixed bottom-6 right-6 z-50 px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3 transition-all duration-300 animate-fade-in-up ${
             notification.type === "success"
-              ? "bg-green-500 text-white"
-              : "bg-red-500 text-white"
+              ? "bg-success text-white"
+              : "bg-destructive text-white"
           }`}
         >
           {notification.type === "success" ? (

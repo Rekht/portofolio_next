@@ -19,6 +19,7 @@
         "TensorFlow",
         "PyTorch",
         "Keras",
+        "LangChain",
         "Hugging Face",
         "pandas",
         "NumPy"
@@ -27,7 +28,7 @@
     "bi_analytics": {
       "title": "BI & Analytics",
       "color": "yellow",
-      "technologies": ["Power BI", "Google Looker"]
+      "technologies": ["Power BI", "Data Studio"]
     },
     "backend": {
       "title": "Backend",

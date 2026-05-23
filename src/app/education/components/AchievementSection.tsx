@@ -84,7 +84,7 @@ const AchievementSection: React.FC = () => {
           accentColor="orange"
           noAnimation
           noPadding
-          className="group mb-6 border-l-4 border-yellow-500 hover:border-yellow-400 transition-all duration-300"
+          className="group mb-6 border-l-4 border-warning hover:border-warning transition-all duration-300"
         >
           <div className="relative overflow-hidden p-6">
             {/* Background Image dengan mask-image untuk fade yang smooth */}
@@ -119,7 +119,7 @@ const AchievementSection: React.FC = () => {
             <div className="relative z-10 flex items-start">
               {/* Ikon Medali */}
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="currentColor"

@@ -73,7 +73,7 @@ export default async function AdminLayout({
           </div>
 
           <form action={handleSignOut}>
-            <button className="w-full px-4 py-2 text-sm text-red-500 bg-red-500/10 hover:bg-red-500/20 rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
+            <button className="w-full px-4 py-2 text-sm text-destructive bg-destructive/10 hover:bg-destructive/20 rounded-lg transition-colors font-medium flex items-center justify-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
               Sign Out
             </button>
@@ -87,7 +87,7 @@ export default async function AdminLayout({
         <header className="md:hidden flex items-center justify-between p-4 border-b border-border bg-card/30">
           <h2 className="text-lg font-bold text-primary">Admin</h2>
           <form action={handleSignOut}>
-            <button className="text-sm text-red-500 p-2 rounded-lg bg-red-500/10">Sign Out</button>
+            <button className="text-sm text-destructive p-2 rounded-lg bg-destructive/10">Sign Out</button>
           </form>
         </header>
 

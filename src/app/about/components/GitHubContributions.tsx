@@ -131,10 +131,10 @@ export default function GitHubContributions() {
   const getLevelColor = (level: number) => {
     const colors = [
       "bg-secondary", // 0 - no contributions
-      "bg-purple-900/80", // 1 - low
-      "bg-purple-700/80", // 2 - medium-low
-      "bg-purple-500/90", // 3 - medium-high
-      "bg-fuchsia-500", // 4 - high
+      "bg-primary/20", // 1 - low
+      "bg-primary/50", // 2 - medium-low
+      "bg-primary/80", // 3 - medium-high
+      "bg-primary", // 4 - high
     ];
     return colors[level] || colors[0];
   };
@@ -152,17 +152,17 @@ export default function GitHubContributions() {
         </p>
       </div>
 
-      <GlassCard accentColor="fuchsia">
+      <GlassCard accentColor="purple">
         {isLoading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="w-8 h-8 border-4 border-fuchsia-500/30 border-t-fuchsia-500 rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
           </div>
         ) : error ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground">{error}</p>
             <button
               onClick={fetchContributions}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors"
+              className="mt-4 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
             >
               Coba Lagi
             </button>

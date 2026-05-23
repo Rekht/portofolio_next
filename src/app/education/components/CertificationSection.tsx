@@ -276,10 +276,10 @@ const CertificationSection: React.FC = () => {
 
   return (
     <div ref={certSectionRef} className="py-12">
-      <GlassCard accentColor="blue" noAnimation>
+      <GlassCard accentColor="purple" noAnimation>
         <div className="relative -mx-8">
           <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-secondary bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-secondary bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 shadow-md"
             onClick={scrollLeft}
             aria-label="Scroll left"
           >
@@ -298,7 +298,7 @@ const CertificationSection: React.FC = () => {
             </svg>
           </button>
           <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-secondary bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 shadow-md"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-secondary bg-opacity-60 rounded-full p-2 cursor-pointer hover:bg-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 shadow-md"
             onClick={scrollRight}
             aria-label="Scroll right"
           >
@@ -329,16 +329,16 @@ const CertificationSection: React.FC = () => {
                   hoveredCard === cert.id ? "scale-102" : ""
                 } ${
                   cert.isEnglish
-                    ? "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 border-[1.5px] border-primary/20 dark:border-primary/40"
+                    ? "bg-gradient-to-br from-primary/5 to-accent-gradient-to/5 dark:from-primary/10 dark:to-accent-gradient-to/10 border-[1.5px] border-primary/20 dark:border-primary/40"
                     : "bg-card/90 dark:bg-gray-800 border border-border dark:border-white/10"
                 }`}
                 onMouseEnter={() => setHoveredCard(cert.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 style={{
                   boxShadow: cert.isEnglish
-                    ? "0 10px 20px -5px rgba(59, 130, 246, 0.15), 0 5px 10px -5px rgba(59, 130, 246, 0.1)"
+                    ? "0 10px 20px -5px var(--tw-shadow-color, rgba(0,0,0,0.1)), 0 5px 10px -5px var(--tw-shadow-color, rgba(0,0,0,0.1))"
                     : hoveredCard === cert.id
-                      ? "0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -5px rgba(0, 0, 0, 0.1), 0 0 10px rgba(59, 130, 246, 0.1)"
+                      ? "0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -5px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05)"
                       : "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
                 }}
               >
@@ -399,7 +399,7 @@ const CertificationSection: React.FC = () => {
                     <h3
                       className={`text-lg font-bold mb-2 line-clamp-2 ${
                         cert.isEnglish
-                          ? "text-blue-950 dark:text-blue-200"
+                          ? "text-primary-foreground dark:text-primary"
                           : "text-foreground dark:text-white"
                       }`}
                     >
@@ -409,8 +409,8 @@ const CertificationSection: React.FC = () => {
                       <span
                         className={`font-medium ${
                           cert.isEnglish
-                            ? "text-blue-700 dark:text-blue-400"
-                            : "text-blue-600 dark:text-blue-400"
+                            ? "text-primary"
+                            : "text-primary"
                         }`}
                       >
                         {cert.issuer}
@@ -490,7 +490,7 @@ const CertificationSection: React.FC = () => {
           <button
             onClick={downloadAllCerts}
             disabled={isDownloading}
-            className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-purple-500 hover:from-primary/90 hover:to-purple-500/90 text-white font-semibold rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 disabled:opacity-60 disabled:cursor-wait"
+            className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to hover:from-accent-gradient-from/90 hover:to-accent-gradient-to/90 text-white font-semibold rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 disabled:opacity-60 disabled:cursor-wait"
           >
             {isDownloading ? (
               <>

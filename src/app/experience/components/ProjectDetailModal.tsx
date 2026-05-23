@@ -78,7 +78,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         className="relative w-full max-w-4xl max-h-[90vh] flex flex-col 
                        bg-card/95 dark:bg-slate-900/95
                        backdrop-blur-xl rounded-3xl border border-border dark:border-white/10 
-                       shadow-2xl shadow-purple-500/10 overflow-hidden"
+                       shadow-2xl shadow-primary/10 overflow-hidden"
         initial={{ opacity: 0, scale: 0.9, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -144,7 +144,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               {project.tags?.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 bg-gradient-to-r from-blue-500/30 to-purple-500/30 
+                  className="px-3 py-1 bg-gradient-to-r from-primary/30 to-accent-gradient-to/30 
                                  backdrop-blur-sm text-white text-xs font-medium rounded-full
                                  border border-white/20"
                 >
@@ -170,7 +170,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             >
               <h3 className="text-lg font-semibold text-foreground dark:text-white/90 mb-3 flex items-center gap-2">
                 <span
-                  className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 
+                  className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-gradient-from to-accent-gradient-to 
                                      flex items-center justify-center text-white text-sm"
                 >
                   📝
@@ -191,7 +191,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               >
                 <h3 className="text-lg font-semibold text-foreground dark:text-white/90 mb-4 flex items-center gap-2">
                   <span
-                    className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 
+                    className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-subtle to-primary 
                                        flex items-center justify-center text-white text-sm"
                   >
                     ✨
@@ -210,7 +210,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                       transition={{ delay: 0.5 + index * 0.05 }}
                     >
                       <span
-                        className="w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 
+                        className="w-5 h-5 rounded-full bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to 
                                            flex items-center justify-center flex-shrink-0 mt-0.5"
                       >
                         <svg
@@ -252,10 +252,10 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 
-                             bg-gradient-to-r from-blue-600 to-purple-600 
+                             bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to 
                              text-white font-medium rounded-full
-                             hover:from-blue-500 hover:to-purple-500 
-                             shadow-lg shadow-purple-500/25 transition-all duration-300"
+                             hover:opacity-90 
+                             shadow-lg shadow-primary/25 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

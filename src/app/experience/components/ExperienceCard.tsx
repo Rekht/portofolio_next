@@ -52,7 +52,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         {/* Card with gradient border effect */}
         <div className="relative group">
           {/* Gradient border glow - subtle futuristic effect */}
-          <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/20 via-purple-500/20 to-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+          <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/20 to-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
 
           {/* Main Card */}
           <div className="relative bg-card/80 backdrop-blur-md border border-border rounded-2xl overflow-hidden">

@@ -278,8 +278,8 @@ const ChatbotWidget: React.FC = () => {
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-card/95 backdrop-blur">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">Z</span>
+                <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span className="text-primary font-bold text-sm">Z</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground text-sm">
@@ -323,8 +323,8 @@ const ChatbotWidget: React.FC = () => {
             >
               {messages.length === 0 && !streamingContent && (
                 <div className="text-center py-8">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">👋</span>
+                  <div className="w-16 h-16 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl text-primary font-semibold">Z.</span>
                   </div>
                   <h4 className="font-semibold text-foreground mb-2">
                     Hi! I&apos;m Restu Assistant

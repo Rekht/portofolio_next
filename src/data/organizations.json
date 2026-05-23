@@ -23,7 +23,9 @@
       "Conducted research and monitoring of more than 15 IT-related competitions, gathering and distributing relevant information to members.",
       "Managed an archive of over 25 competition-related documents, including proposals and other documentation."
     ],
-    "image": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/organization/infinite1.jpg"]
+    "image": [
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/organization/infinite1.jpg"
+    ]
   },
   {
     "id": 3,
@@ -34,6 +36,8 @@
       "Analyzed and visualized more than 10 survey datasets using Excel or Python to support strategic decision making.",
       "Designed and produced over 10 informative infographics based on data analysis results, collaborated with the communication and publication team to ensure consistency and effectiveness in media content."
     ],
-    "image": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/organization/bem1.jpg"]
+    "image": [
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/organization/bem1.jpg"
+    ]
   }
 ]

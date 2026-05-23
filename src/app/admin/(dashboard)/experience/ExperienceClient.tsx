@@ -200,8 +200,8 @@ export default function ExperienceClient({ initialExperience }: { initialExperie
                     <td className="px-4 py-3 text-muted-foreground">{exp.position}</td>
                     <td className="px-4 py-3 text-muted-foreground">{exp.duration}</td>
                     <td className="px-4 py-3 text-right">
-                      <button onClick={() => handleEdit(exp)} className="p-2 text-blue-500 hover:bg-blue-500/10 rounded-lg transition-colors mr-2">Edit</button>
-                      <button onClick={() => handleDelete(exp.id)} className="p-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors">Delete</button>
+                      <button onClick={() => handleEdit(exp)} className="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mr-2">Edit</button>
+                      <button onClick={() => handleDelete(exp.id)} className="p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-colors">Delete</button>
                     </td>
                   </tr>
                 ))

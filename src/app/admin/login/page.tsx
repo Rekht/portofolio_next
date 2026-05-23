@@ -21,11 +21,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-500/20 rounded-full blur-[100px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-accent-gradient-to/20 rounded-full blur-[100px]" />
       
       <div className="w-full max-w-md bg-card/50 backdrop-blur-xl border border-border p-8 rounded-2xl shadow-2xl relative z-10">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to bg-clip-text text-transparent">
             Admin Portal
           </h1>
           <p className="text-muted-foreground mt-2">Sign in to manage your portfolio</p>
@@ -61,7 +61,7 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="p-3 bg-red-500/10 border border-red-500/50 rounded-xl text-red-500 text-sm text-center">
+            <div className="p-3 bg-destructive/10 border border-destructive/50 rounded-xl text-destructive text-sm text-center">
               {error}
             </div>
           )}

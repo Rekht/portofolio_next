@@ -16,7 +16,7 @@ const DarkVeil: React.FC = () => {
           height: "60vh",
           transform: "translate(-40%, -50%)",
           background:
-            "radial-gradient(ellipse at center, rgba(109, 40, 217, 0.18) 0%, rgba(76, 29, 149, 0.07) 30%, rgba(76, 29, 149, 0) 60%)",
+            "radial-gradient(ellipse at center, rgba(220, 100, 90, 0.15) 0%, rgba(160, 60, 55, 0.07) 30%, rgba(160, 60, 55, 0) 60%)",
         }}
       />
 
@@ -29,7 +29,7 @@ const DarkVeil: React.FC = () => {
           width: "55vw",
           height: "55vh",
           background:
-            "radial-gradient(circle at center, rgba(30, 58, 138, 0.10) 0%, rgba(30, 58, 138, 0) 60%)",
+            "radial-gradient(circle at center, rgba(120, 45, 40, 0.08) 0%, rgba(120, 45, 40, 0) 60%)",
         }}
       />
 

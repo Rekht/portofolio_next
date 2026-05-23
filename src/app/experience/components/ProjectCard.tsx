@@ -44,7 +44,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div
           className="w-full h-full rounded-2xl overflow-hidden 
                         bg-card/70 dark:bg-slate-800/40 backdrop-blur-xl 
-                        border border-border dark:border-white/10 hover:border-purple-500/30
+                        border border-border dark:border-white/10 hover:border-primary/30
                         flex flex-col transition-all duration-300"
         >
           {/* Image - takes ~60% of height */}
@@ -61,8 +61,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {/* Text section - takes ~40% */}
           <div className="p-4 flex-[2] flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-1">
-              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              <p className="text-[10px] uppercase tracking-widest text-purple-400/80 font-semibold">
+              <span className="w-2 h-2 bg-primary rounded-full"></span>
+              <p className="text-[10px] uppercase tracking-widest text-primary/80 font-semibold">
                 Project:
               </p>
             </div>
@@ -90,7 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div
           className="w-full h-full rounded-xl overflow-hidden 
                         bg-card/70 dark:bg-slate-800/40 backdrop-blur-xl 
-                        border border-border dark:border-white/10 hover:border-purple-500/30
+                        border border-border dark:border-white/10 hover:border-primary/30
                         flex flex-col transition-all duration-300"
         >
           {/* Image - top section */}
@@ -129,7 +129,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div
         className="w-full h-full rounded-xl overflow-hidden 
                       bg-card/70 dark:bg-slate-800/40 backdrop-blur-xl 
-                      border border-border dark:border-white/10 hover:border-purple-500/30
+                      border border-border dark:border-white/10 hover:border-primary/30
                       flex flex-col transition-all duration-300"
       >
         {/* Image - top, takes most space */}

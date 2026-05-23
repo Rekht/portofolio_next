@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import DarkVeil from "@/components/background/DarkVeil";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
@@ -115,6 +116,7 @@ export default function RootLayout({
           </SmoothScroll>
           <ChatbotWidget />
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>

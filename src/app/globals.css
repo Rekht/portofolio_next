@@ -38,7 +38,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Additional colors */
+  /* Additional semantic colors */
   --color-link: var(--link);
   --color-link-hover: var(--link-hover);
   --color-success: var(--success);
@@ -49,179 +49,250 @@
   --color-tag-bg: var(--tag-bg);
   --color-tag-text: var(--tag-text);
 
+  /* Accent gradient tokens */
+  --color-accent-gradient-from: var(--accent-gradient-from);
+  --color-accent-gradient-to: var(--accent-gradient-to);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-muted: var(--accent-muted);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ============================================
+   ROSE/CORAL PREMIUM PALETTE
+   
+   Primary: Rose/Coral (warm, modern, premium)
+   Neutrals: Cool slate undertone
+   
+   Palette Summary:
+   - Primary:    Rose/Coral  (oklch ~15 hue)
+   - Success:    Soft green  (oklch ~155 hue)
+   - Warning:    Warm amber  (oklch ~80 hue)
+   - Destructive: Red-coral  (oklch ~25 hue)
+   - Neutrals:   Desaturated slate (oklch ~270 hue, low chroma)
+   ============================================ */
+
 :root {
   --radius: 0.625rem;
-  --background: oklch(16% 0.034 265.69); /* Biru gelap sebagai background */
-  --foreground: oklch(98% 0.002 247.9); /* Putih sebagai teks */
-  --card: oklch(23% 0.04 265.69); /* Kartu biru lebih terang */
-  --card-foreground: oklch(98% 0.002 247.9);
-  --popover: oklch(23% 0.04 265.69);
-  --popover-foreground: oklch(98% 0.002 247.9);
-  --primary: oklch(62% 0.19 256.23); /* Biru cerah untuk primary */
-  --primary-foreground: oklch(98% 0.002 247.9);
-  --secondary: oklch(27% 0.033 265.69); /* Biru gelap untuk secondary */
-  --secondary-foreground: oklch(98% 0.002 247.9);
-  --muted: oklch(27% 0.033 265.69);
-  --muted-foreground: oklch(70% 0.01 256.23);
-  --accent: oklch(62% 0.19 256.23);
-  --accent-foreground: oklch(23% 0.04 265.69);
-  --destructive: oklch(57% 0.245 27.325);
-  --border: oklch(30% 0.05 265.69); /* Border biru gelap */
-  --input: oklch(30% 0.05 265.69);
-  --ring: oklch(62% 0.19 256.23);
 
-  /* Additional colors for accent/link/highlight */
-  --link: oklch(
-    65% 0.19 256.23
-  ); /* Biru terang untuk link - replaces text-blue-400 */
-  --link-hover: oklch(
-    72% 0.17 256.23
-  ); /* Biru lebih terang untuk hover - replaces text-blue-300 */
-  --success: oklch(65% 0.17 145); /* Hijau untuk success states */
-  --warning: oklch(75% 0.17 85); /* Kuning/Orange untuk warning */
+  /* Backgrounds */
+  --background: oklch(13% 0.01 270);
+  --foreground: oklch(97% 0.005 270);
 
-  /* Input/Form styling */
-  --input-bg: oklch(
-    23% 0.04 265.69
-  ); /* Background input - replaces bg-slate-800 */
-  --input-border: oklch(
-    33% 0.04 265.69
-  ); /* Border input - replaces border-slate-700 */
-  --placeholder: oklch(50% 0.02 265.69); /* Placeholder text */
+  /* Cards */
+  --card: oklch(17% 0.01 270);
+  --card-foreground: oklch(97% 0.005 270);
 
-  /* Tag/Badge colors */
-  --tag-bg: oklch(27% 0.033 265.69); /* Background tag - replaces bg-white/5 */
-  --tag-text: oklch(75% 0.01 256.23); /* Text tag */
+  /* Popover */
+  --popover: oklch(17% 0.01 270);
+  --popover-foreground: oklch(97% 0.005 270);
+
+  /* Primary: Rose/Coral */
+  --primary: oklch(72% 0.17 15);
+  --primary-foreground: oklch(98% 0.005 270);
+
+  /* Secondary */
+  --secondary: oklch(20% 0.01 270);
+  --secondary-foreground: oklch(97% 0.005 270);
+
+  /* Muted */
+  --muted: oklch(20% 0.01 270);
+  --muted-foreground: oklch(65% 0.01 270);
+
+  /* Accent */
+  --accent: oklch(20% 0.015 15);
+  --accent-foreground: oklch(97% 0.005 270);
+
+  /* Destructive */
+  --destructive: oklch(65% 0.2 25);
+
+  /* Borders & Inputs */
+  --border: oklch(24% 0.015 270);
+  --input: oklch(24% 0.015 270);
+  --ring: oklch(72% 0.17 15);
+
+  /* Links */
+  --link: oklch(72% 0.17 15);
+  --link-hover: oklch(78% 0.15 15);
+
+  /* Status */
+  --success: oklch(72% 0.15 155);
+  --warning: oklch(80% 0.15 80);
+
+  /* Input/Form */
+  --input-bg: oklch(17% 0.01 270);
+  --input-border: oklch(28% 0.015 270);
+  --placeholder: oklch(45% 0.01 270);
+
+  /* Tags */
+  --tag-bg: oklch(22% 0.01 270);
+  --tag-text: oklch(75% 0.01 270);
+
+  /* Accent Gradient */
+  --accent-gradient-from: oklch(72% 0.17 15);
+  --accent-gradient-to: oklch(68% 0.14 40);
+  --accent-subtle: oklch(22% 0.02 15);
+  --accent-muted: oklch(60% 0.08 15);
 
   /* Charts */
-  --chart-1: oklch(64% 0.222 41.116);
-  --chart-2: oklch(60% 0.118 184.704);
-  --chart-3: oklch(39% 0.07 227.392);
-  --chart-4: oklch(82% 0.189 84.429);
-  --chart-5: oklch(76% 0.188 70.08);
+  --chart-1: oklch(72% 0.17 15);
+  --chart-2: oklch(72% 0.15 155);
+  --chart-3: oklch(80% 0.15 80);
+  --chart-4: oklch(68% 0.14 40);
+  --chart-5: oklch(65% 0.2 25);
 
   /* Sidebar */
-  --sidebar: oklch(23% 0.04 265.69);
-  --sidebar-foreground: oklch(98% 0.002 247.9);
-  --sidebar-primary: oklch(62% 0.19 256.23);
-  --sidebar-primary-foreground: oklch(23% 0.04 265.69);
-  --sidebar-accent: oklch(27% 0.033 265.69);
-  --sidebar-accent-foreground: oklch(98% 0.002 247.9);
-  --sidebar-border: oklch(30% 0.05 265.69);
-  --sidebar-ring: oklch(62% 0.19 256.23);
+  --sidebar: oklch(15% 0.01 270);
+  --sidebar-foreground: oklch(97% 0.005 270);
+  --sidebar-primary: oklch(72% 0.17 15);
+  --sidebar-primary-foreground: oklch(17% 0.01 270);
+  --sidebar-accent: oklch(20% 0.01 270);
+  --sidebar-accent-foreground: oklch(97% 0.005 270);
+  --sidebar-border: oklch(24% 0.015 270);
+  --sidebar-ring: oklch(72% 0.17 15);
 }
 
 html.dark {
-  --background: oklch(12% 0.03 265.69); /* Lebih gelap untuk dark mode */
-  --foreground: oklch(98% 0.002 247.9);
-  --card: oklch(18% 0.035 265.69);
-  --card-foreground: oklch(98% 0.002 247.9);
-  --popover: oklch(18% 0.035 265.69);
-  --popover-foreground: oklch(98% 0.002 247.9);
-  --primary: oklch(62% 0.19 256.23);
-  --primary-foreground: oklch(18% 0.035 265.69);
-  --secondary: oklch(22% 0.038 265.69);
-  --secondary-foreground: oklch(98% 0.002 247.9);
-  --muted: oklch(22% 0.038 265.69);
-  --muted-foreground: oklch(80% 0.015 256.23); /* Diperterang untuk kontras (sebelumnya 70%) */
-  --accent: oklch(22% 0.038 265.69);
-  --accent-foreground: oklch(98% 0.002 247.9);
-  --destructive: oklch(70% 0.191 22.216);
-  --border: oklch(25% 0.045 265.69);
-  --input: oklch(25% 0.045 265.69);
-  --ring: oklch(55% 0.016 256.23);
-  --chart-1: oklch(48% 0.243 264.376);
-  --chart-2: oklch(69% 0.17 162.48);
-  --chart-3: oklch(76% 0.188 70.08);
-  --chart-4: oklch(62% 0.265 303.9);
-  --chart-5: oklch(64% 0.246 16.439);
-  --sidebar: oklch(18% 0.035 265.69);
-  --sidebar-foreground: oklch(98% 0.002 247.9);
-  --sidebar-primary: oklch(62% 0.19 256.23);
-  --sidebar-primary-foreground: oklch(98% 0.002 247.9);
-  --sidebar-accent: oklch(22% 0.038 265.69);
-  --sidebar-accent-foreground: oklch(98% 0.002 247.9);
-  --sidebar-border: oklch(25% 0.045 265.69);
-  --sidebar-ring: oklch(55% 0.016 256.23);
-}
+  /* Backgrounds */
+  --background: oklch(11% 0.008 270);
+  --foreground: oklch(97% 0.005 270);
 
-/* Light Theme - Inversi Warna Lengkap */
-html.light {
-  /* Background: gelap → terang */
-  --background: oklch(97% 0.01 265.69); /* Putih kebiruan */
-
-  /* Foreground: putih → biru tua */
-  --foreground: oklch(25% 0.12 256.23); /* Biru tua untuk teks */
-
-  /* Card: gelap → terang */
-  --card: oklch(98% 0.008 265.69); /* Hampir putih dengan hint biru */
-  --card-foreground: oklch(25% 0.12 256.23); /* Biru tua */
+  /* Cards */
+  --card: oklch(15% 0.01 270);
+  --card-foreground: oklch(97% 0.005 270);
 
   /* Popover */
-  --popover: oklch(98% 0.008 265.69);
-  --popover-foreground: oklch(25% 0.12 256.23);
+  --popover: oklch(15% 0.01 270);
+  --popover-foreground: oklch(97% 0.005 270);
 
-  /* Primary: Sleek modern indigo/blue for light theme */
-  --primary: oklch(45% 0.16 260); /* Modern slate-indigo */
-  --primary-foreground: oklch(98% 0.01 265.69); /* Putih */
+  /* Primary: Rose/Coral */
+  --primary: oklch(72% 0.17 15);
+  --primary-foreground: oklch(15% 0.01 270);
 
-  /* Secondary: inversi */
-  --secondary: oklch(92% 0.03 265.69); /* Abu-abu terang kebiruan */
-  --secondary-foreground: oklch(25% 0.12 256.23);
+  /* Secondary */
+  --secondary: oklch(18% 0.01 270);
+  --secondary-foreground: oklch(97% 0.005 270);
 
   /* Muted */
-  --muted: oklch(92% 0.03 265.69);
-  --muted-foreground: oklch(40% 0.08 256.23); /* Biru medium */
+  --muted: oklch(18% 0.01 270);
+  --muted-foreground: oklch(70% 0.01 270);
 
   /* Accent */
-  --accent: oklch(92% 0.03 265.69);
-  --accent-foreground: oklch(25% 0.12 256.23);
+  --accent: oklch(18% 0.015 15);
+  --accent-foreground: oklch(97% 0.005 270);
 
   /* Destructive */
-  --destructive: oklch(55% 0.22 27.325);
+  --destructive: oklch(65% 0.2 25);
 
-  /* Border: gelap → terang */
-  --border: oklch(85% 0.03 265.69);
-  --input: oklch(85% 0.03 265.69);
-  --ring: oklch(50% 0.22 256.23);
+  /* Borders & Inputs */
+  --border: oklch(22% 0.012 270);
+  --input: oklch(22% 0.012 270);
+  --ring: oklch(72% 0.17 15);
 
-  /* Additional colors - LIGHT MODE */
-  --link: oklch(48% 0.16 260); /* Biru modern untuk kontras ringan */
-  --link-hover: oklch(40% 0.16 260); /* Biru hover yang elegan */
-  --success: oklch(45% 0.17 145); /* Hijau lebih gelap */
-  --warning: oklch(55% 0.17 85); /* Orange lebih gelap */
-
-  /* Input/Form styling - LIGHT MODE */
-  --input-bg: oklch(98% 0.008 265.69); /* Putih dengan hint biru */
-  --input-border: oklch(85% 0.03 265.69); /* Border terang */
-  --placeholder: oklch(60% 0.03 265.69); /* Placeholder abu-abu medium */
-
-  /* Tag/Badge colors - LIGHT MODE */
-  --tag-bg: oklch(92% 0.03 265.69); /* Background tag terang */
-  --tag-text: oklch(35% 0.1 256.23); /* Text tag biru gelap */
+  /* Accent Gradient */
+  --accent-gradient-from: oklch(72% 0.17 15);
+  --accent-gradient-to: oklch(68% 0.14 40);
+  --accent-subtle: oklch(20% 0.02 15);
+  --accent-muted: oklch(55% 0.08 15);
 
   /* Charts */
-  --chart-1: oklch(55% 0.22 41.116);
-  --chart-2: oklch(50% 0.15 184.704);
-  --chart-3: oklch(35% 0.08 227.392);
-  --chart-4: oklch(70% 0.18 84.429);
-  --chart-5: oklch(65% 0.18 70.08);
+  --chart-1: oklch(72% 0.17 15);
+  --chart-2: oklch(72% 0.15 155);
+  --chart-3: oklch(80% 0.15 80);
+  --chart-4: oklch(68% 0.14 40);
+  --chart-5: oklch(65% 0.2 25);
 
-  /* Sidebar: inversi */
-  --sidebar: oklch(95% 0.015 265.69);
-  --sidebar-foreground: oklch(25% 0.12 256.23);
-  --sidebar-primary: oklch(45% 0.16 260);
-  --sidebar-primary-foreground: oklch(98% 0.01 265.69);
-  --sidebar-accent: oklch(90% 0.025 265.69);
-  --sidebar-accent-foreground: oklch(25% 0.12 256.23);
-  --sidebar-border: oklch(85% 0.03 265.69);
-  --sidebar-ring: oklch(45% 0.16 260);
+  /* Sidebar */
+  --sidebar: oklch(13% 0.008 270);
+  --sidebar-foreground: oklch(97% 0.005 270);
+  --sidebar-primary: oklch(72% 0.17 15);
+  --sidebar-primary-foreground: oklch(97% 0.005 270);
+  --sidebar-accent: oklch(18% 0.01 270);
+  --sidebar-accent-foreground: oklch(97% 0.005 270);
+  --sidebar-border: oklch(22% 0.012 270);
+  --sidebar-ring: oklch(72% 0.17 15);
+}
+
+/* Light Theme */
+html.light {
+  /* Background */
+  --background: oklch(97% 0.005 15);
+  --foreground: oklch(20% 0.02 15);
+
+  /* Cards */
+  --card: oklch(99% 0.003 15);
+  --card-foreground: oklch(20% 0.02 15);
+
+  /* Popover */
+  --popover: oklch(99% 0.003 15);
+  --popover-foreground: oklch(20% 0.02 15);
+
+  /* Primary: Deeper rose for light mode contrast */
+  --primary: oklch(55% 0.2 15);
+  --primary-foreground: oklch(98% 0.005 15);
+
+  /* Secondary */
+  --secondary: oklch(95% 0.005 15);
+  --secondary-foreground: oklch(20% 0.02 15);
+
+  /* Muted */
+  --muted: oklch(94% 0.005 15);
+  --muted-foreground: oklch(45% 0.02 15);
+
+  /* Accent */
+  --accent: oklch(95% 0.01 15);
+  --accent-foreground: oklch(20% 0.02 15);
+
+  /* Destructive */
+  --destructive: oklch(55% 0.22 25);
+
+  /* Borders & Inputs */
+  --border: oklch(88% 0.01 15);
+  --input: oklch(88% 0.01 15);
+  --ring: oklch(55% 0.2 15);
+
+  /* Links */
+  --link: oklch(55% 0.2 15);
+  --link-hover: oklch(48% 0.18 15);
+
+  /* Status */
+  --success: oklch(50% 0.15 155);
+  --warning: oklch(60% 0.15 80);
+
+  /* Input/Form */
+  --input-bg: oklch(99% 0.003 15);
+  --input-border: oklch(88% 0.01 15);
+  --placeholder: oklch(60% 0.01 15);
+
+  /* Tags */
+  --tag-bg: oklch(94% 0.005 15);
+  --tag-text: oklch(35% 0.02 15);
+
+  /* Accent Gradient */
+  --accent-gradient-from: oklch(55% 0.2 15);
+  --accent-gradient-to: oklch(52% 0.16 40);
+  --accent-subtle: oklch(95% 0.015 15);
+  --accent-muted: oklch(50% 0.1 15);
+
+  /* Charts */
+  --chart-1: oklch(55% 0.2 15);
+  --chart-2: oklch(50% 0.15 155);
+  --chart-3: oklch(60% 0.15 80);
+  --chart-4: oklch(52% 0.16 40);
+  --chart-5: oklch(55% 0.22 25);
+
+  /* Sidebar */
+  --sidebar: oklch(96% 0.005 15);
+  --sidebar-foreground: oklch(20% 0.02 15);
+  --sidebar-primary: oklch(55% 0.2 15);
+  --sidebar-primary-foreground: oklch(98% 0.005 15);
+  --sidebar-accent: oklch(93% 0.008 15);
+  --sidebar-accent-foreground: oklch(20% 0.02 15);
+  --sidebar-border: oklch(88% 0.01 15);
+  --sidebar-ring: oklch(55% 0.2 15);
 }
 
 @layer base {

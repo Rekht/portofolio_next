@@ -37,7 +37,7 @@ export default function AnalyticsPage() {
         <div className="w-full px-section">
           <section className="py-16 text-center">
             <div className="hero-content max-w-6xl mx-auto w-full text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to bg-clip-text text-transparent">
                 Monitoring Website
               </h1>
               <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed mb-12">

@@ -44,7 +44,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const circleColor = useTransform(
     scrollYProgress,
     [0, 1],
-    ["#374151", "#3B82F6"] // gray-700 → blue-500
+    ["var(--color-border)", "var(--color-primary)"] 
   );
 
   return (
@@ -88,7 +88,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-accent-gradient-from via-accent-gradient-to to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>

@@ -29,7 +29,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl px-4 py-3 shadow-xl">
-        <p className="text-cyan-700 dark:text-cyan-400 font-medium text-sm">
+        <p className="text-primary font-medium text-sm">
           {label}
         </p>
         <p className="text-foreground font-bold text-lg">
@@ -104,8 +104,8 @@ export default function VisitorStats() {
               onClick={() => setView(v.key as "day" | "month" | "year")}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 view === v.key
-                  ? "bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border border-cyan-500/50"
-                  : "text-muted-foreground hover:text-cyan-700 dark:hover:text-cyan-400 hover:bg-accent"
+                  ? "bg-primary/20 text-primary border border-primary/50"
+                  : "text-muted-foreground hover:text-primary hover:bg-accent"
               }`}
             >
               {v.label}
@@ -119,12 +119,12 @@ export default function VisitorStats() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/20 rounded-2xl p-5"
+            className="bg-gradient-to-br from-primary/20 to-accent-gradient-to/10 border border-primary/20 rounded-2xl p-5"
           >
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-cyan-500/20 rounded-lg">
+              <div className="p-2 bg-primary/20 rounded-lg">
                 <svg
-                  className="w-5 h-5 text-cyan-700 dark:text-cyan-400"
+                  className="w-5 h-5 text-primary"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -150,12 +150,12 @@ export default function VisitorStats() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/20 rounded-2xl p-5"
+            className="bg-gradient-to-br from-accent-gradient-from/20 to-accent-gradient-to/10 border border-primary/20 rounded-2xl p-5"
           >
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-purple-500/20 rounded-lg">
+              <div className="p-2 bg-primary/20 rounded-lg">
                 <svg
-                  className="w-5 h-5 text-purple-700 dark:text-purple-400"
+                  className="w-5 h-5 text-primary"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -192,7 +192,7 @@ export default function VisitorStats() {
           {isLoading ? (
             <div className="flex items-center justify-center h-[300px]">
               <div className="flex flex-col items-center gap-3">
-                <div className="w-10 h-10 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
+                <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
                 <p className="text-muted-foreground">Loading data...</p>
               </div>
             </div>

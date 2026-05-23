@@ -75,15 +75,15 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
                 onMouseLeave={handleMouseLeave}
                 className={`relative w-14 h-14 rounded-full transition-all duration-300 flex-shrink-0 border ${
                   activeFilter === filter
-                    ? "scale-110 shadow-lg shadow-purple-500/40 border-purple-400/50"
-                    : "hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 border-white/20 hover:border-purple-400/40"
+                    ? "scale-110 shadow-lg shadow-primary/40 border-primary/50"
+                    : "hover:scale-105 hover:shadow-lg hover:shadow-primary/30 border-white/20 hover:border-primary/40"
                 }`}
                 style={{
                   overflow: "visible",
                   background:
                     activeFilter === filter
-                      ? "linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%)"
-                      : "linear-gradient(135deg, #1e3a5f 0%, #312e81 50%, #4c1d95 100%)",
+                      ? "linear-gradient(135deg, var(--color-accent-gradient-from) 0%, var(--color-primary) 50%, var(--color-accent-gradient-to) 100%)"
+                      : "linear-gradient(135deg, var(--color-muted) 0%, var(--color-card) 100%)",
                 }}
               >
                 <Image
@@ -94,7 +94,10 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
                   className="w-6 h-6 m-auto pointer-events-none"
                   draggable={false}
                   style={{
-                    filter: "brightness(0) invert(1)",
+                    filter:
+                      activeFilter === filter
+                        ? "brightness(0) invert(1)"
+                        : "brightness(0) saturate(100%) invert(34%) sepia(51%) saturate(5453%) hue-rotate(328deg) brightness(101%) contrast(95%)",
                   }}
                 />
               </button>

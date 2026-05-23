@@ -119,7 +119,7 @@ export default function Guestbook() {
         >
           {isLoading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="w-8 h-8 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
+              <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
             </div>
           ) : messages.length === 0 ? (
             <div className="text-center py-8">
@@ -140,8 +140,8 @@ export default function Guestbook() {
                   key={`${msg.id}-${index}`}
                   className={`flex-shrink-0 w-[300px] bg-card/60 border rounded-xl p-4 backdrop-blur-sm transition-all duration-300 cursor-pointer ${
                     hoveredId === msg.id
-                      ? "border-purple-500/70 scale-105 shadow-lg shadow-purple-500/20"
-                      : "border-border hover:border-purple-500/50"
+                      ? "border-primary/70 scale-105 shadow-lg shadow-primary/20"
+                      : "border-border hover:border-primary/50"
                   }`}
                   onMouseEnter={() => setHoveredId(msg.id)}
                   onMouseLeave={() => setHoveredId(null)}
@@ -150,7 +150,7 @@ export default function Guestbook() {
                     {msg.message}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-purple-400 font-medium text-sm">
+                    <span className="text-primary font-medium text-sm">
                       {msg.name}
                     </span>
                     <span className="text-muted-foreground text-xs">
@@ -167,7 +167,7 @@ export default function Guestbook() {
         <div className="text-center">
           <button
             onClick={() => setShowModal(true)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
+            className="px-6 py-3 bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to hover:from-accent-gradient-from/90 hover:to-accent-gradient-to/90 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-primary/40"
           >
             Leave a Message
           </button>
@@ -205,7 +205,7 @@ export default function Guestbook() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name..."
-                    className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-xl text-foreground placeholder:text-placeholder focus:outline-none focus:border-purple-500/50 transition-colors"
+                    className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-xl text-foreground placeholder:text-placeholder focus:outline-none focus:border-primary/50 transition-colors"
                     required
                   />
                 </div>
@@ -219,7 +219,7 @@ export default function Guestbook() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Write your message..."
                     rows={4}
-                    className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-xl text-foreground placeholder:text-placeholder focus:outline-none focus:border-purple-500/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-xl text-foreground placeholder:text-placeholder focus:outline-none focus:border-primary/50 transition-colors resize-none"
                     required
                   />
                 </div>
@@ -235,7 +235,7 @@ export default function Guestbook() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-500 hover:to-purple-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-4 py-3 bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to text-white rounded-xl hover:from-accent-gradient-from/90 hover:to-accent-gradient-to/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? "Sending..." : "Send"}
                   </button>

@@ -115,7 +115,7 @@ export default function FileUpload({ folder, onUploadComplete, filename, accept 
       )}
 
       {error && (
-        <div className="absolute bottom-2 flex items-center gap-1 text-xs text-red-500 bg-red-500/10 px-2 py-1 rounded">
+        <div className="absolute bottom-2 flex items-center gap-1 text-xs text-destructive bg-destructive/10 px-2 py-1 rounded">
           <AlertCircle className="w-3 h-3" /> {error}
         </div>
       )}

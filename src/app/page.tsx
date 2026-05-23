@@ -24,7 +24,6 @@ import {
 // Components
 import Navigation from "@/components/Navigation";
 import CvModal from "@/app/about/components/CvModal";
-import ProfileSection from "@/components/ProfileSection";
 // DarkVeil moved to layout.tsx — single instance for all pages
 import HeroSection from "@/components/HeroSection";
 
@@ -115,15 +114,11 @@ export default function HomePage() {
       <main className="relative z-10">
         <div className="h-20"></div>
 
-        {/* Hero Section - fullscreen */}
-        <HeroSection />
+        {/* Unified Hero Section */}
+        <HeroSection onShowCVModal={handleShowCVModal} />
 
-        {/* Profile Section */}
+        {/* Content Section */}
         <div className="w-full px-section">
-          <ProfileSection
-            onShowCVModal={handleShowCVModal}
-            onScrollDown={handleScrollDown}
-          />
 
           {/* Experience Preview Section */}
           <section className="py-16" id="experience-preview">

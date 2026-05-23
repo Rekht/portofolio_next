@@ -10,6 +10,7 @@ import experienceDataFallback from "@/data/experience.json";
 import projectsDataFallback from "@/data/projects.json";
 import { useSupabaseData } from "@/hooks/useSupabaseData";
 import { fetchExperience, fetchProjects } from "@/lib/data";
+import { parseDateFromPeriod } from "@/lib/utils";
 
 interface Experience {
   id: number;
@@ -26,8 +27,13 @@ const ExperiencePreview: React.FC = () => {
   const experienceData = useSupabaseData(fetchExperience, experienceDataFallback as Experience[]);
   const projectsData = useSupabaseData(fetchProjects, projectsDataFallback);
 
-  // Get first 2 experiences
-  const experiences = (experienceData as Experience[]).slice(0, 2);
+  // Sort experiences and get first 2
+  const sortedExperiences = [...(experienceData as Experience[])].sort((a, b) => {
+    const dateA = parseDateFromPeriod(a.duration);
+    const dateB = parseDateFromPeriod(b.duration);
+    return dateB.getTime() - dateA.getTime();
+  });
+  const experiences = sortedExperiences.slice(0, 2);
 
   // Get first 3 projects for FocusCards
   const projects = projectsData.slice(0, 3).map((project) => ({
@@ -80,7 +86,7 @@ const ExperiencePreview: React.FC = () => {
       {/* Timeline Experience Cards */}
       <div className="relative mb-12">
         {/* Timeline line */}
-        <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-transparent" />
+        <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-gradient-from via-accent-gradient-to to-transparent" />
 
         <div className="space-y-6">
           {experiences.map((exp, index) => (
@@ -93,7 +99,7 @@ const ExperiencePreview: React.FC = () => {
               className="relative pl-10"
             >
               {/* Timeline dot */}
-              <div className="absolute left-0 top-6 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 border-4 border-black/50 z-10" />
+              <div className="absolute left-0 top-6 w-6 h-6 rounded-full bg-gradient-to-br from-accent-gradient-from to-accent-gradient-to border-4 border-black/50 z-10" />
 
               <GlassCard
                 accentColor="blue"
@@ -105,7 +111,7 @@ const ExperiencePreview: React.FC = () => {
                     <h3 className="text-xl font-bold text-foreground mb-1">
                       {exp.position}
                     </h3>
-                    <h4 className="text-blue-400 font-medium mb-2">
+                    <h4 className="text-link font-medium mb-2">
                       {exp.company}
                     </h4>
                     {exp.location && (
@@ -125,7 +131,7 @@ const ExperiencePreview: React.FC = () => {
                       </p>
                     )}
                   </div>
-                  <span className="inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-primary px-4 py-1.5 rounded-full text-sm font-medium border border-blue-500/30 whitespace-nowrap">
+                  <span className="inline-block bg-gradient-to-r from-primary/15 to-accent-gradient-to/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 whitespace-nowrap">
                     {exp.duration}
                   </span>
                 </div>
@@ -163,7 +169,7 @@ const ExperiencePreview: React.FC = () => {
       >
         <h3 className="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
           <svg
-            className="w-5 h-5 text-purple-400"
+            className="w-5 h-5 text-primary"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

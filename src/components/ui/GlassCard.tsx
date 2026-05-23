@@ -17,39 +17,21 @@ const accentColors: Record<
   AccentColor,
   { primary: string; secondary: string }
 > = {
-  purple: {
-    primary: "bg-purple-500/10",
-    secondary: "bg-cyan-500/10",
-  },
-  cyan: {
-    primary: "bg-cyan-500/10",
-    secondary: "bg-purple-500/10",
-  },
-  fuchsia: {
-    primary: "bg-fuchsia-500/10",
-    secondary: "bg-purple-500/10",
-  },
-  blue: {
-    primary: "bg-blue-500/10",
-    secondary: "bg-indigo-500/10",
-  },
-  green: {
-    primary: "bg-green-500/10",
-    secondary: "bg-emerald-500/10",
-  },
-  orange: {
-    primary: "bg-orange-500/10",
-    secondary: "bg-amber-500/10",
-  },
+  purple: { primary: "bg-primary/10", secondary: "bg-primary/5" },
+  cyan: { primary: "bg-primary/10", secondary: "bg-primary/5" },
+  fuchsia: { primary: "bg-primary/10", secondary: "bg-primary/5" },
+  blue: { primary: "bg-primary/10", secondary: "bg-primary/5" },
+  green: { primary: "bg-success/10", secondary: "bg-success/5" },
+  orange: { primary: "bg-warning/10", secondary: "bg-warning/5" },
 };
 
 const accentGradients: Record<AccentColor, string> = {
-  purple: "from-purple-500/5 to-cyan-500/5",
-  cyan: "from-cyan-500/5 to-purple-500/5",
-  fuchsia: "from-fuchsia-500/5 to-purple-500/5",
-  blue: "from-blue-500/5 to-indigo-500/5",
-  green: "from-green-500/5 to-emerald-500/5",
-  orange: "from-orange-500/5 to-amber-500/5",
+  purple: "from-primary/5 to-accent-gradient-to/5",
+  cyan: "from-primary/5 to-accent-gradient-to/5",
+  fuchsia: "from-primary/5 to-accent-gradient-to/5",
+  blue: "from-primary/5 to-accent-gradient-to/5",
+  green: "from-success/5 to-success/5",
+  orange: "from-warning/5 to-warning/5",
 };
 
 export default function GlassCard({

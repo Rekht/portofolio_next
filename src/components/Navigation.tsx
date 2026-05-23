@@ -186,12 +186,22 @@ const Navigation: React.FC<NavigationProps> = ({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Image
-                src="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png"
-                alt="Logo"
-                width={36}
-                height={36}
-                className="rounded-lg dark:invert-0 invert"
+              <div
+                className={`w-[36px] h-[36px] transition-colors duration-300 ${
+                  activePage === "home"
+                    ? "bg-primary"
+                    : "bg-foreground hover:bg-primary"
+                }`}
+                style={{
+                  WebkitMaskImage: `url(https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png)`,
+                  maskImage: `url(https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png)`,
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
               />
             </motion.div>
           </TransitionLink>
@@ -227,7 +237,7 @@ const Navigation: React.FC<NavigationProps> = ({
                     {/* Active indicator */}
                     {isActive && (
                       <motion.div
-                        className="absolute -left-3 w-1 h-4 bg-blue-500 rounded-r-full"
+                        className="absolute -left-3 w-1 h-4 bg-primary rounded-r-full"
                         layoutId="activeIndicator"
                         transition={{
                           type: "spring",
@@ -282,7 +292,7 @@ const Navigation: React.FC<NavigationProps> = ({
               <AnalyticsIcon />
               {activePage === "analytics" && (
                 <motion.div
-                  className="absolute -left-3 w-1 h-4 bg-blue-500 rounded-r-full"
+                  className="absolute -left-3 w-1 h-4 bg-primary rounded-r-full"
                   layoutId="activeIndicator"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
@@ -341,12 +351,22 @@ const Navigation: React.FC<NavigationProps> = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Image
-                  src="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png"
-                  alt="Logo"
-                  width={36}
-                  height={36}
-                  className="rounded-full dark:invert-0 invert"
+                <div
+                  className={`w-[36px] h-[36px] transition-colors duration-300 ${
+                    activePage === "home"
+                      ? "bg-primary"
+                      : "bg-foreground hover:bg-primary"
+                  }`}
+                  style={{
+                    WebkitMaskImage: `url(https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png)`,
+                    maskImage: `url(https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/logo.png)`,
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
+                  }}
                 />
               </motion.div>
             </TransitionLink>

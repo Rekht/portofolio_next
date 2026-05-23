@@ -4,7 +4,7 @@
     "company": "PT Rakamin Kolektif Madani",
     "position": "Data Analyst (MagangHub Internship)",
     "duration": "Nov 2025 - Present",
-    "location": "Remote",
+    "location": "Jakarta, Indonesian (Remote)",
     "description": [
       "Implemented LLM-based job description matching to map job descriptions against Mercer Job Architecture data for standardized role classification and benchmarking",
       "Developed custom Google Apps Script automations for clients to streamline data processing and significantly improve workflow efficiency in Google Sheets",
@@ -48,7 +48,9 @@
       "Statistical Analysis",
       "Data Validation"
     ],
-    "images": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/freelance1.png"]
+    "images": [
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/freelance1.png"
+    ]
   },
   {
     "id": 3,
@@ -68,7 +70,9 @@
       "Document Formatting",
       "Quality Control"
     ],
-    "images": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/tracer1.png"]
+    "images": [
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/tracer1.png"
+    ]
   },
   {
     "id": 4,
@@ -89,6 +93,34 @@
       "Digital Documentation",
       "Web Design"
     ],
-    "images": ["https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/ppko1.png", "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/ppko2.png"]
+    "images": [
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/ppko1.png",
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/ppko2.png"
+    ]
+  },
+  {
+    "id": 5,
+    "company": "Shipd",
+    "position": "Machine Learning Contributor (Freelance) ",
+    "duration": "Mar 2026 - Present",
+    "location": "San Francisco, USA (Remote)",
+    "description": [
+      "• Developed original machine learning benchmark challenges by conducting independent dataset research and identifying novel problem statements to critically evaluate the reasoning limits of frontier AI models.",
+      "• Developed comprehensive technical rubrics covering data handling, validation strategies, and code quality to establish objective performance standards and ensure all challenges met rigorous platform evaluation criteria.",
+      "• Executed advanced solutions for diverse technical challenges by optimizing model architectures and methodologies to consistently surpass performance thresholds and achieve maximum results on global",
+      "leaderboards."
+    ],
+    "technologies": [
+      "Machine Learning",
+      "Deep Learning",
+      "LLM",
+      "Computer Vision",
+      "Prompt Enginering",
+      "Object Detection"
+    ],
+    "images": [
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/1777129177550-n5s4dq9s77o.png",
+      "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/experience/1777129190551-74g3ayzuzzc.png"
+    ]
   }
 ]

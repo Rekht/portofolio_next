@@ -156,8 +156,8 @@ export default function EducationClient({ initialEducation }: { initialEducation
                     <td className="px-4 py-3 text-muted-foreground">{edu.institution}</td>
                     <td className="px-4 py-3 text-muted-foreground">{edu.period}</td>
                     <td className="px-4 py-3 text-right">
-                      <button onClick={() => handleEdit(edu)} className="p-2 text-blue-500 hover:bg-blue-500/10 rounded-lg transition-colors mr-2">Edit</button>
-                      <button onClick={() => handleDelete(edu.id)} className="p-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors">Delete</button>
+                      <button onClick={() => handleEdit(edu)} className="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mr-2">Edit</button>
+                      <button onClick={() => handleDelete(edu.id)} className="p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-colors">Delete</button>
                     </td>
                   </tr>
                 ))
