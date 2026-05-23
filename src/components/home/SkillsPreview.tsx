@@ -115,8 +115,8 @@ const SkillsPreview: React.FC = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Object.entries(skills).map(([key, category], categoryIndex) => {
           const colors = colorMap[category.color] || colorMap.blue;
-          // Unify the background glow to the primary theme color (mapped via 'purple' in GlassCard)
-          const glassColor = "purple";
+          // Unify the background glow to the primary Gold theme
+          const glassColor = "primary";
 
           return (
             <motion.div
@@ -125,24 +125,15 @@ const SkillsPreview: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.1, duration: 0.4 }}
+              className={`text-center ${key === "geospatial" ? "md:col-start-1 lg:col-start-2" : ""}`}
             >
-              <GlassCard
-                accentColor={glassColor}
-                noAnimation
-                className="h-full hover:scale-[1.02] transition-transform"
-              >
-                {/* Category Header */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span
-                    className={`w-3 h-3 rounded-full ${colors.bg} ${colors.border} border`}
-                  />
-                  <h3 className={`font-semibold ${colors.text}`}>
-                    {category.title}
-                  </h3>
-                </div>
+              {/* Category Header */}
+              <h3 className="text-xl font-bold text-foreground mb-4">
+                {category.title}
+              </h3>
 
-                {/* Skills */}
-                <div className="flex flex-wrap gap-3">
+              {/* Skills */}
+              <div className="flex flex-wrap justify-center gap-3">
                   {(() => {
                     // Inject missing skills & map old names
                     let displayTechs = [...category.technologies];
@@ -187,7 +178,6 @@ const SkillsPreview: React.FC = () => {
                     });
                   })()}
                 </div>
-              </GlassCard>
             </motion.div>
           );
         })}

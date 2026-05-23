@@ -201,7 +201,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
       <AnimatePresence>
         {isImageModalOpen && hasImages && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 dark:bg-black/90 backdrop-blur-md p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-md p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -209,11 +209,11 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           >
             {/* Close */}
             <button
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 flex items-center justify-center transition-colors z-50"
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition-colors z-50"
               onClick={() => setIsImageModalOpen(false)}
             >
               <svg
-                className="w-6 h-6 text-foreground dark:text-white"
+                className="w-6 h-6 text-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -231,7 +231,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
             {images.length > 1 && (
               <>
                 <button
-                  className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 flex items-center justify-center transition-colors z-50"
+                  className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition-colors z-50"
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveImageIndex((prev) =>
@@ -240,7 +240,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                   }}
                 >
                   <svg
-                    className="w-6 h-6 text-foreground dark:text-white"
+                    className="w-6 h-6 text-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -254,7 +254,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                   </svg>
                 </button>
                 <button
-                  className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 flex items-center justify-center transition-colors z-50"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition-colors z-50"
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveImageIndex((prev) =>
@@ -263,7 +263,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                   }}
                 >
                   <svg
-                    className="w-6 h-6 text-foreground dark:text-white"
+                    className="w-6 h-6 text-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -299,7 +299,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 
             {/* Counter */}
             {images.length > 1 && (
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full text-foreground dark:text-white text-sm font-medium">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/10 backdrop-blur-sm rounded-full text-foreground text-sm font-medium">
                 {activeImageIndex + 1} / {images.length}
               </div>
             )}

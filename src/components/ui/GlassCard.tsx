@@ -3,7 +3,7 @@
 import { motion, HTMLMotionProps } from "framer-motion";
 import { ReactNode } from "react";
 
-type AccentColor = "purple" | "cyan" | "fuchsia" | "blue" | "green" | "orange";
+type AccentColor = "primary" | "purple" | "cyan" | "fuchsia" | "blue" | "green" | "orange";
 
 interface GlassCardProps extends Omit<HTMLMotionProps<"div">, "children"> {
   children: ReactNode;
@@ -17,26 +17,28 @@ const accentColors: Record<
   AccentColor,
   { primary: string; secondary: string }
 > = {
+  primary: { primary: "bg-primary/10", secondary: "bg-primary/5" },
   purple: { primary: "bg-primary/10", secondary: "bg-primary/5" },
   cyan: { primary: "bg-primary/10", secondary: "bg-primary/5" },
   fuchsia: { primary: "bg-primary/10", secondary: "bg-primary/5" },
   blue: { primary: "bg-primary/10", secondary: "bg-primary/5" },
-  green: { primary: "bg-success/10", secondary: "bg-success/5" },
-  orange: { primary: "bg-warning/10", secondary: "bg-warning/5" },
+  green: { primary: "bg-primary/10", secondary: "bg-primary/5" },
+  orange: { primary: "bg-primary/10", secondary: "bg-primary/5" },
 };
 
 const accentGradients: Record<AccentColor, string> = {
+  primary: "from-primary/5 to-accent-gradient-to/5",
   purple: "from-primary/5 to-accent-gradient-to/5",
   cyan: "from-primary/5 to-accent-gradient-to/5",
   fuchsia: "from-primary/5 to-accent-gradient-to/5",
   blue: "from-primary/5 to-accent-gradient-to/5",
-  green: "from-success/5 to-success/5",
-  orange: "from-warning/5 to-warning/5",
+  green: "from-primary/5 to-accent-gradient-to/5",
+  orange: "from-primary/5 to-accent-gradient-to/5",
 };
 
 export default function GlassCard({
   children,
-  accentColor = "purple",
+  accentColor = "primary",
   className = "",
   noPadding = false,
   noAnimation = false,

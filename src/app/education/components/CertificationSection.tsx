@@ -329,8 +329,8 @@ const CertificationSection: React.FC = () => {
                   hoveredCard === cert.id ? "scale-102" : ""
                 } ${
                   cert.isEnglish
-                    ? "bg-gradient-to-br from-primary/5 to-accent-gradient-to/5 dark:from-primary/10 dark:to-accent-gradient-to/10 border-[1.5px] border-primary/20 dark:border-primary/40"
-                    : "bg-card/90 dark:bg-gray-800 border border-border dark:border-white/10"
+                    ? "bg-gradient-to-br from-primary/5 to-accent-gradient-to/5 border-[1.5px] border-primary/20"
+                    : "bg-card/90 border border-border"
                 }`}
                 onMouseEnter={() => setHoveredCard(cert.id)}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -344,7 +344,7 @@ const CertificationSection: React.FC = () => {
               >
                 <div className="flex flex-col h-full">
                   <div
-                    className={`${cert.isEnglish ? "bg-transparent" : "bg-card/90 dark:bg-gray-800 border-x border-t border-border"} relative overflow-hidden`}
+                    className={`${cert.isEnglish ? "bg-transparent" : "bg-card/90 border-x border-t border-border"} relative overflow-hidden`}
                     style={{
                       borderTopLeftRadius: "24px",
                       borderTopRightRadius: "24px",
@@ -370,7 +370,7 @@ const CertificationSection: React.FC = () => {
                       )}
 
                       {imageErrors[cert.id] && (
-                        <div className="w-full h-44 flex items-center justify-center text-muted-foreground dark:text-gray-500">
+                        <div className="w-full h-44 flex items-center justify-center text-muted-foreground">
                           <svg
                             className="w-16 h-16"
                             fill="none"
@@ -390,7 +390,7 @@ const CertificationSection: React.FC = () => {
                   </div>
 
                   <div
-                    className={`p-6 flex-grow flex flex-col cert-content ${cert.isEnglish ? "bg-transparent" : "bg-card/90 dark:bg-gray-800 border-x border-b border-border"}`}
+                    className={`p-6 flex-grow flex flex-col cert-content ${cert.isEnglish ? "bg-transparent" : "bg-card/90 border-x border-b border-border"}`}
                     style={{
                       borderBottomLeftRadius: "24px",
                       borderBottomRightRadius: "24px",
@@ -399,8 +399,8 @@ const CertificationSection: React.FC = () => {
                     <h3
                       className={`text-lg font-bold mb-2 line-clamp-2 ${
                         cert.isEnglish
-                          ? "text-primary-foreground dark:text-primary"
-                          : "text-foreground dark:text-white"
+                          ? "text-primary-foreground"
+                          : "text-foreground"
                       }`}
                     >
                       {cert.title_en}
@@ -416,7 +416,7 @@ const CertificationSection: React.FC = () => {
                         {cert.issuer}
                       </span>
                     </div>
-                    <div className="flex items-center text-muted-foreground dark:text-gray-400 text-sm mb-1">
+                    <div className="flex items-center text-muted-foreground text-sm mb-1">
                       <svg
                         className="w-4 h-4 mr-1 flex-shrink-0"
                         fill="none"
@@ -432,7 +432,7 @@ const CertificationSection: React.FC = () => {
                       </svg>
                       <span>Valid: {cert.date}</span>
                     </div>
-                    <div className="flex items-center text-muted-foreground dark:text-gray-400 text-xs mb-4">
+                    <div className="flex items-center text-muted-foreground text-xs mb-4">
                       <svg
                         className="w-3.5 h-3.5 mr-1 flex-shrink-0"
                         fill="none"

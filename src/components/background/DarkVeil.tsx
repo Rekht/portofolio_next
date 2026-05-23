@@ -7,7 +7,7 @@ const DarkVeil: React.FC = () => {
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-background transition-colors duration-500">
       {/* ===== DARK MODE GLOWS ===== */}
       
-      {/* Main rose/coral glow — center-top area */}
+      {/* Main Gold glow — center-top area */}
       <div
         className="absolute hidden dark:block darkveil-glow-main"
         style={{
@@ -16,11 +16,11 @@ const DarkVeil: React.FC = () => {
           width: "70vw",
           height: "55vh",
           background:
-            "radial-gradient(ellipse at center, rgba(220, 100, 90, 0.18) 0%, rgba(180, 70, 65, 0.08) 35%, transparent 65%)",
+            "radial-gradient(ellipse at center, rgba(230, 180, 50, 0.15) 0%, rgba(200, 150, 40, 0.06) 35%, transparent 65%)",
         }}
       />
 
-      {/* Secondary warm glow — bottom-right */}
+      {/* Secondary warm gold glow — bottom-right */}
       <div
         className="absolute hidden dark:block darkveil-glow-secondary"
         style={{
@@ -29,11 +29,11 @@ const DarkVeil: React.FC = () => {
           width: "50vw",
           height: "50vh",
           background:
-            "radial-gradient(circle at center, rgba(200, 80, 60, 0.12) 0%, rgba(180, 60, 50, 0.04) 40%, transparent 65%)",
+            "radial-gradient(circle at center, rgba(255, 200, 80, 0.10) 0%, rgba(210, 160, 60, 0.03) 40%, transparent 65%)",
         }}
       />
 
-      {/* Tertiary subtle glow — top-left accent */}
+      {/* Tertiary subtle gold glow — top-left accent */}
       <div
         className="absolute hidden dark:block darkveil-glow-tertiary"
         style={{
@@ -42,13 +42,13 @@ const DarkVeil: React.FC = () => {
           width: "45vw",
           height: "45vh",
           background:
-            "radial-gradient(circle at center, rgba(160, 55, 45, 0.1) 0%, transparent 55%)",
+            "radial-gradient(circle at center, rgba(240, 190, 70, 0.08) 0%, transparent 55%)",
         }}
       />
 
       {/* ===== LIGHT MODE GLOWS ===== */}
 
-      {/* Main rose glow — top area */}
+      {/* Main gold glow — top area */}
       <div
         className="absolute dark:hidden darkveil-glow-main"
         style={{
@@ -57,11 +57,11 @@ const DarkVeil: React.FC = () => {
           width: "70vw",
           height: "50vh",
           background:
-            "radial-gradient(ellipse at center, rgba(220, 80, 80, 0.08) 0%, rgba(220, 100, 90, 0.03) 40%, transparent 65%)",
+            "radial-gradient(ellipse at center, rgba(230, 180, 50, 0.08) 0%, rgba(200, 150, 40, 0.03) 40%, transparent 65%)",
         }}
       />
 
-      {/* Secondary peach glow — bottom-right */}
+      {/* Secondary amber glow — bottom-right */}
       <div
         className="absolute dark:hidden darkveil-glow-secondary"
         style={{
@@ -70,11 +70,11 @@ const DarkVeil: React.FC = () => {
           width: "50vw",
           height: "45vh",
           background:
-            "radial-gradient(circle at center, rgba(240, 130, 90, 0.06) 0%, rgba(240, 130, 90, 0.02) 40%, transparent 60%)",
+            "radial-gradient(circle at center, rgba(255, 200, 80, 0.06) 0%, rgba(210, 160, 60, 0.02) 40%, transparent 60%)",
         }}
       />
 
-      {/* Tertiary soft blush — top-left */}
+      {/* Tertiary soft gold — top-left */}
       <div
         className="absolute dark:hidden darkveil-glow-tertiary"
         style={{
@@ -83,7 +83,7 @@ const DarkVeil: React.FC = () => {
           width: "40vw",
           height: "40vh",
           background:
-            "radial-gradient(circle at center, rgba(200, 70, 70, 0.05) 0%, transparent 50%)",
+            "radial-gradient(circle at center, rgba(240, 190, 70, 0.05) 0%, transparent 50%)",
         }}
       />
 

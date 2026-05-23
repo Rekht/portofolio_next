@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import {
   ResponsiveContainer,
@@ -8,7 +8,6 @@ import {
   Area,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
 } from "recharts";
 import { motion } from "framer-motion";
@@ -29,9 +28,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-card/90 backdrop-blur-sm border border-border rounded-xl px-4 py-3 shadow-xl">
-        <p className="text-primary font-medium text-sm">
-          {label}
-        </p>
+        <p className="text-primary font-medium text-sm">{label}</p>
         <p className="text-foreground font-bold text-lg">
           {payload[0].value}{" "}
           <span className="text-muted-foreground text-sm font-normal">
@@ -44,21 +41,31 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   return null;
 };
 
+const subFilterLabels: Record<string, string> = {
+  "all": "All",
+  "years": "1 Year",
+  "ytd": "YTD",
+  "month": "1 Month",
+  "week": "1 Week",
+  "last6": "6 Months",
+  "3 month": "3 Months"
+};
+
 export default function VisitorStats() {
   const [data, setData] = useState<VisitorData[]>([]);
   const [view, setView] = useState<"day" | "month" | "year">("day");
-  const [totalVisitors, setTotalVisitors] = useState(0);
+  const [subFilter, setSubFilter] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch base data when view changes
   useEffect(() => {
+    setSubFilter("all"); // Reset subfilter
+    
     const fetchVisitors = async () => {
       setIsLoading(true);
-      let dateTrunc: string;
-      if (view === "year") dateTrunc = "year";
-      else if (view === "month") dateTrunc = "month";
-      else dateTrunc = "day";
+      let dateTrunc: string = view;
 
-      const { data, error } = await supabase.rpc("get_visitors_grouped", {
+      const { data: resultData, error } = await supabase.rpc("get_visitors_grouped", {
         trunc_unit: dateTrunc,
       });
 
@@ -68,32 +75,100 @@ export default function VisitorStats() {
         return;
       }
 
-      setData(data || []);
-
-      // Calculate total visitors
-      const total = (data || []).reduce(
-        (sum: number, item: VisitorData) => sum + item.count,
-        0,
-      );
-      setTotalVisitors(total);
+      setData(resultData || []);
       setIsLoading(false);
     };
 
     fetchVisitors();
   }, [view]);
 
-  const todayVisitors = data.length > 0 ? data[data.length - 1]?.count || 0 : 0;
+  // Derived filtered data
+  const filteredData = useMemo(() => {
+    if (!data || data.length === 0) return [];
+    
+    const now = new Date();
+    const currentYear = now.getFullYear();
+
+    return data.filter((item) => {
+      const itemDate = new Date(item.date);
+
+      if (view === "day") {
+        if (subFilter === "week") {
+          const weekAgo = new Date();
+          weekAgo.setDate(now.getDate() - 7);
+          return itemDate >= weekAgo;
+        }
+        if (subFilter === "month") {
+          const monthAgo = new Date();
+          monthAgo.setMonth(now.getMonth() - 1);
+          return itemDate >= monthAgo;
+        }
+        if (subFilter === "ytd") {
+          return itemDate.getFullYear() === currentYear;
+        }
+        if (subFilter === "years") {
+          const yearAgo = new Date();
+          yearAgo.setFullYear(now.getFullYear() - 1);
+          return itemDate >= yearAgo;
+        }
+      } else if (view === "month") {
+        if (subFilter === "3 month") {
+          const threeMonthsAgo = new Date();
+          threeMonthsAgo.setMonth(now.getMonth() - 3);
+          return itemDate >= threeMonthsAgo;
+        }
+        if (subFilter === "last6") {
+          const sixMonthsAgo = new Date();
+          sixMonthsAgo.setMonth(now.getMonth() - 6);
+          return itemDate >= sixMonthsAgo;
+        }
+        if (subFilter === "ytd") {
+          return itemDate.getFullYear() === currentYear;
+        }
+        if (subFilter === "years") {
+          const yearAgo = new Date();
+          yearAgo.setFullYear(now.getFullYear() - 1);
+          return itemDate >= yearAgo;
+        }
+      } else if (view === "year") {
+        if (subFilter !== "all") {
+          return itemDate.getFullYear().toString() === subFilter;
+        }
+      }
+
+      return true; // "all"
+    });
+  }, [data, view, subFilter]);
+
+  // Sub-filter options logic
+  const getSubFilters = () => {
+    if (view === "day") return ["all", "years", "ytd", "month", "week"];
+    if (view === "month") return ["all", "years", "ytd", "last6", "3 month"];
+    if (view === "year") {
+      const yearsSet = new Set(data.map((d) => new Date(d.date).getFullYear().toString()));
+      const years = Array.from(yearsSet).sort((a, b) => b.localeCompare(a));
+      return ["all", ...years];
+    }
+    return ["all"];
+  };
+
+  // Stats calculation
+  const totalVisitorsFiltered = useMemo(() => {
+    return filteredData.reduce((sum, item) => sum + item.count, 0);
+  }, [filteredData]);
+
+  const latestVisitorCount = data.length > 0 ? data[data.length - 1]?.count || 0 : 0;
 
   return (
     <div>
-      {/* Section Title - Outside container, centered */}
+      {/* Section Title */}
       <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
         Visitor Statistics
       </h3>
 
       <GlassCard accentColor="cyan">
-        {/* View Toggle - Inside container, above cards */}
-        <div className="flex justify-center gap-2 mb-6">
+        {/* View Toggle */}
+        <div className="flex justify-center gap-2 mb-4">
           {[
             { key: "day", label: "Daily" },
             { key: "month", label: "Monthly" },
@@ -112,6 +187,25 @@ export default function VisitorStats() {
             </button>
           ))}
         </div>
+
+        {/* Sub-Filters */}
+        {!isLoading && (
+          <div className="flex justify-center gap-2 flex-wrap mb-6">
+            {getSubFilters().map((opt) => (
+              <button
+                key={opt}
+                onClick={() => setSubFilter(opt)}
+                className={`px-3 py-1 text-xs rounded-full font-medium transition-all duration-300 ${
+                  subFilter === opt
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-primary/10 text-primary hover:bg-primary/20"
+                }`}
+              >
+                {subFilterLabels[opt] || opt}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 gap-4 mb-8">
@@ -142,7 +236,7 @@ export default function VisitorStats() {
               </span>
             </div>
             <p className="text-3xl font-bold text-foreground">
-              {isLoading ? "..." : totalVisitors.toLocaleString()}
+              {isLoading ? "..." : totalVisitorsFiltered.toLocaleString()}
             </p>
           </motion.div>
 
@@ -177,7 +271,7 @@ export default function VisitorStats() {
               </span>
             </div>
             <p className="text-3xl font-bold text-foreground">
-              {isLoading ? "..." : todayVisitors.toLocaleString()}
+              {isLoading ? "..." : latestVisitorCount.toLocaleString()}
             </p>
           </motion.div>
         </div>
@@ -196,7 +290,7 @@ export default function VisitorStats() {
                 <p className="text-muted-foreground">Loading data...</p>
               </div>
             </div>
-          ) : data.length === 0 ? (
+          ) : filteredData.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-[300px] text-center">
               <div className="p-4 bg-secondary rounded-full mb-4">
                 <svg
@@ -214,16 +308,13 @@ export default function VisitorStats() {
                 </svg>
               </div>
               <p className="text-muted-foreground text-lg">
-                No visitor data yet
-              </p>
-              <p className="text-muted-foreground/70 text-sm mt-1">
-                Data will appear after visits
+                No visitor data for this filter
               </p>
             </div>
           ) : (
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart
-                data={data}
+                data={filteredData}
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
                 <defs>
@@ -234,9 +325,9 @@ export default function VisitorStats() {
                     x2="0"
                     y2="1"
                   >
-                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.6} />
-                    <stop offset="50%" stopColor="#6366f1" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0.1} />
+                    <stop offset="5%" stopColor="#d4a017" stopOpacity={0.6} />
+                    <stop offset="50%" stopColor="#b8860b" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#c8a45a" stopOpacity={0.1} />
                   </linearGradient>
                   <linearGradient
                     id="strokeGradient"
@@ -245,23 +336,23 @@ export default function VisitorStats() {
                     x2="1"
                     y2="0"
                   >
-                    <stop offset="0%" stopColor="#a855f7" />
-                    <stop offset="50%" stopColor="#8b5cf6" />
-                    <stop offset="100%" stopColor="#38bdf8" />
+                    <stop offset="0%" stopColor="#d4a017" />
+                    <stop offset="50%" stopColor="#c8a45a" />
+                    <stop offset="100%" stopColor="#b8860b" />
                   </linearGradient>
                 </defs>
 
                 <XAxis
                   dataKey="date"
-                  stroke="#64748b"
-                  tick={{ fill: "#ffffff", fontSize: 12 }}
-                  axisLine={{ stroke: "#64748b" }}
+                  stroke="#9ca3af"
+                  tick={{ fill: "currentColor", fontSize: 12 }}
+                  axisLine={{ stroke: "#9ca3af" }}
                   tickLine={false}
                 />
                 <YAxis
-                  stroke="#64748b"
-                  tick={{ fill: "#ffffff", fontSize: 12 }}
-                  axisLine={{ stroke: "#64748b" }}
+                  stroke="#9ca3af"
+                  tick={{ fill: "currentColor", fontSize: 12 }}
+                  axisLine={{ stroke: "#9ca3af" }}
                   tickLine={false}
                   allowDecimals={false}
                   tickFormatter={(value: number) =>
@@ -276,14 +367,14 @@ export default function VisitorStats() {
                   strokeWidth={3}
                   fill="url(#colorVisitors)"
                   dot={{
-                    fill: "#a855f7",
+                    fill: "#d4a017",
                     strokeWidth: 2,
                     r: 4,
-                    stroke: "#7c3aed",
+                    stroke: "#b8860b",
                   }}
                   activeDot={{
                     r: 6,
-                    stroke: "#38bdf8",
+                    stroke: "#c8a45a",
                     strokeWidth: 2,
                     fill: "#fff",
                   }}

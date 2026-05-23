@@ -3,7 +3,6 @@ import React from "react";
 import skillsDataFallback from "@/data/skills.json";
 import { useSupabaseData } from "@/hooks/useSupabaseData";
 import { fetchSkills } from "@/lib/data";
-import GlassCard from "@/components/ui/GlassCard";
 
 import { 
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript,
@@ -83,7 +82,7 @@ const themeColors = {
   bg: "bg-primary/10 hover:bg-primary/20 transition-colors",
   text: "text-primary",
   border: "border-primary/20 hover:border-primary/40",
-  heading: "text-foreground", // Make headings normal text color
+  heading: "text-foreground",
 };
 
 const SkillsSection: React.FC = () => {
@@ -92,70 +91,70 @@ const SkillsSection: React.FC = () => {
 
   return (
     <section className="py-16 skills-section">
-      <GlassCard accentColor="purple" noAnimation>
-        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-accent-gradient-from to-accent-gradient-to bg-clip-text text-transparent">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
           Skills & Technologies
         </h2>
-        <p className="text-muted-foreground text-center mb-8 text-lg">
-          Technologies and skills I've developed throughout my career and
+        <p className="text-muted-foreground text-lg">
+          Technologies and skills I&apos;ve developed throughout my career and
           projects
         </p>
+      </div>
 
-        {/* Skill categories */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([key, category]) => {
-            const colors = themeColors;
+      {/* Skill categories */}
+      <div className="grid md:grid-cols-3 gap-8">
+        {Object.entries(skills).map(([key, category]) => {
+          const colors = themeColors;
 
-            return (
-              <div
-                key={key}
-                className={`text-center ${
-                  key === "geospatial" ? "md:col-start-2" : ""
-                }`}
-              >
-                <h3 className={`text-xl font-semibold ${colors.heading} mb-4`}>
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {(() => {
-                    let displayTechs = [...category.technologies];
-                    if (category.title === "Backend" && !displayTechs.includes("PostgreSQL")) {
-                      displayTechs.push("PostgreSQL");
-                    }
-                    if (category.title === "AI & Machine Learning" && !displayTechs.includes("LangChain")) {
-                      displayTechs.push("LangChain");
-                    }
-                    displayTechs = displayTechs.map(t => t === "Google Looker" ? "Data Studio" : t);
+          return (
+            <div
+              key={key}
+              className={`text-center ${
+                key === "geospatial" ? "md:col-start-2" : ""
+              }`}
+            >
+              <h3 className={`text-xl font-bold ${colors.heading} mb-4`}>
+                {category.title}
+              </h3>
+              <div className="flex flex-wrap justify-center gap-3">
+                {(() => {
+                  let displayTechs = [...category.technologies];
+                  if (category.title === "Backend" && !displayTechs.includes("PostgreSQL")) {
+                    displayTechs.push("PostgreSQL");
+                  }
+                  if (category.title === "AI & Machine Learning" && !displayTechs.includes("LangChain")) {
+                    displayTechs.push("LangChain");
+                  }
+                  displayTechs = displayTechs.map(t => t === "Google Looker" ? "Data Studio" : t);
 
-                    return displayTechs.map((tech) => {
-                      const Icon = iconMap[tech];
-                      return (
-                        <div key={tech} className="relative group inline-block">
-                          <div
-                            className={`
-                              p-3 rounded-2xl cursor-default flex items-center justify-center
-                              ${colors.bg} ${colors.text} ${colors.border}
-                              border transition-all duration-300 text-3xl shadow-sm hover:scale-110 hover:rotate-6
-                            `}
-                          >
-                            {Icon ? <Icon /> : <span className="text-sm font-medium px-2">{tech}</span>}
-                          </div>
-                          
-                          {/* Tooltip */}
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 bg-foreground text-background text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-20 shadow-xl">
-                            {tech}
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-foreground"></div>
-                          </div>
+                  return displayTechs.map((tech) => {
+                    const Icon = iconMap[tech];
+                    return (
+                      <div key={tech} className="relative group inline-block">
+                        <div
+                          className={`
+                            p-3 rounded-2xl cursor-default flex items-center justify-center
+                            ${colors.bg} ${colors.text} ${colors.border}
+                            border transition-all duration-300 text-3xl shadow-sm hover:scale-110 hover:rotate-6
+                          `}
+                        >
+                          {Icon ? <Icon /> : <span className="text-sm font-medium px-2">{tech}</span>}
                         </div>
-                      );
-                    });
-                  })()}
-                </div>
+                        
+                        {/* Tooltip */}
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 bg-foreground text-background text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-20 shadow-xl">
+                          {tech}
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-foreground"></div>
+                        </div>
+                      </div>
+                    );
+                  });
+                })()}
               </div>
-            );
-          })}
-        </div>
-      </GlassCard>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };

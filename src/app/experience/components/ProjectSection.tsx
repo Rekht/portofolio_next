@@ -333,8 +333,8 @@ const ProjectSection: React.FC = () => {
             onClick={() => setShowMoreProjects(!showMoreProjects)}
             className="group flex items-center gap-2 px-6 py-3 
                        bg-gradient-to-r from-accent-gradient-from/20 to-accent-gradient-to/20 
-                       text-foreground dark:text-white rounded-xl border border-border dark:border-white/15 
-                       hover:border-foreground/30 dark:hover:border-white/30 hover:from-accent-gradient-from/30 hover:to-accent-gradient-to/30
+                       text-foreground rounded-xl border border-border 
+                       hover:border-foreground/30 hover:from-accent-gradient-from/30 hover:to-accent-gradient-to/30
                        backdrop-blur-md transition-all duration-300 text-sm"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

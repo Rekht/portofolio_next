@@ -76,8 +76,8 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
       <motion.div
         ref={modalRef}
         className="relative w-full max-w-4xl max-h-[90vh] flex flex-col 
-                       bg-card/95 dark:bg-slate-900/95
-                       backdrop-blur-xl rounded-3xl border border-border dark:border-white/10 
+                       bg-card/95
+                       backdrop-blur-xl rounded-3xl border border-border 
                        shadow-2xl shadow-primary/10 overflow-hidden"
         initial={{ opacity: 0, scale: 0.9, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -97,7 +97,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             className="object-cover"
           />
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-slate-900 via-background/50 dark:via-slate-900/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
 
           {/* Close button */}
           <motion.button
@@ -126,7 +126,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           {/* Title overlay on image */}
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
             <motion.h2
-              className="text-2xl md:text-3xl font-bold text-foreground dark:text-white mb-3"
+              className="text-2xl md:text-3xl font-bold text-foreground mb-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -168,7 +168,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 }}
             >
-              <h3 className="text-lg font-semibold text-foreground dark:text-white/90 mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
                 <span
                   className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-gradient-from to-accent-gradient-to 
                                      flex items-center justify-center text-white text-sm"
@@ -177,7 +177,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 </span>
                 About
               </h3>
-              <p className="text-muted-foreground dark:text-white/70 leading-relaxed whitespace-pre-line">
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                 {project.detailedDescription || project.description}
               </p>
             </motion.div>
@@ -189,7 +189,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
               >
-                <h3 className="text-lg font-semibold text-foreground dark:text-white/90 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                   <span
                     className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-subtle to-primary 
                                        flex items-center justify-center text-white text-sm"
@@ -203,7 +203,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                     <motion.li
                       key={index}
                       className="flex items-start gap-3 p-3 rounded-xl 
-                                     bg-muted/50 dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 
+                                     bg-muted/50 border border-border hover:bg-muted 
                                      transition-colors duration-200"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -227,7 +227,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                           />
                         </svg>
                       </span>
-                      <span className="text-foreground dark:text-white/70 text-sm">
+                      <span className="text-foreground text-sm">
                         {feature}
                       </span>
                     </motion.li>
@@ -241,8 +241,8 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         {/* Footer with action buttons */}
         {project.url && (
           <motion.div
-            className="flex-shrink-0 px-6 md:px-8 py-5 border-t border-border dark:border-white/10 
-                           bg-card/80 dark:bg-slate-900/80 backdrop-blur-sm"
+            className="flex-shrink-0 px-6 md:px-8 py-5 border-t border-border 
+                           bg-card/80 backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
