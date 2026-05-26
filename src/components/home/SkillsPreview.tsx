@@ -4,9 +4,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
-import skillsDataFallback from "@/data/skills.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchSkills } from "@/lib/data";
 
 import { 
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript,
@@ -97,8 +94,11 @@ const colorMap: Record<
   emerald: { bg: "bg-primary/10", border: "border-primary/30", text: "text-primary", hover: "hover:bg-primary/20 hover:border-primary/50" },
 };
 
-const SkillsPreview: React.FC = () => {
-  const skillsData = useSupabaseData(fetchSkills, skillsDataFallback);
+interface SkillsPreviewProps {
+  skillsData: { skills: Record<string, SkillCategory> };
+}
+
+const SkillsPreview: React.FC<SkillsPreviewProps> = ({ skillsData }) => {
   const skills = skillsData.skills as Record<string, SkillCategory>;
 
   return (

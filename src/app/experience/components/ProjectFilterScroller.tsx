@@ -73,31 +73,32 @@ const ProjectFilterScroller: React.FC<ProjectFilterScrollerProps> = ({
                 disabled={isAnimating}
                 onMouseEnter={handleMouseEnter(filter)}
                 onMouseLeave={handleMouseLeave}
-                className={`relative w-14 h-14 rounded-full transition-all duration-300 flex-shrink-0 border ${
+                className={`relative w-14 h-14 rounded-full transition-all duration-300 flex-shrink-0 border flex items-center justify-center ${
                   activeFilter === filter
                     ? "scale-110 shadow-lg shadow-primary/40 border-primary/50"
-                    : "hover:scale-105 hover:shadow-lg hover:shadow-primary/30 border-white/20 hover:border-primary/40"
+                    : "hover:scale-105 shadow-md hover:shadow-lg shadow-black/5 hover:shadow-primary/20 bg-card border-border hover:border-primary/40"
                 }`}
-                style={{
-                  overflow: "visible",
-                  background:
-                    activeFilter === filter
-                      ? "linear-gradient(135deg, var(--color-accent-gradient-from) 0%, var(--color-primary) 50%, var(--color-accent-gradient-to) 100%)"
-                      : "linear-gradient(135deg, var(--color-muted) 0%, var(--color-card) 100%)",
-                }}
+                style={
+                  activeFilter === filter
+                    ? {
+                        background: "linear-gradient(135deg, var(--color-accent-gradient-from) 0%, var(--color-primary) 50%, var(--color-accent-gradient-to) 100%)",
+                      }
+                    : {}
+                }
               >
-                <Image
-                  src={iconMap[filter]}
-                  alt={filter}
-                  width={24}
-                  height={24}
-                  className="w-6 h-6 m-auto pointer-events-none"
-                  draggable={false}
+                <div
+                  className={`w-6 h-6 m-auto pointer-events-none transition-colors duration-300 ${
+                    activeFilter === filter ? "bg-white" : "bg-foreground/70"
+                  }`}
                   style={{
-                    filter:
-                      activeFilter === filter
-                        ? "brightness(0) invert(1)"
-                        : "brightness(0) saturate(100%) invert(34%) sepia(51%) saturate(5453%) hue-rotate(328deg) brightness(101%) contrast(95%)",
+                    WebkitMaskImage: `url(${iconMap[filter]})`,
+                    WebkitMaskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskImage: `url(${iconMap[filter]})`,
+                    maskSize: "contain",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
                   }}
                 />
               </button>

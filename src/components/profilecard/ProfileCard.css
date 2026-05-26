@@ -13,12 +13,12 @@
   --icon: none;
   --behind-gradient: none;
   --inner-gradient: none;
-  --sunpillar-1: hsla(350, 89%, 60%, 0.6);
-  --sunpillar-2: hsla(350, 89%, 70%, 0.6);
-  --sunpillar-3: hsla(350, 89%, 80%, 0.6);
-  --sunpillar-4: hsla(355, 100%, 75%, 0.6);
-  --sunpillar-5: hsla(355, 100%, 65%, 0.6);
-  --sunpillar-6: hsla(355, 100%, 55%, 0.6);
+  --sunpillar-1: hsla(43, 89%, 60%, 0.6);
+  --sunpillar-2: hsla(43, 89%, 70%, 0.6);
+  --sunpillar-3: hsla(43, 89%, 80%, 0.6);
+  --sunpillar-4: hsla(45, 100%, 75%, 0.6);
+  --sunpillar-5: hsla(45, 100%, 65%, 0.6);
+  --sunpillar-6: hsla(45, 100%, 55%, 0.6);
   --sunpillar-clr-1: var(--sunpillar-1);
   --sunpillar-clr-2: var(--sunpillar-2);
   --sunpillar-clr-3: var(--sunpillar-3);
@@ -77,19 +77,19 @@
   background-position: 0 0, 0 0, 50% 50%, 0 0;
   background-image: radial-gradient(
       farthest-side circle at var(--pointer-x) var(--pointer-y),
-      hsla(350, 100%, 90%, var(--card-opacity)) 4%,
-      hsla(350, 50%, 80%, calc(var(--card-opacity) * 0.75)) 10%,
-      hsla(350, 25%, 70%, calc(var(--card-opacity) * 0.5)) 50%,
-      hsla(350, 0%, 60%, 0) 100%
+      hsla(43, 100%, 95%, var(--card-opacity)) 4%,
+      hsla(43, 50%, 80%, calc(var(--card-opacity) * 0.75)) 10%,
+      hsla(43, 25%, 65%, calc(var(--card-opacity) * 0.5)) 50%,
+      hsla(43, 0%, 50%, 0) 100%
     ),
-    radial-gradient(35% 52% at 55% 20%, #f43f5e80 0%, #f43f5e00 100%),
-    radial-gradient(100% 100% at 50% 50%, #fb718580 1%, #fb718500 76%),
+    radial-gradient(35% 52% at 55% 20%, #d4a01760 0%, #d4a01700 100%),
+    radial-gradient(100% 100% at 50% 50%, #c8a45a60 1%, #c8a45a00 76%),
     conic-gradient(
       from 124deg at 50% 50%,
-      #f43f5eff 0%,
-      #fb7185ff 40%,
-      #fb7185ff 60%,
-      #f43f5eff 100%
+      #d4a017ff 0%,
+      #c8a45aff 40%,
+      #c8a45aff 60%,
+      #d4a017ff 100%
     );
   overflow: hidden;
 }
@@ -151,17 +151,17 @@
     ),
     repeating-linear-gradient(
       var(--angle),
-      #2e0e15 0%,
-      hsl(350, 89%, 60%) 3.8%,
-      hsl(350, 89%, 66%) 4.5%,
-      hsl(350, 89%, 60%) 5.2%,
-      #2e0e15 10%,
-      #2e0e15 12%
+      #3d2b1f 0%,
+      hsl(43, 89%, 60%) 3.8%,
+      hsl(43, 89%, 66%) 4.5%,
+      hsl(43, 89%, 60%) 5.2%,
+      #3d2b1f 10%,
+      #3d2b1f 12%
     ),
     radial-gradient(
       farthest-corner circle at var(--pointer-x) var(--pointer-y),
-      hsla(0, 100%, 50%, 0.1) 12%,
-      hsla(0, 100%, 50%, 0.1) 20%,
+      hsla(43, 100%, 50%, 0.1) 12%,
+      hsla(43, 100%, 50%, 0.1) 20%,
       hsla(0, 0%, 0%, 0.1) 120%
     );
   background-position: 0 var(--background-y),

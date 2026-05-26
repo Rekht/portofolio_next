@@ -1,157 +1,63 @@
-"use client";
-
-import React, {
-  useState,
-  useRef,
-  useMemo,
-  useCallback,
-  lazy,
-  Suspense,
-} from "react";
-import { useRouter } from "next/navigation";
-
-// Custom hooks
-import useScrollDetection from "@/hooks/useScrollDetection";
-import useActiveSection from "@/hooks/useActiveSection";
-
-// Utils
+// Server Component — data fetched on the server, cached via ISR
 import {
-  smoothScrollToSection,
-  PageLoader,
-  SectionLoader,
-} from "@/utils/pageUtils";
+  fetchAbout,
+  fetchExperience,
+  fetchProjects,
+  fetchEducation,
+  fetchCertifications,
+  fetchAchievements,
+  fetchOrganizations,
+  fetchSkills,
+} from "@/lib/data";
 
-// Components
-import Navigation from "@/components/Navigation";
-import CvModal from "@/app/about/components/CvModal";
-// DarkVeil moved to layout.tsx — single instance for all pages
-import HeroSection from "@/components/HeroSection";
-
-// Data
+// Fallback data (used if Supabase is unavailable)
 import aboutDataFallback from "@/data/about.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchAbout } from "@/lib/data";
+import experienceDataFallback from "@/data/experience.json";
+import projectsDataFallback from "@/data/projects.json";
+import educationDataFallback from "@/data/education.json";
+import certificationsDataFallback from "@/data/certifications.json";
+import achievementsDataFallback from "@/data/achievements.json";
+import organizationsDataFallback from "@/data/organizations.json";
+import skillsDataFallback from "@/data/skills.json";
 
-// Types
-interface About {
-  description: string;
-}
+import HomeClient from "./HomeClient";
 
-// Lazy components
-const ContactSection = lazy(() => import("@/components/ContactSection"));
-const ExperiencePreview = lazy(
-  () => import("@/components/home/ExperiencePreview"),
-);
-const EducationPreview = lazy(
-  () => import("@/components/home/EducationPreview"),
-);
-const SkillsPreview = lazy(() => import("@/components/home/SkillsPreview"));
+// ISR: revalidate every 1 hour (3600 seconds)
+// Vercel will cache the fully-rendered HTML at edge locations worldwide
+export const revalidate = 3600;
 
-export default function HomePage() {
-  const mainContainerRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
-
-  const [isLoaded, setIsLoaded] = useState(true); // langsung true karena tidak ada loading GSAP
-  const [showCVModal, setShowCVModal] = useState<boolean>(false);
-
-  // Memoized data
-  const aboutData = useSupabaseData(fetchAbout, aboutDataFallback as About);
-  const memoizedAbout = useMemo(() => aboutData as About, [aboutData]);
-
-  // Hooks
-  const { scrolled } = useScrollDetection(10);
-  const { activeSection, handleNavClick } = useActiveSection([
-    "about",
-    "certification",
-    "projects",
-    "contact",
+export default async function HomePage() {
+  // Fetch all data on the server in parallel
+  const [
+    aboutData,
+    experienceData,
+    projectsData,
+    educationData,
+    certificationsData,
+    achievementsData,
+    organizationsData,
+    skillsData,
+  ] = await Promise.all([
+    fetchAbout(),
+    fetchExperience(),
+    fetchProjects(),
+    fetchEducation(),
+    fetchCertifications(),
+    fetchAchievements(),
+    fetchOrganizations(),
+    fetchSkills(),
   ]);
 
-  // Handler scroll ke section
-  const handleScrollDown = useCallback(() => {
-    const section = document.getElementById("about");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
-
-  // Handler navigasi
-  const handleSmoothNavClick = useCallback(
-    (sectionId: string) => {
-      handleNavClick(sectionId);
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
-    },
-    [handleNavClick],
-  );
-
-  // CV Modal
-  const handleShowCVModal = useCallback(() => setShowCVModal(true), []);
-  const handleCloseCVModal = useCallback(() => setShowCVModal(false), []);
-
-  // Render loading jika belum siap
-  if (!isLoaded) {
-    return <PageLoader message="Memuat halaman beranda..." />;
-  }
-
   return (
-    <div
-      ref={mainContainerRef}
-      className="font-sans min-h-screen text-foreground relative"
-    >
-      {/* Background moved to layout.tsx */}
-
-      {/* Navigation */}
-      <Navigation
-        scrolled={scrolled}
-        activePage="home"
-        handleNavClick={handleSmoothNavClick}
-      />
-
-      {/* Main Content */}
-      <main className="relative z-10">
-        <div className="h-20"></div>
-
-        {/* Unified Hero Section */}
-        <HeroSection onShowCVModal={handleShowCVModal} />
-
-        {/* Content Section */}
-        <div className="w-full px-section">
-
-          {/* Experience Preview Section */}
-          <section className="py-16" id="experience-preview">
-            <Suspense fallback={<SectionLoader />}>
-              <ExperiencePreview />
-            </Suspense>
-          </section>
-
-          {/* Education Preview Section */}
-          <section className="py-16" id="education-preview">
-            <Suspense fallback={<SectionLoader />}>
-              <EducationPreview />
-            </Suspense>
-          </section>
-
-          {/* Skills Preview Section */}
-          <section className="py-16" id="skills-preview">
-            <Suspense fallback={<SectionLoader />}>
-              <SkillsPreview />
-            </Suspense>
-          </section>
-
-          {/* Contact Section */}
-          <section className="py-24" id="contact">
-            <Suspense fallback={<SectionLoader />}>
-              <ContactSection />
-            </Suspense>
-          </section>
-        </div>
-      </main>
-
-      {/* CV Modal */}
-      <CvModal isOpen={showCVModal} onClose={handleCloseCVModal} />
-    </div>
+    <HomeClient
+      aboutData={aboutData ?? (aboutDataFallback as any)}
+      experienceData={experienceData ?? (experienceDataFallback as any)}
+      projectsData={projectsData ?? (projectsDataFallback as any)}
+      educationData={educationData ?? (educationDataFallback as any)}
+      certificationsData={certificationsData ?? (certificationsDataFallback as any)}
+      achievementsData={achievementsData ?? (achievementsDataFallback as any)}
+      organizationsData={organizationsData ?? (organizationsDataFallback as any)}
+      skillsData={skillsData ?? (skillsDataFallback as any)}
+    />
   );
 }

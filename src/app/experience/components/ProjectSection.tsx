@@ -5,9 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectCard from "./ProjectCard";
 import { useRouter } from "next/navigation";
 import ProjectFilterScroller from "./ProjectFilterScroller";
-import projectsDataFallback from "../../../data/projects.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchProjects } from "@/lib/data";
 
 interface Project {
   id: number;
@@ -35,14 +32,16 @@ export const createSlug = (title: string): string => {
     .replace(/\s+/g, "-"); // Replace spaces with dashes
 };
 
-const ProjectSection: React.FC = () => {
+interface ProjectSectionProps {
+  projectsData: Project[];
+}
+
+const ProjectSection: React.FC<ProjectSectionProps> = ({ projectsData }) => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [projectsToDisplay, setProjectsToDisplay] = useState<Project[]>([]);
   const [showMoreProjects, setShowMoreProjects] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const router = useRouter();
-
-  const projectsData = useSupabaseData(fetchProjects, projectsDataFallback as Project[]);
 
   const [projectsCache, setProjectsCache] = useState<
     Record<string, ProjectCache>

@@ -23,10 +23,10 @@ interface ProfileCardProps {
 }
 
 const DEFAULT_BEHIND_GRADIENT =
-  "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y),hsla(350,100%,90%,var(--card-opacity)) 4%,hsla(350,50%,80%,calc(var(--card-opacity)*0.75)) 10%,hsla(350,25%,70%,calc(var(--card-opacity)*0.5)) 50%,hsla(350,0%,60%,0) 100%),radial-gradient(35% 52% at 55% 20%,#f43f5e80 0%,#f43f5e00 100%),radial-gradient(100% 100% at 50% 50%,#fb718580 1%,#fb718500 76%),conic-gradient(from 124deg at 50% 50%,#f43f5eff 0%,#fb7185ff 40%,#fb7185ff 60%,#f43f5eff 100%)";
+  "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y),hsla(43,100%,90%,var(--card-opacity)) 4%,hsla(43,50%,80%,calc(var(--card-opacity)*0.75)) 10%,hsla(43,25%,70%,calc(var(--card-opacity)*0.5)) 50%,hsla(43,0%,60%,0) 100%),radial-gradient(35% 52% at 55% 20%,#d4a01780 0%,#d4a01700 100%),radial-gradient(100% 100% at 50% 50%,#c8a45a80 1%,#c8a45a00 76%),conic-gradient(from 124deg at 50% 50%,#d4a017ff 0%,#c8a45aff 40%,#c8a45aff 60%,#d4a017ff 100%)";
 
 const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(145deg,#f43f5e44 0%,#fb718544 100%)";
+  "linear-gradient(145deg,#d4a01744 0%,#c8a45a44 100%)";
 
 const ANIMATION_CONFIG = {
   SMOOTH_DURATION: 600,

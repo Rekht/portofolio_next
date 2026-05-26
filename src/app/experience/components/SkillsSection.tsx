@@ -1,8 +1,6 @@
 // components/SkillsSection.tsx
 import React from "react";
-import skillsDataFallback from "@/data/skills.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchSkills } from "@/lib/data";
+// No data fetching imports
 
 import { 
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript,
@@ -85,9 +83,12 @@ const themeColors = {
   heading: "text-foreground",
 };
 
-const SkillsSection: React.FC = () => {
-  const skillsData = useSupabaseData(fetchSkills, skillsDataFallback as SkillsData);
-  const { skills } = skillsData as SkillsData;
+interface SkillsSectionProps {
+  skillsData: SkillsData;
+}
+
+const SkillsSection: React.FC<SkillsSectionProps> = ({ skillsData }) => {
+  const { skills } = skillsData;
 
   return (
     <section className="py-16 skills-section">

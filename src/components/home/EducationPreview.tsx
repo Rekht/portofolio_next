@@ -5,12 +5,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import { usePageTransition } from "@/components/PageTransition";
-import educationDataFallback from "@/data/education.json";
-import certificationsDataFallback from "@/data/certifications.json";
-import achievementsDataFallback from "@/data/achievements.json";
-import organizationsDataFallback from "@/data/organizations.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchEducation, fetchCertifications, fetchAchievements, fetchOrganizations } from "@/lib/data";
 
 interface Education {
   id: number;
@@ -28,21 +22,23 @@ interface Organization {
   period: string;
 }
 
-const EducationPreview: React.FC = () => {
+interface EducationPreviewProps {
+  educationData: Education[];
+  certificationsData: any[];
+  achievementsData: any[];
+  organizationsData: Organization[];
+}
+
+const EducationPreview: React.FC<EducationPreviewProps> = ({ educationData, certificationsData, achievementsData, organizationsData }) => {
   const { startTransition, isTransitioning } = usePageTransition();
 
-  const educationData = useSupabaseData(fetchEducation, educationDataFallback as Education[]);
-  const certificationsData = useSupabaseData(fetchCertifications, certificationsDataFallback);
-  const achievementsData = useSupabaseData(fetchAchievements, achievementsDataFallback);
-  const organizationsData = useSupabaseData(fetchOrganizations, organizationsDataFallback as Organization[]);
-
-  const education = (educationData as Education[])[0];
+  const education = educationData[0];
   const certCount = certificationsData.length;
   const achieveCount = achievementsData.length;
-  const orgCount = (organizationsData as Organization[]).length;
+  const orgCount = organizationsData.length;
 
   // Get first 2 organizations for preview
-  const previewOrgs = (organizationsData as Organization[]).slice(0, 2);
+  const previewOrgs = organizationsData.slice(0, 2);
 
   const handleViewAll = () => {
     if (isTransitioning) return;
@@ -223,61 +219,6 @@ const EducationPreview: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Organizations Timeline */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-      >
-        <GlassCard
-          noAnimation
-          className="hover:scale-[1.005] transition-transform duration-500"
-        >
-          <div className="flex items-center justify-between mb-5">
-            <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-              <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              Organizations
-            </h4>
-            {orgCount > 2 && (
-              <span className="text-xs text-muted-foreground/60 font-medium">
-                +{orgCount - 2} more
-              </span>
-            )}
-          </div>
-
-          <div className="relative border-l-2 border-primary/20 pl-5 ml-1 space-y-5">
-            {previewOrgs.map((org, index) => (
-              <motion.div
-                key={org.id}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
-                className="relative group"
-              >
-                {/* Timeline Node Dot */}
-                <div className="absolute -left-[25px] top-1.5 w-3 h-3 rounded-full bg-background border-2 border-primary/40 
-                               transition-all duration-300 group-hover:border-primary group-hover:bg-primary/20 group-hover:scale-110" />
-                
-                <div className="min-w-0">
-                  <p className="text-foreground font-semibold text-sm group-hover:text-primary transition-colors duration-300">
-                    {org.title}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-0.5 text-xs">
-                    <span className="text-primary/80 font-medium">{org.position}</span>
-                    <span className="text-muted-foreground/40">•</span>
-                    <span className="text-muted-foreground">{org.period}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </GlassCard>
-      </motion.div>
     </div>
   );
 };

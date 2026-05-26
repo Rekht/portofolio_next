@@ -1,9 +1,6 @@
 "use client";
 
 import { Timeline } from "@/components/ui/timeline";
-import organizationsFallback from "../../../data/organizations.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchOrganizations } from "@/lib/data";
 
 interface Organization {
   title: string;
@@ -13,8 +10,11 @@ interface Organization {
   image?: string[];
 }
 
-export default function OrganizationsSection() {
-  const organizations = useSupabaseData<Organization[]>(fetchOrganizations, organizationsFallback as Organization[]);
+interface OrganizationsSectionProps {
+  organizationsData: Organization[];
+}
+
+export default function OrganizationsSection({ organizationsData: organizations }: OrganizationsSectionProps) {
   const timelineData = organizations.map((item) => ({
     title: `${item.title}`,
     content: (

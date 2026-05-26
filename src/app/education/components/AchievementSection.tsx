@@ -1,7 +1,4 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import achievementsDataFallback from "@/data/achievements.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchAchievements } from "@/lib/data";
 import GlassCard from "@/components/ui/GlassCard";
 
 // Define types for our achievement data
@@ -17,8 +14,11 @@ interface Achievement {
   certificateImage?: string;
 }
 
-const AchievementSection: React.FC = () => {
-  const achievementsData = useSupabaseData(fetchAchievements, achievementsDataFallback as Achievement[]);
+interface AchievementSectionProps {
+  achievementsData: Achievement[];
+}
+
+const AchievementSection: React.FC<AchievementSectionProps> = ({ achievementsData }) => {
 
   // Memoize achievements data to prevent unnecessary re-renders
   const memoizedAchievements = useMemo(

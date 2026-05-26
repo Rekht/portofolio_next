@@ -6,10 +6,6 @@ import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import { FocusCards } from "@/components/ui/focus-cards";
 import { usePageTransition } from "@/components/PageTransition";
-import experienceDataFallback from "@/data/experience.json";
-import projectsDataFallback from "@/data/projects.json";
-import { useSupabaseData } from "@/hooks/useSupabaseData";
-import { fetchExperience, fetchProjects } from "@/lib/data";
 import { parseDateFromPeriod } from "@/lib/utils";
 
 interface Experience {
@@ -21,11 +17,13 @@ interface Experience {
   technologies?: string[];
 }
 
-const ExperiencePreview: React.FC = () => {
-  const { startTransition, isTransitioning } = usePageTransition();
+interface ExperiencePreviewProps {
+  experienceData: Experience[];
+  projectsData: any[];
+}
 
-  const experienceData = useSupabaseData(fetchExperience, experienceDataFallback as Experience[]);
-  const projectsData = useSupabaseData(fetchProjects, projectsDataFallback);
+const ExperiencePreview: React.FC<ExperiencePreviewProps> = ({ experienceData, projectsData }) => {
+  const { startTransition, isTransitioning } = usePageTransition();
 
   // Sort experiences and get first 2
   const sortedExperiences = [...(experienceData as Experience[])].sort((a, b) => {
@@ -99,7 +97,7 @@ const ExperiencePreview: React.FC = () => {
               className="relative pl-10"
             >
               {/* Timeline dot */}
-              <div className="absolute left-0 top-6 w-6 h-6 rounded-full bg-gradient-to-br from-accent-gradient-from to-accent-gradient-to border-4 border-black/50 z-10" />
+              <div className="absolute left-0 top-6 w-6 h-6 rounded-full bg-gradient-to-br from-accent-gradient-from to-accent-gradient-to border-4 border-background z-10" />
 
               <GlassCard
                 accentColor="blue"
