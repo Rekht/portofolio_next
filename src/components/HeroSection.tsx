@@ -4,10 +4,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { ArrowDown } from "lucide-react";
 
-const ProfileCard = dynamic(
-  () => import("@/components/profilecard/ProfileCard"),
-  { ssr: false }
-);
+import ProfileCard from "@/components/profilecard/ProfileCard";
 
 interface HeroSectionProps {
   onShowCVModal: () => void;

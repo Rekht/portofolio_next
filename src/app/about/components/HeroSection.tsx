@@ -6,10 +6,7 @@ import Image from "next/image";
 
 import dynamic from "next/dynamic";
 
-const ProfileCard = dynamic(
-  () => import("@/components/profilecard/ProfileCard"),
-  { ssr: false },
-);
+import ProfileCard from "@/components/profilecard/ProfileCard";
 
 interface HeroSectionProps {
   onShowCVModal: () => void;

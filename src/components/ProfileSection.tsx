@@ -1,12 +1,7 @@
 "use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
-
-const ProfileCard = dynamic(
-  () => import("@/components/profilecard/ProfileCard"),
-  { ssr: false }
-);
+import ProfileCard from "./profilecard/ProfileCard";
 
 interface ProfileSectionProps {
   onShowCVModal: () => void;
