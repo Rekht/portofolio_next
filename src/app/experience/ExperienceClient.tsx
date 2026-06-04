@@ -86,8 +86,6 @@ export default function ExperienceClient({
   skillsData,
 }: ExperienceClientProps) {
   const mainContainerRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
   // Custom hooks
   const { scrolled } = useScrollDetection(10);
   const { activeSection, handleNavClick } = useActiveSection([
@@ -170,14 +168,8 @@ export default function ExperienceClient({
       );
     }, mainContainerRef);
 
-    setIsLoaded(true);
     return () => ctx.revert();
   }, []);
-
-  // Show loading screen
-  if (!isLoaded) {
-    return <PageLoader message="Loading experience page..." />;
-  }
 
   return (
     <div

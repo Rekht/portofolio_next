@@ -21,15 +21,11 @@ import Navigation from "@/components/Navigation";
 import CvModal from "@/app/about/components/CvModal";
 import HeroSection from "@/components/HeroSection";
 
-// Lazy components
-const ContactSection = lazy(() => import("@/components/ContactSection"));
-const ExperiencePreview = lazy(
-  () => import("@/components/home/ExperiencePreview"),
-);
-const EducationPreview = lazy(
-  () => import("@/components/home/EducationPreview"),
-);
-const SkillsPreview = lazy(() => import("@/components/home/SkillsPreview"));
+// Static imports
+import ContactSection from "@/components/ContactSection";
+import ExperiencePreview from "@/components/home/ExperiencePreview";
+import EducationPreview from "@/components/home/EducationPreview";
+import SkillsPreview from "@/components/home/SkillsPreview";
 
 // Types
 interface About {

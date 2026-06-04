@@ -6,10 +6,8 @@ import Navigation from "@/components/Navigation";
 // DarkVeil moved to layout.tsx — single instance for all pages
 import { SectionLoader } from "@/utils/pageUtils";
 
-// Lazy load ContactSection
-const ContactSection = React.lazy(
-  () => import("@/app/contact/components/ContactOnly"),
-);
+// Static load ContactSection
+import ContactSection from "@/app/contact/components/ContactOnly";
 
 export default function ContactPage() {
   return (

@@ -53,7 +53,7 @@ interface AboutClientProps {
 export default function AboutClient({ aboutData }: AboutClientProps) {
   const mainContainerRef = useRef<HTMLDivElement>(null);
 
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const [showCVModal, setShowCVModal] = useState<boolean>(false);
 
   // Memoized data
@@ -100,14 +100,8 @@ export default function AboutClient({ aboutData }: AboutClientProps) {
       animations.fadeInSections();
     }, mainContainerRef);
 
-    setIsLoaded(true);
     return () => ctx.revert();
   }, []);
-
-  // Tampilkan loading jika belum dimuat
-  if (!isLoaded) {
-    return <PageLoader message="Memuat halaman tentang..." />;
-  }
 
   return (
     <div

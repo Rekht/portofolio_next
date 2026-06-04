@@ -95,7 +95,6 @@ export default function EducationClient({
 }: EducationClientProps) {
   const mainContainerRef = useRef<HTMLDivElement>(null);
 
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Memoized & Sorted data
   const memoizedEducation = useMemo(() => {
@@ -158,14 +157,8 @@ export default function EducationClient({
       animations.animateCards(".certification-item");
     }, mainContainerRef);
 
-    setIsLoaded(true);
     return () => ctx.revert();
   }, []);
-
-  // Show loading screen
-  if (!isLoaded) {
-    return <PageLoader message="Loading education page..." />;
-  }
 
   return (
     <div
