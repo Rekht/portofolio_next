@@ -1,7 +1,7 @@
-// components/home/EducationPreview.tsx
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import { usePageTransition } from "@/components/PageTransition";
@@ -146,9 +146,11 @@ const EducationPreview: React.FC<EducationPreviewProps> = ({ educationData, cert
                 {/* University Logo — Clean, no background box */}
                 <div className="relative flex-shrink-0">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/15 flex items-center justify-center p-2.5 backdrop-blur-sm">
-                    <img
+                    <Image
                       src="https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/uny.png"
                       alt={`Logo ${education.institution}`}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-contain select-none pointer-events-none"
                       draggable={false}
                     />

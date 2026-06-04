@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -24,11 +25,13 @@ export const Card = React.memo(
         hovered !== null && hovered !== index && "blur-[2px] brightness-50"
       )}
     >
-      <img
+      <Image
         src={card.src}
         alt={card.title}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
         className={cn(
-          "w-full h-full object-cover absolute inset-0 transition-all duration-500",
+          "object-cover transition-all duration-500",
           hovered === index ? "brightness-110" : "brightness-50"
         )}
       />
