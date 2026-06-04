@@ -103,6 +103,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      {/* Inline script to prevent theme flash (FOUC). 
+          Runs synchronously before any CSS paints, setting the correct 
+          theme class on <html> so the first paint uses the right colors. */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  }
+                  document.documentElement.classList.add(theme);
+                } catch (e) {
+                  document.documentElement.classList.add('light');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       {/* Gunakan className dari Montserrat */}
       <body className={`${montserrat.className} bg-background min-h-screen`}>
         <ThemeProvider>

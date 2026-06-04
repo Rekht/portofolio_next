@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
   useCallback,
+  useRef,
   ReactNode,
   useEffect,
 } from "react";
@@ -52,39 +53,64 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   );
   const [targetPath, setTargetPath] = useState<string | null>(null);
 
-  // Effect to handle reveal when the route actually changes
+  // Track the pathname at the time we started navigating
+  const prevPathnameRef = useRef(pathname);
+  // Track whether the cover animation has finished (hold phase entered)
+  const holdReadyRef = useRef(false);
+  // Track fallback timer for cleanup
+  const fallbackTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Effect to detect when the route has ACTUALLY changed (pathname updated by Next.js)
   useEffect(() => {
-    // Only trigger reveal if we are waiting in the 'hold' stage and the route has changed
-    // Checking pathname is usually enough for page transitions in App Router
-    if (stage === "hold" && targetPath) {
-      // 100ms buffer to allow the browser to paint the new DOM
-      const revealTimer = setTimeout(() => {
-        setStage("reveal");
-
-        // Return to idle after reveal animation finishes
+    // If we're in hold stage and the pathname has actually changed from when we started
+    if (
+      stage === "hold" &&
+      targetPath &&
+      pathname !== prevPathnameRef.current
+    ) {
+      // Give the browser a frame to paint the new page content
+      const paintBuffer = requestAnimationFrame(() => {
+        // Another small delay to ensure React has flushed all updates
         setTimeout(() => {
-          setIsTransitioning(false);
-          setStage("idle");
-          setTargetPath(null);
+          setStage("reveal");
 
-          // Resume Lenis smooth scroll after transition completes
-          lenis?.start();
-
-          // After the curtain reveals, if there's a hash in the URL, scroll to it manually
-          // because the native browser jump was lost during the transition delay
-          if (window.location.hash) {
-            const targetId = window.location.hash.substring(1);
-            const element = document.getElementById(targetId);
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth" });
-            }
+          // Clean up fallback timer
+          if (fallbackTimerRef.current) {
+            clearTimeout(fallbackTimerRef.current);
+            fallbackTimerRef.current = null;
           }
-        }, REVEAL_DURATION * 1000);
-      }, 100);
 
-      return () => clearTimeout(revealTimer);
+          // Return to idle after reveal animation finishes
+          setTimeout(() => {
+            setIsTransitioning(false);
+            setStage("idle");
+            setTargetPath(null);
+            prevPathnameRef.current = pathname;
+
+            // Resume Lenis smooth scroll after transition completes
+            lenis?.start();
+
+            // After the curtain reveals, if there's a hash in the URL, scroll to it manually
+            // because the native browser jump was lost during the transition delay
+            if (window.location.hash) {
+              const targetId = window.location.hash.substring(1);
+              const element = document.getElementById(targetId);
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }
+          }, REVEAL_DURATION * 1000);
+        }, 50);
+      });
+
+      return () => cancelAnimationFrame(paintBuffer);
     }
-  }, [pathname, stage, targetPath]);
+
+    // Update prevPathname when not transitioning
+    if (stage === "idle") {
+      prevPathnameRef.current = pathname;
+    }
+  }, [pathname, stage, targetPath, lenis]);
 
   const startTransition = useCallback(
     (href: string) => {
@@ -100,6 +126,10 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         return;
       }
 
+      // Save current pathname before navigating
+      prevPathnameRef.current = pathname;
+      holdReadyRef.current = false;
+
       setIsTransitioning(true);
       setTargetPath(href);
 
@@ -109,9 +139,21 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       // Phase 1: Cover - curtain rises from bottom with perspective
       setStage("cover");
 
-      // Set fallback timeout in case route change fails/hangs
-      const fallbackTimer = setTimeout(() => {
-        if (stage === "hold") {
+      // Phase 2: Hold - stay dark, navigate to new page
+      // Wait for cover animation to complete before navigating
+      setTimeout(() => {
+        setStage("hold");
+        holdReadyRef.current = true;
+
+        // Scroll to top BEFORE navigating so new page starts at top,
+        // EXCEPT if there's a hash fragment (like #project), then let browser handle it
+        if (!href.includes("#")) {
+          window.scrollTo(0, 0);
+        }
+        router.push(href);
+
+        // Set fallback timeout in case route change fails/hangs
+        fallbackTimerRef.current = setTimeout(() => {
           console.warn(
             "PageTransition: Route change took too long, forcing reveal phase",
           );
@@ -120,22 +162,13 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
             setIsTransitioning(false);
             setStage("idle");
             setTargetPath(null);
+            prevPathnameRef.current = pathname;
+            lenis?.start();
           }, REVEAL_DURATION * 1000);
-        }
-      }, FALLBACK_TIMEOUT);
-
-      // Phase 2: Hold - stay dark, navigate to new page
-      setTimeout(() => {
-        setStage("hold");
-        // Scroll to top BEFORE navigating so new page starts at top,
-        // EXCEPT if there's a hash fragment (like #project), then let browser handle it
-        if (!href.includes("#")) {
-          window.scrollTo(0, 0);
-        }
-        router.push(href);
+        }, FALLBACK_TIMEOUT);
       }, COVER_DURATION * 1000);
     },
-    [router, isTransitioning, pathname, stage, lenis],
+    [router, isTransitioning, pathname, lenis],
   );
 
   return (
