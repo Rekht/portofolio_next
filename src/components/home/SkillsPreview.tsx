@@ -104,11 +104,13 @@ const SkillsPreview: React.FC<SkillsPreviewProps> = ({ skillsData }) => {
   return (
     <div className="w-full relative">
       {/* Header Section */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-          Technical Skills
-        </h2>
-        <p className="text-muted-foreground">Technologies I work with</p>
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+            Technical Skills
+          </h2>
+          <p className="text-muted-foreground">Technologies I work with</p>
+        </div>
       </div>
 
       {/* Skills by Category */}
