@@ -122,40 +122,22 @@ export default function CustomCursor() {
       />
       {/* Magnetic Outer Ring / Border */}
       <motion.div
-        className={`fixed top-0 left-0 pointer-events-none z-[9998] hidden sm:block border-[2px] ${isHovering ? 'border-primary/40' : 'border-primary'}`}
+        className="fixed top-0 left-0 pointer-events-none z-[9998] hidden sm:block border-[2px] border-primary"
         style={{
           x: ringXSpring,
           y: ringYSpring,
           width: ringWSpring,
           height: ringHSpring,
           borderRadius: ringRSpring,
+          boxShadow: isHovering 
+            ? "0 0 20px hsl(var(--primary) / 0.6), inset 0 0 10px hsl(var(--primary) / 0.4)" 
+            : "0 0 0px hsl(var(--primary) / 0)",
         }}
         animate={{
           opacity: isVisible ? 1 : 0,
         }}
         transition={{ duration: 0.2 }}
-      >
-        {/* Spinning Glow Effect (only visible when hovering magnetic items) */}
-        {isHovering && (
-          <motion.div
-            className="absolute -inset-[2px] rounded-[inherit]"
-            style={{
-              padding: "3px", // Thickness of the spinning light
-              background: "conic-gradient(from 0deg, transparent 40%, hsl(var(--primary)) 80%, white 100%)",
-              backgroundOrigin: "border-box",
-              backgroundClip: "border-box",
-              WebkitMaskImage: "linear-gradient(#fff 0 0), linear-gradient(#fff 0 0)",
-              WebkitMaskClip: "content-box, border-box",
-              WebkitMaskComposite: "xor",
-              maskImage: "linear-gradient(#fff 0 0), linear-gradient(#fff 0 0)",
-              maskClip: "content-box, border-box",
-              maskComposite: "exclude",
-            }}
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-          />
-        )}
-      </motion.div>
+      />
     </>
   );
 }
