@@ -27,6 +27,8 @@ import ExperiencePreview from "@/components/home/ExperiencePreview";
 import EducationPreview from "@/components/home/EducationPreview";
 import SkillsPreview from "@/components/home/SkillsPreview";
 
+const Guestbook = lazy(() => import("@/app/about/components/Guestbook"));
+
 // Types
 interface About {
   description: string;
@@ -126,6 +128,13 @@ export default function HomeClient({
           <section className="py-16" id="skills-preview">
             <Suspense fallback={<SectionLoader />}>
               <SkillsPreview skillsData={skillsData} />
+            </Suspense>
+          </section>
+
+          {/* Guestbook Section */}
+          <section className="py-16" id="guestbook">
+            <Suspense fallback={<SectionLoader />}>
+              <Guestbook />
             </Suspense>
           </section>
 

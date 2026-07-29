@@ -41,10 +41,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 // Lazy components
 const AboutSection = lazy(() => import("./components/AboutSection"));
 const ContactSection = lazy(() => import("../../components/ContactSection"));
-const Guestbook = lazy(() => import("./components/Guestbook"));
-const GitHubContributions = lazy(
-  () => import("./components/GitHubContributions"),
-);
 
 interface AboutClientProps {
   aboutData: About;
@@ -135,19 +131,6 @@ export default function AboutClient({ aboutData }: AboutClientProps) {
             </Suspense>
           </section>
 
-          {/* Guestbook Section */}
-          <section className="py-8">
-            <Suspense fallback={<SectionLoader />}>
-              <Guestbook />
-            </Suspense>
-          </section>
-
-          {/* GitHub Contributions Section */}
-          <section className="py-8">
-            <Suspense fallback={<SectionLoader />}>
-              <GitHubContributions />
-            </Suspense>
-          </section>
 
           {/* Contact Section */}
           <section className="py-24" id="contact">
