@@ -10,6 +10,8 @@ import ChatbotWidget from "@/components/ChatbotWidget";
 import DarkVeil from "@/components/background/DarkVeil";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import CustomCursor from "@/components/ui/CustomCursor";
+import NoiseBackground from "@/components/ui/NoiseBackground";
 
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
@@ -128,6 +130,8 @@ export default function RootLayout({
       {/* Gunakan className dari Montserrat */}
       <body className={`${montserrat.className} bg-background min-h-screen`}>
         <ThemeProvider>
+          <CustomCursor />
+          <NoiseBackground />
           <VisitorLogger />
           {/* DarkVeil - single instance for all pages, avoids re-mount on navigation */}
           <div className="fixed inset-0 -z-10">
