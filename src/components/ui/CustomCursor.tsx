@@ -119,6 +119,7 @@ export default function CustomCursor() {
           opacity: isVisible ? (isHovering ? 0 : 1) : 0,
         }}
         transition={{ duration: 0.2 }}
+      />
       {/* Magnetic Outer Glow (Fades in on hover to create neon effect) */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9997] hidden sm:block border-[3px] border-primary"
