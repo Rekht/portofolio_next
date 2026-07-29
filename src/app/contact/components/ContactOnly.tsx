@@ -71,7 +71,7 @@ const ContactSection: React.FC = () => {
                 href="https://github.com/Rekht"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition"
+                className="text-muted-foreground hover:text-primary transition"
               >
                 <svg
                   className="w-6 h-6"
@@ -91,7 +91,7 @@ const ContactSection: React.FC = () => {
                 href="https://www.linkedin.com/in/restu-anggoro-kasih-34a466218"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition"
+                className="text-muted-foreground hover:text-primary transition"
               >
                 <svg
                   className="w-6 h-6"
@@ -107,7 +107,7 @@ const ContactSection: React.FC = () => {
                 href="https://wa.me/62895363173787"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition"
+                className="text-muted-foreground hover:text-primary transition"
               >
                 <svg
                   className="w-6 h-6"
