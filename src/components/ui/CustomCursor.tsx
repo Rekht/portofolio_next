@@ -1,24 +1,34 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-  const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
-  // Use MotionValues to bypass React state for high-frequency updates
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const hoveredElement = useRef<HTMLElement | null>(null);
+  const rawMouse = useRef({ x: 0, y: 0 });
 
-  // Very snappy spring for the main dot to eliminate delay
-  const dotX = useSpring(mouseX, { stiffness: 2000, damping: 50, mass: 0.1 });
-  const dotY = useSpring(mouseY, { stiffness: 2000, damping: 50, mass: 0.1 });
+  // Main Dot (always follows mouse precisely)
+  const dotX = useMotionValue(0);
+  const dotY = useMotionValue(0);
+  const dotXSpring = useSpring(dotX, { stiffness: 2000, damping: 50, mass: 0.1 });
+  const dotYSpring = useSpring(dotY, { stiffness: 2000, damping: 50, mass: 0.1 });
 
-  // Looser spring for the trailing ring
-  const ringX = useSpring(mouseX, { stiffness: 200, damping: 20, mass: 0.5 });
-  const ringY = useSpring(mouseY, { stiffness: 200, damping: 20, mass: 0.5 });
+  // Outer Ring (morphs and snaps to elements)
+  const ringX = useMotionValue(0);
+  const ringY = useMotionValue(0);
+  const ringW = useMotionValue(32);
+  const ringH = useMotionValue(32);
+  const ringR = useMotionValue(16);
+
+  const ringXSpring = useSpring(ringX, { stiffness: 250, damping: 25, mass: 0.3 });
+  const ringYSpring = useSpring(ringY, { stiffness: 250, damping: 25, mass: 0.3 });
+  const ringWSpring = useSpring(ringW, { stiffness: 250, damping: 25, mass: 0.3 });
+  const ringHSpring = useSpring(ringH, { stiffness: 250, damping: 25, mass: 0.3 });
+  const ringRSpring = useSpring(ringR, { stiffness: 250, damping: 25, mass: 0.3 });
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) {
@@ -32,28 +42,60 @@ export default function CustomCursor() {
     document.head.appendChild(style);
 
     const updateMousePosition = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      rawMouse.current = { x: e.clientX, y: e.clientY };
+      dotX.set(e.clientX - 6);
+      dotY.set(e.clientY - 6);
       if (!isVisible) setIsVisible(true);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const isClickable = 
-        window.getComputedStyle(target).cursor === "pointer" ||
-        target.tagName.toLowerCase() === "a" ||
-        target.tagName.toLowerCase() === "button" ||
-        target.closest("a") || 
-        target.closest("button");
-        
-      setIsHovering(!!isClickable);
+      // Find the closest clickable container
+      const clickable = target.closest('a, button, [role="button"]');
+      if (clickable) {
+        hoveredElement.current = clickable as HTMLElement;
+        setIsHovering(true);
+      } else {
+        hoveredElement.current = null;
+        setIsHovering(false);
+      }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+      hoveredElement.current = null;
+      setIsHovering(false);
+    };
 
     window.addEventListener("mousemove", updateMousePosition);
     window.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseleave", handleMouseLeave);
+
+    // Animation frame loop for continuous bounding box tracking (handles scroll and scale animations)
+    let rafId: number;
+    const loop = () => {
+      if (hoveredElement.current) {
+        const rect = hoveredElement.current.getBoundingClientRect();
+        const padding = 12; // extra padding around the element
+        const computedStyle = window.getComputedStyle(hoveredElement.current);
+        let radius = parseFloat(computedStyle.borderRadius);
+        if (isNaN(radius)) radius = 8; // fallback radius
+
+        ringX.set(rect.left - padding / 2);
+        ringY.set(rect.top - padding / 2);
+        ringW.set(rect.width + padding);
+        ringH.set(rect.height + padding);
+        ringR.set(radius + padding / 4);
+      } else {
+        ringX.set(rawMouse.current.x - 16);
+        ringY.set(rawMouse.current.y - 16);
+        ringW.set(32);
+        ringH.set(32);
+        ringR.set(16);
+      }
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
 
     return () => {
       document.body.style.cursor = "auto";
@@ -61,8 +103,9 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(rafId);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [isVisible, dotX, dotY, ringX, ringY, ringW, ringH, ringR]);
 
   if (isTouchDevice) return null;
 
@@ -70,21 +113,25 @@ export default function CustomCursor() {
     <>
       {/* Main Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full pointer-events-none z-[9999] -ml-[6px] -mt-[6px]"
-        style={{ x: dotX, y: dotY }}
+        className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full pointer-events-none z-[9999]"
+        style={{ x: dotXSpring, y: dotYSpring }}
         animate={{
-          scale: isHovering ? 2.5 : 1,
-          opacity: isVisible ? (isHovering ? 0.5 : 1) : 0,
+          opacity: isVisible ? (isHovering ? 0 : 1) : 0,
         }}
         transition={{ duration: 0.2 }}
       />
-      {/* Outer Ring */}
+      {/* Magnetic Outer Ring / Border */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border-[1.5px] border-primary rounded-full pointer-events-none z-[9998] hidden sm:block -ml-[16px] -mt-[16px]"
-        style={{ x: ringX, y: ringY }}
+        className="fixed top-0 left-0 border-[1.5px] border-primary pointer-events-none z-[9998] hidden sm:block bg-primary/5 backdrop-blur-[2px]"
+        style={{
+          x: ringXSpring,
+          y: ringYSpring,
+          width: ringWSpring,
+          height: ringHSpring,
+          borderRadius: ringRSpring,
+        }}
         animate={{
-          scale: isHovering ? 1.5 : 1,
-          opacity: isVisible ? (isHovering ? 0 : 0.5) : 0,
+          opacity: isVisible ? 1 : 0,
         }}
         transition={{ duration: 0.2 }}
       />
