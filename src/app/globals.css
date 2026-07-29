@@ -195,6 +195,16 @@ html.dark {
   --input: oklch(24% 0 0);
   --ring: oklch(82% 0.14 80);
 
+  /* Input/Form */
+  --input-bg: oklch(18% 0 0);
+  --input-border: oklch(28% 0 0);
+  --placeholder: oklch(50% 0 0);
+
+  /* Tags */
+  --tag-bg: oklch(24% 0 0);
+  --tag-text: oklch(90% 0 0);
+
+
   /* Accent Gradient */
   --accent-gradient-from: oklch(82% 0.14 80);
   --accent-gradient-to: oklch(75% 0.15 60);

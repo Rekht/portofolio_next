@@ -36,8 +36,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     if (storedTheme) {
       setThemeState(storedTheme);
     } else {
-      // Default to light theme if no preference is stored
-      setThemeState("light");
+      // Check system preference
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setThemeState(prefersDark ? "dark" : "light");
     }
 
     setMounted(true);
