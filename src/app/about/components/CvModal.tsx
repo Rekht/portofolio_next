@@ -50,19 +50,19 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75 transition-opacity duration-300 animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm transition-opacity duration-300 animate-fadeIn">
       <div
         ref={modalRef}
-        className="bg-gray-900 rounded-lg w-full h-full max-w-7xl max-h-screen flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn"
+        className="bg-card border border-border rounded-xl shadow-2xl w-full h-full max-w-7xl max-h-[95vh] flex flex-col transform transition-all duration-300 scale-95 animate-scaleIn overflow-hidden"
       >
         {/* Header Modal */}
-        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-          <h3 className="text-xl font-semibold text-white">
+        <div className="flex justify-between items-center px-6 py-4 border-b border-border">
+          <h3 className="text-xl font-bold text-foreground">
             My Curriculum Vitae
           </h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white text-2xl"
+            className="text-muted-foreground hover:text-foreground text-2xl transition-colors"
           >
             &times;
           </button>
@@ -78,7 +78,7 @@ const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer Modal */}
-        <div className="px-6 py-4 border-t border-gray-700 flex justify-between items-center">
+        <div className="px-6 py-4 border-t border-border flex justify-between items-center bg-card">
           <button
             onClick={handleDownloadCV}
             className="bg-primary text-primary-foreground px-6 py-3 rounded-full flex items-center hover:scale-105 hover:bg-primary/90 transition-all shadow-lg"
