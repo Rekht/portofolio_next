@@ -13,8 +13,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import CustomCursor from "@/components/ui/CustomCursor";
 import NoiseBackground from "@/components/ui/NoiseBackground";
 
-import Preloader from "@/components/ui/Preloader";
-
 // Konfigurasi Montserrat
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -132,7 +130,6 @@ export default function RootLayout({
       {/* Gunakan className dari Montserrat */}
       <body className={`${montserrat.className} bg-background min-h-screen`}>
         <ThemeProvider>
-          <Preloader />
           <CustomCursor />
           <NoiseBackground />
           <VisitorLogger />
