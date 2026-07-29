@@ -176,16 +176,6 @@ const EducationPreview: React.FC<EducationPreviewProps> = ({ educationData, cert
                   <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">
                     {education.description}
                   </p>
-                  {/* GPA Badge */}
-                  {education.gpa && (
-                    <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                          d="M12 14l9-5-9-5-9 5 9 5z" />
-                      </svg>
-                      IPK: {education.gpa}
-                    </div>
-                  )}
                 </div>
               </div>
 
