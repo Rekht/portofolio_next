@@ -122,7 +122,7 @@ export default function CustomCursor() {
       />
       {/* Magnetic Outer Ring / Border */}
       <motion.div
-        className="fixed top-0 left-0 border-[1.5px] border-primary pointer-events-none z-[9998] hidden sm:block"
+        className={`fixed top-0 left-0 pointer-events-none z-[9998] hidden sm:block border-[1.5px] ${isHovering ? 'border-primary/20' : 'border-primary'}`}
         style={{
           x: ringXSpring,
           y: ringYSpring,
@@ -134,7 +134,23 @@ export default function CustomCursor() {
           opacity: isVisible ? 1 : 0,
         }}
         transition={{ duration: 0.2 }}
-      />
+      >
+        {/* Spinning Glow Effect (only visible when hovering magnetic items) */}
+        {isHovering && (
+          <motion.div
+            className="absolute -inset-[1.5px] rounded-[inherit]"
+            style={{
+              padding: "1.5px",
+              background: "conic-gradient(from 0deg, transparent 60%, hsl(var(--primary) / 0.8) 90%, hsl(var(--primary)) 100%)",
+              WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+            }}
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+          />
+        )}
+      </motion.div>
     </>
   );
 }
