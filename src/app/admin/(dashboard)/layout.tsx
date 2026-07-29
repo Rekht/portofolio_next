@@ -38,7 +38,7 @@ export default async function AdminLayout({
           <p className="text-xs text-muted-foreground mt-1 truncate">{user.email}</p>
         </div>
         
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto" data-lenis-prevent="true">
           <p className="px-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Content</p>
           <Link href="/admin/projects" className="block px-4 py-2 rounded-lg hover:bg-secondary/80 text-sm transition-colors">
             Projects
@@ -95,7 +95,7 @@ export default async function AdminLayout({
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-8">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8" data-lenis-prevent="true">
           <AdminPageTransition>
             {children}
           </AdminPageTransition>
