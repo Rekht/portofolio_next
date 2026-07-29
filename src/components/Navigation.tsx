@@ -101,7 +101,6 @@ interface NavigationProps {
 }
 
 const navItems = [
-  { href: "/about", icon: AboutIcon, label: "About", page: "about" },
   {
     href: "/experience",
     icon: ExperienceIcon,
