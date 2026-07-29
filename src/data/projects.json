@@ -28,7 +28,7 @@
   },
   {
     "id": 2,
-    "title": "Land Use Land Cover Classification Website",
+    "title": "LULC",
     "description": "Using Google Earth Engine and 1D CNN for accurate and simplified land cover classification.",
     "detailedDescription": "This project is my internship report.\r\n\r\nThis web-based platform performs one-dimensional land use and land cover (LULC) classification using satellite imagery from Sentinel-2 and a 1D convolutional neural network (CNN). It is designed as a lightweight application focused on classification tasks rather than interactive exploration.\r\n\r\nThe classification model was trained on thousands of labeled samples to recognize spectral patterns across four major land cover classes: Built-up, Water, Plantation forest, and Herbaceous. By leveraging Sentinel-2’s multi-spectral data, the model achieved a classification accuracy of 90%.\r\n\r\nThe website features a minimal interface for displaying classification outputs. It does not include region selection, algorithm switching, or time-series analysis components, making it suitable for evaluating classification performance with a simple deployment.",
     "image": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/projects/lulc-project.png",
@@ -54,7 +54,7 @@
   },
   {
     "id": 3,
-    "title": "Unsupervised Bank Transaction Fraud Detection System",
+    "title": "Bank Transaction Fraud Detection",
     "description": "This project is an independent project.\r\n\r\nUnsupervised machine learning solution identifying fraudulent transactions with 2.35% anomaly rate using behavioral pattern analysis and geospatial verification",
     "detailedDescription": "This project implements an unsupervised fraud detection system for banking transactions with the following key findings:\r\n\r\n**Critical Insights**:\r\n1. Impossible Travel Detection\r\n- Identified 25 transactions with physically impossible velocities (>800km/h)\r\n- Geographic anomalies represented 42.4% of high-confidence fraud cases\r\n\r\n2. Transaction Pattern Analysis\r\n- Anomalous transactions averaged $623.37 (115% higher than normal transactions)\r\n- 68% of high-value anomalies (>$1000) involved multiple devices\r\n\r\n3. Temporal Behavior Patterns\r\n- Highest anomaly concentration at 18:00 (3.45% anomaly rate)\r\n- Tuesday anomalies occurred 2.93% more frequently than weekly average\r\n\r\n**Technical Implementation**:\r\n- Processed 2,512 real-world transactions with 31 engineered features\r\n- Ensemble of 7 unsupervised models (Isolation Forest, OCSVM, LOF, Mahalanobis, HBOS, GMM, k-NN)\r\n- Domain validation showed 74.58% of detected anomalies matched actual fraud criteria\r\n- Key feature contributions:\r\n  • Account Transaction Velocity (10.03% impact)\r\n  • Location Velocity (7.76% impact)\r\n  • Amount-to-Average Ratio (6.02% impact)",
     "image": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/projects/anomaly-thumb.png",

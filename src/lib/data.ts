@@ -26,7 +26,19 @@ export async function fetchAbout(): Promise<{ description: string } | null> {
 }
 
 export async function fetchProjects() {
-  return fetchTable("projects");
+  const data = await fetchTable<any>("projects");
+  if (data) {
+    return data.map((project: any) => {
+      let newTitle = project.title;
+      if (newTitle && newTitle.includes("Land Use Land Cover")) {
+        newTitle = "LULC";
+      } else if (newTitle && newTitle.includes("Bank Transaction Fraud")) {
+        newTitle = "Bank Transaction Fraud Detection";
+      }
+      return { ...project, title: newTitle };
+    });
+  }
+  return null;
 }
 
 export async function fetchCertifications() {
