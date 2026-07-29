@@ -119,8 +119,24 @@ export default function CustomCursor() {
           opacity: isVisible ? (isHovering ? 0 : 1) : 0,
         }}
         transition={{ duration: 0.2 }}
+      {/* Magnetic Outer Glow (Fades in on hover to create neon effect) */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9997] hidden sm:block border-[3px] border-primary"
+        style={{
+          x: ringXSpring,
+          y: ringYSpring,
+          width: ringWSpring,
+          height: ringHSpring,
+          borderRadius: ringRSpring,
+          filter: "blur(6px)",
+        }}
+        animate={{
+          opacity: isVisible && isHovering ? 0.7 : 0,
+        }}
+        transition={{ duration: 0.2 }}
       />
-      {/* Magnetic Outer Ring / Border */}
+
+      {/* Magnetic Outer Ring / Border (The crisp line) */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9998] hidden sm:block border-[2px] border-primary"
         style={{
@@ -129,9 +145,6 @@ export default function CustomCursor() {
           width: ringWSpring,
           height: ringHSpring,
           borderRadius: ringRSpring,
-          boxShadow: isHovering 
-            ? "0 0 20px hsl(var(--primary) / 0.6), inset 0 0 10px hsl(var(--primary) / 0.4)" 
-            : "0 0 0px hsl(var(--primary) / 0)",
         }}
         animate={{
           opacity: isVisible ? 1 : 0,
