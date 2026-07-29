@@ -140,9 +140,9 @@ const EducationPreview: React.FC<EducationPreviewProps> = ({ educationData, cert
             noAnimation
             className="hover:scale-[1.005] transition-transform duration-500"
           >
-            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8">
               {/* Left Side: Logo + Degree Info */}
-              <div className="flex items-start gap-5 lg:flex-1 min-w-0">
+              <div className="flex items-center gap-5 lg:flex-1 min-w-0">
                 {/* University Logo — Clean, no background box */}
                 <div className="relative flex-shrink-0">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/15 flex items-center justify-center p-2.5 backdrop-blur-sm">
