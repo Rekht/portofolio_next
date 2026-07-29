@@ -51,25 +51,27 @@ export function FocusCards({ cards }: { cards: CardType[] }) {
 
   return (
     <div className="relative w-full grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
-      {/* Text tengah dengan efek smooth masuk dari bawah */}
+      {/* Text tengah dengan efek smooth masuk dari bawah (reveal effect) */}
       <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
         {hovered !== null && (
-          <motion.h1
-            key={cards[hovered].title}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            className="text-4xl md:text-6xl font-bold text-white text-center"
-            style={{
-              textShadow:
-                "0 2px 4px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)",
-            }}
-          >
-            {cards[hovered].title}
-          </motion.h1>
+          <div className="overflow-hidden py-6 px-4">
+            <motion.h1
+              key={cards[hovered].title}
+              initial={{ opacity: 0, y: "100%" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="text-4xl md:text-6xl font-bold text-white text-center"
+              style={{
+                textShadow:
+                  "0 2px 4px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4)",
+              }}
+            >
+              {cards[hovered].title}
+            </motion.h1>
+          </div>
         )}
       </div>
 
