@@ -28,7 +28,7 @@
   },
   {
     "id": 2,
-    "title": "LULC",
+    "title": "LULC Website",
     "description": "Using Google Earth Engine and 1D CNN for accurate and simplified land cover classification.",
     "detailedDescription": "This project is my internship report.\r\n\r\nThis web-based platform performs one-dimensional land use and land cover (LULC) classification using satellite imagery from Sentinel-2 and a 1D convolutional neural network (CNN). It is designed as a lightweight application focused on classification tasks rather than interactive exploration.\r\n\r\nThe classification model was trained on thousands of labeled samples to recognize spectral patterns across four major land cover classes: Built-up, Water, Plantation forest, and Herbaceous. By leveraging Sentinel-2’s multi-spectral data, the model achieved a classification accuracy of 90%.\r\n\r\nThe website features a minimal interface for displaying classification outputs. It does not include region selection, algorithm switching, or time-series analysis components, making it suitable for evaluating classification performance with a simple deployment.",
     "image": "https://joybwgquarfmqmaedxfw.supabase.co/storage/v1/object/public/portfolio-images/assets/projects/lulc-project.png",

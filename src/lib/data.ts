@@ -31,7 +31,7 @@ export async function fetchProjects() {
     return data.map((project: any) => {
       let newTitle = project.title;
       if (newTitle && newTitle.includes("Land Use Land Cover")) {
-        newTitle = "LULC";
+        newTitle = "LULC Website";
       } else if (newTitle && newTitle.includes("Bank Transaction Fraud")) {
         newTitle = "Bank Transaction Fraud Detection";
       }
