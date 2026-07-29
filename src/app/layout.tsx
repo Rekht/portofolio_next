@@ -114,7 +114,7 @@ export default function RootLayout({
                 try {
                   var theme = localStorage.getItem('theme');
                   if (!theme) {
-                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                    theme = 'light';
                   }
                   document.documentElement.classList.add(theme);
                 } catch (e) {
