@@ -122,7 +122,7 @@ export default function CustomCursor() {
       />
       {/* Magnetic Outer Ring / Border */}
       <motion.div
-        className="fixed top-0 left-0 border-[1.5px] border-primary pointer-events-none z-[9998] hidden sm:block bg-primary/5 backdrop-blur-[2px]"
+        className="fixed top-0 left-0 border-[1.5px] border-primary pointer-events-none z-[9998] hidden sm:block"
         style={{
           x: ringXSpring,
           y: ringYSpring,
